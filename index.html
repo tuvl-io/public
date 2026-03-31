@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tuvl — Deploy Your AI Workflows in Minutes</title>
+    <meta name="description" content="A lightweight, local-first workflow orchestration engine for AI-powered business automation. Define once, deploy anywhere.">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Main content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="tuvl logo" class="logo">
+                <span class="logo-text">tuvl</span>
+            </div>
+            <p class="tagline">
+                <span class="tagline-highlight">Featherlight</span> workflow orchestration
+            </p>
+            <h1 class="hero-title">
+                Deploy Your <span class="gradient-text">AI Workflows</span><br>
+                in Minutes, Not Months
+            </h1>
+            <p class="hero-description">
+                Define complex business logic in YAML. Write Python functions.<br>
+                Let AI handle the rest. Your infrastructure, your data, your rules.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="cta-container">
+                <a href="#notify" class="btn btn-primary">
+                    <span>Get Early Access</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tuvl/tuvl" class="btn btn-secondary" target="_blank">
+                    <svg class="btn-icon-left" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>View on GitHub</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Features Grid -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </div>
+                <h3>Write Functions</h3>
+                <p>Simple async Python functions. Decorate with <code>@node</code> and you're done.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <h3>Define in YAML</h3>
+                <p>Workflows, models, datasources — all in readable YAML configuration.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3>Run Locally</h3>
+                <p>Your data never leaves your infrastructure. Full control, zero cloud lock-in.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h3>AI-Native</h3>
+                <p>LLMs as first-class workflow steps. Route on AI decisions. Structure outputs.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                    </svg>
+                </div>
+                <h3>Auto-Generated APIs</h3>
+                <p>Every model gets CRUD endpoints. Every workflow becomes an HTTP API.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                    </svg>
+                </div>
+                <h3>Visual Builder</h3>
+                <p>Drag-and-drop workflow designer. See your logic flow in real-time.</p>
+            </div>
+        </section>
+
+        <!-- Code Preview -->
+        <section class="code-preview">
+            <h2>From Idea to API in 3 Steps</h2>
+            <div class="code-tabs">
+                <div class="tab-group">
+                    <button class="tab active" data-tab="workflow">1. Define Workflow</button>
+                    <button class="tab" data-tab="node">2. Write Node</button>
+                    <button class="tab" data-tab="api">3. Call API</button>
+                </div>
+                <div class="code-content">
+                    <pre class="code-block active" id="workflow"><code><span class="keyword">kind</span>: <span class="string">"Workflow"</span>
+<span class="keyword">metadata</span>:
+  <span class="keyword">name</span>: <span class="string">"customer_onboarding"</span>
+
+<span class="keyword">steps</span>:
+  - <span class="keyword">id</span>: <span class="string">"validate"</span>
+    <span class="keyword">kind</span>: <span class="string">"functional"</span>
+    <span class="keyword">runner</span>: <span class="string">"validate_customer"</span>
+
+  - <span class="keyword">id</span>: <span class="string">"ai_scoring"</span>
+    <span class="keyword">kind</span>: <span class="string">"agent"</span>
+    <span class="keyword">agent</span>:
+      <span class="keyword">model</span>: <span class="string">"ollama/llama3"</span>
+      <span class="keyword">prompt</span>: <span class="string">"Score this customer..."</span>
+    <span class="keyword">routes</span>:
+      <span class="keyword">premium</span>: <span class="string">"fast_track"</span>
+      <span class="keyword">standard</span>: <span class="string">"normal_flow"</span></code></pre>
+                    <pre class="code-block" id="node"><code><span class="keyword">from</span> tuvl.nodes <span class="keyword">import</span> node
+<span class="keyword">from</span> tuvl.repositories <span class="keyword">import</span> get_repository
+
+<span class="decorator">@node</span>(<span class="string">"validate_customer"</span>)
+<span class="keyword">async def</span> <span class="function">validate_customer</span>(ctx: <span class="type">dict</span>) -> <span class="type">dict</span>:
+    <span class="string">"""Validate and enrich customer data."""</span>
+    session = ctx[<span class="string">"_session"</span>]
+    repo = get_repository(<span class="string">"Customer"</span>, session)
+    
+    customer = <span class="keyword">await</span> repo.add({
+        <span class="string">"email"</span>: ctx[<span class="string">"email"</span>],
+        <span class="string">"name"</span>: ctx[<span class="string">"name"</span>],
+    })
+    
+    <span class="keyword">return</span> {**ctx, <span class="string">"customer_id"</span>: customer.id}</code></pre>
+                    <pre class="code-block" id="api"><code><span class="comment"># Your workflow is now an API!</span>
+
+<span class="keyword">curl</span> -X POST http://localhost:8000/workflows/customer_onboarding \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d <span class="string">'{
+    "email": "alice@example.com",
+    "name": "Alice Smith"
+  }'</span>
+
+<span class="comment"># Response:</span>
+{
+  <span class="string">"workflow_id"</span>: <span class="string">"wf_abc123"</span>,
+  <span class="string">"status"</span>: <span class="string">"completed"</span>,
+  <span class="string">"customer_id"</span>: <span class="string">"cust_xyz789"</span>,
+  <span class="string">"route"</span>: <span class="string">"premium"</span>
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats/Trust Section -->
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-value">50ms</span>
+                <span class="stat-label">Avg workflow execution</span>
+            </div>
+            <div class="stat">
+                <span class="stat-icon">🔒</span>
+                <span class="stat-value">100%</span>
+                <span class="stat-label">Local data privacy</span>
+            </div>
+            <div class="stat">
+                <span class="stat-icon">📦</span>
+                <span class="stat-value">Zero</span>
+                <span class="stat-label">Cloud dependencies</span>
+            </div>
+            <div class="stat">
+                <span class="stat-icon">🚀</span>
+                <span class="stat-value">< 5min</span>
+                <span class="stat-label">Time to first workflow</span>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter" id="notify">
+            <div class="newsletter-content">
+                <h2>Be the First to Deploy</h2>
+                <p>Join our early access list and get notified when tuvl is ready for production.</p>
+                <form class="newsletter-form" onsubmit="handleSubmit(event)">
+                    <input 
+                        type="email" 
+                        placeholder="your@email.com" 
+                        required
+                        class="newsletter-input"
+                    >
+                    <button type="submit" class="btn btn-primary">
+                        <span>Notify Me</span>
+                    </button>
+                </form>
+                <p class="newsletter-note">No spam. Just important updates.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="tuvl" class="footer-logo">
+                    <p>തൂവൽ — Featherlight workflow orchestration</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/tuvl/tuvl" target="_blank">GitHub</a>
+                    <a href="/documentation">Documentation</a>
+                    <a href="mailto:hello@tuvl.dev">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 tuvl. Open source. MIT licensed.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
