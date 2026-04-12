@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tuvl — AI Workflows, Featherlight.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <img src="assets/logo.png" alt="tuvl" class="nav-logo">
+                <span class="nav-name">tuvl</span>
+            </div>
+            <div class="nav-links">
+                <a href="#workflows" class="nav-link">Workflows</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="https://github.com/tuvl/tuvl" class="nav-link" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="#notify" class="btn btn-sm">Early Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero -->
+        <header class="hero">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                Something big is coming
+            </div>
+
+            <h1 class="hero-title">
+                Deploy AI Workflows<br>
+                <span class="gradient-text">at the Speed of Thought.</span>
+            </h1>
+
+            <p class="hero-description">
+                The local-first workflow engine that turns YAML into production-ready APIs.
+                Your infrastructure, your data, your rules.
+            </p>
+
+            <div class="cta-container">
+                <a href="#notify" class="btn btn-primary">
+                    Join the Waitlist
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="https://github.com/tuvl/tuvl" class="btn btn-ghost" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    View Source
+                </a>
+            </div>
+
+            <!-- Hero Terminal -->
+            <div class="hero-terminal">
+                <div class="terminal-bar">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="terminal-title">terminal</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl init my-app && cd my-app</span></div>
+                    <div class="t-line t-out"><span class="t-check">✓</span> Project scaffolded: <span class="t-path">my-app/</span></div>
+                    <div class="t-line t-out"><span class="t-check">✓</span> Config ready — edit <span class="t-path">.env</span> to connect your DB</div>
+                    <div class="t-line t-gap"></div>
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl dev</span></div>
+                    <div class="t-line t-out"><span class="t-check">✓</span> Engine running → <span class="t-url">http://localhost:8000</span></div>
+                    <div class="t-line t-out"><span class="t-info">⬡</span> Watching <span class="t-path">workflows/</span>, <span class="t-path">models/</span>, <span class="t-path">nodes/</span></div>
+                    <div class="t-line t-out"><span class="t-info">⬡</span> API docs → <span class="t-url">http://localhost:8000/docs</span></div>
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Features -->
+        <section class="features" id="features">
+            <div class="section-eyebrow">Core Capabilities</div>
+            <h2 class="section-title">Built for developers.<br>Designed for production.</h2>
+            <div class="features-grid">
+                <div class="f-card">
+                    <div class="f-icon-wrap f-icon-purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Local-First</h3>
+                    <p>Run entirely on your infra with Ollama. No data leaves your network — ever.</p>
+                </div>
+                <div class="f-card">
+                    <div class="f-icon-wrap f-icon-blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Dynamic Models</h3>
+                    <p>YAML-defined schemas auto-generate DB tables and full CRUD REST APIs instantly.</p>
+                </div>
+                <div class="f-card">
+                    <div class="f-icon-wrap f-icon-green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    </div>
+                    <h3>MCP Ready</h3>
+                    <p>Connect LLMs to any external tool using the Model Context Protocol natively.</p>
+                </div>
+                <div class="f-card">
+                    <div class="f-icon-wrap f-icon-amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Featherlight</h3>
+                    <p>Sub-50ms execution overhead. Zero bloat. Built for high-concurrency systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Showcase -->
+        <section class="workflows-section" id="workflows">
+            <div class="section-eyebrow">Workflow Showcase</div>
+            <h2 class="section-title">Two flavors.<br>One powerful engine.</h2>
+            <p class="section-desc">tuvl supports pure function-based pipelines for deterministic logic and agentic workflows where LLMs make routing decisions — compose them freely in a single YAML file.</p>
+
+            <div class="wf-toggle">
+                <button class="wf-tab active" data-wf="functional">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Function-Based
+                </button>
+                <button class="wf-tab" data-wf="agentic">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+                    Agentic
+                </button>
+            </div>
+
+            <!-- Functional Workflow Panel -->
+            <div class="wf-panel active" id="wf-functional">
+                <div class="wf-panel-inner">
+                    <div class="wf-info">
+                        <div class="wf-kind-badge wf-kind-func">functional</div>
+                        <h3>Contact Intake Pipeline</h3>
+                        <p>Pure Python logic — validate, persist, and route without a single LLM call. Deterministic, fast, and predictable.</p>
+                        <ul class="wf-traits">
+                            <li><span class="trait-dot trait-green"></span>Deterministic execution</li>
+                            <li><span class="trait-dot trait-green"></span>Sub-millisecond latency</li>
+                            <li><span class="trait-dot trait-green"></span>Full type safety</li>
+                            <li><span class="trait-dot trait-green"></span>Signal-based routing</li>
+                        </ul>
+                    </div>
+                    <div class="wf-diagram">
+                        <div class="wf-flow">
+                            <div class="wf-node wf-node-func">
+                                <div class="wf-node-kind">fn</div>
+                                <div class="wf-node-label">validate</div>
+                            </div>
+                            <div class="wf-connector">
+                                <div class="wf-signal wf-signal-valid">valid</div>
+                                <div class="wf-arrow-line"></div>
+                            </div>
+                            <div class="wf-node wf-node-func">
+                                <div class="wf-node-kind">fn</div>
+                                <div class="wf-node-label">save</div>
+                            </div>
+                            <div class="wf-connector">
+                                <div class="wf-signal wf-signal-default">default</div>
+                                <div class="wf-arrow-line"></div>
+                            </div>
+                            <div class="wf-node wf-node-func">
+                                <div class="wf-node-kind">fn</div>
+                                <div class="wf-node-label">notify</div>
+                            </div>
+                            <div class="wf-connector">
+                                <div class="wf-signal wf-signal-default">default</div>
+                                <div class="wf-arrow-line"></div>
+                            </div>
+                            <div class="wf-node wf-node-end">
+                                <div class="wf-node-label">END</div>
+                            </div>
+                        </div>
+                        <div class="wf-branch-note">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                            <span>invalid signal → END (bypasses save &amp; notify)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wf-code-window">
+                    <div class="wf-code-tabs">
+                        <button class="wf-code-tab active" data-sub="workflow-func">workflow.yaml</button>
+                        <button class="wf-code-tab" data-sub="node-func">nodes/contact.py</button>
+                    </div>
+                    <div class="wf-code-body">
+                        <div class="wf-code-pane active" id="wc-workflow-func">
+<pre class="code-block"><span class="cm"># workflows/contact_intake.yaml</span>
+<span class="kw">kind:</span> <span class="st">"Workflow"</span>
+<span class="kw">metadata:</span>
+  <span class="kw">name:</span> <span class="st">"contact_intake"</span>
+  <span class="kw">description:</span> <span class="st">"Capture and prioritize new contacts"</span>
+
+<span class="kw">context:</span> <span class="st">"Contact"</span>
+
+<span class="kw">trigger:</span>
+  <span class="kw">path:</span> <span class="st">"/api/contacts"</span>
+  <span class="kw">method:</span> <span class="st">"POST"</span>
+  <span class="kw">input_schema:</span> <span class="st">"context"</span>
+  <span class="kw">response_schema:</span> <span class="st">"context"</span>
+
+<span class="kw">steps:</span>
+  - <span class="kw">id:</span> <span class="st">"validate"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"validate_contact"</span>
+    <span class="kw">routes:</span>
+      <span class="kw">valid:</span> <span class="st">"save"</span>
+      <span class="kw">invalid:</span> <span class="st">"END"</span>
+
+  - <span class="kw">id:</span> <span class="st">"save"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"save_contact"</span>
+    <span class="kw">routes:</span>
+      <span class="kw">default:</span> <span class="st">"notify"</span>
+
+  - <span class="kw">id:</span> <span class="st">"notify"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"send_welcome_email"</span></pre>
+                        </div>
+                        <div class="wf-code-pane" id="wc-node-func">
+<pre class="code-block"><span class="cm"># nodes/contact_nodes.py</span>
+<span class="py-kw">from</span> typing <span class="py-kw">import</span> Any
+<span class="py-kw">from</span> tuvl_engine.nodes.base <span class="py-kw">import</span> node
+<span class="py-kw">from</span> tuvl_engine.repositories.registry <span class="py-kw">import</span> get_repository
+
+<span class="deco">@node</span>(<span class="st">"validate_contact"</span>)
+<span class="py-kw">async def</span> <span class="fn">validate_contact</span>(ctx: dict[str, Any]) -> str:
+    <span class="cm">"""Return signal based on validation result."""</span>
+    <span class="py-kw">if not</span> ctx.get(<span class="st">"email"</span>) <span class="py-kw">or</span> <span class="st">"@"</span> <span class="py-kw">not in</span> ctx[<span class="st">"email"</span>]:
+        <span class="py-kw">return</span> <span class="st">"invalid"</span>
+    <span class="py-kw">return</span> <span class="st">"valid"</span>
+
+<span class="deco">@node</span>(<span class="st">"save_contact"</span>)
+<span class="py-kw">async def</span> <span class="fn">save_contact</span>(ctx: dict[str, Any]) -> dict[str, Any]:
+    <span class="cm">"""Persist contact to the database."""</span>
+    session = ctx[<span class="st">"_session"</span>]
+    repo = <span class="fn">get_repository</span>(<span class="st">"Contact"</span>, session)
+    contact = <span class="py-kw">await</span> repo.<span class="fn">add</span>({
+        <span class="st">"email"</span>: ctx[<span class="st">"email"</span>],
+        <span class="st">"name"</span>:  ctx[<span class="st">"name"</span>],
+    })
+    ctx[<span class="st">"id"</span>] = <span class="fn">str</span>(contact.id)
+    <span class="py-kw">return</span> ctx
+
+<span class="deco">@node</span>(<span class="st">"send_welcome_email"</span>)
+<span class="py-kw">async def</span> <span class="fn">send_welcome_email</span>(ctx: dict[str, Any]) -> dict[str, Any]:
+    <span class="cm">"""Dispatch welcome notification."""</span>
+    ctx[<span class="st">"notified"</span>] = <span class="py-kw">True</span>
+    <span class="py-kw">return</span> ctx</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agentic Workflow Panel -->
+            <div class="wf-panel" id="wf-agentic">
+                <div class="wf-panel-inner">
+                    <div class="wf-info">
+                        <div class="wf-kind-badge wf-kind-agent">agentic</div>
+                        <h3>Candidate Onboarding Pipeline</h3>
+                        <p>An LLM evaluates each candidate and returns a structured decision that drives the routing — senior, needs review, or unqualified.</p>
+                        <ul class="wf-traits">
+                            <li><span class="trait-dot trait-amber"></span>LLM-powered decisions</li>
+                            <li><span class="trait-dot trait-amber"></span>Structured JSON output</li>
+                            <li><span class="trait-dot trait-amber"></span>Signal-from-field routing</li>
+                            <li><span class="trait-dot trait-amber"></span>Retry on parse errors</li>
+                        </ul>
+                    </div>
+                    <div class="wf-diagram">
+                        <div class="wf-flow wf-flow-branch">
+                            <div class="wf-node wf-node-func">
+                                <div class="wf-node-kind">fn</div>
+                                <div class="wf-node-label">save_draft</div>
+                            </div>
+                            <div class="wf-connector">
+                                <div class="wf-signal wf-signal-default">default</div>
+                                <div class="wf-arrow-line"></div>
+                            </div>
+                            <div class="wf-node wf-node-agent">
+                                <div class="wf-node-kind wf-node-kind-ai">ai</div>
+                                <div class="wf-node-label">ai_vetting</div>
+                            </div>
+                        </div>
+                        <div class="wf-branches-out">
+                            <div class="wf-branch-row">
+                                <div class="wf-branch-line"></div>
+                                <div class="wf-signal wf-signal-senior">senior</div>
+                                <div class="wf-node wf-node-func wf-node-sm">
+                                    <div class="wf-node-kind">fn</div>
+                                    <div class="wf-node-label">fast_track</div>
+                                </div>
+                            </div>
+                            <div class="wf-branch-row">
+                                <div class="wf-branch-line"></div>
+                                <div class="wf-signal wf-signal-review">needs_review</div>
+                                <div class="wf-node wf-node-func wf-node-sm">
+                                    <div class="wf-node-kind">fn</div>
+                                    <div class="wf-node-label">manual_review</div>
+                                </div>
+                            </div>
+                            <div class="wf-branch-row">
+                                <div class="wf-branch-line"></div>
+                                <div class="wf-signal wf-signal-invalid">unqualified</div>
+                                <div class="wf-node wf-node-end wf-node-sm">
+                                    <div class="wf-node-label">END</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wf-code-window">
+                    <div class="wf-code-tabs">
+                        <button class="wf-code-tab active" data-sub="workflow-agent">workflow.yaml</button>
+                        <button class="wf-code-tab" data-sub="node-agent">nodes/onboarding.py</button>
+                    </div>
+                    <div class="wf-code-body">
+                        <div class="wf-code-pane active" id="wc-workflow-agent">
+<pre class="code-block"><span class="cm"># workflows/onboarding.yaml</span>
+<span class="kw">kind:</span> <span class="st">"Workflow"</span>
+<span class="kw">metadata:</span>
+  <span class="kw">name:</span> <span class="st">"candidate_onboarding"</span>
+  <span class="kw">description:</span> <span class="st">"AI-powered candidate screening"</span>
+
+<span class="kw">context:</span> <span class="st">"Candidate"</span>
+
+<span class="kw">trigger:</span>
+  <span class="kw">path:</span> <span class="st">"/api/candidates/onboard"</span>
+  <span class="kw">method:</span> <span class="st">"POST"</span>
+
+<span class="kw">steps:</span>
+  - <span class="kw">id:</span> <span class="st">"save_draft"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"save_candidate"</span>
+    <span class="kw">routes:</span>
+      <span class="kw">default:</span> <span class="st">"ai_vetting"</span>
+
+  - <span class="kw">id:</span> <span class="st">"ai_vetting"</span>               <span class="cm"># ✦ Agent step</span>
+    <span class="kw">kind:</span> <span class="ag">"agent"</span>
+    <span class="kw">agent:</span>
+      <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
+      <span class="kw">system:</span> <span class="st">"You are a fair hiring assistant."</span>
+      <span class="kw">prompt:</span> <span class="st">|
+        Evaluate this candidate:
+        Name: {{ full_name }}
+        Experience: {{ experience_years }} years
+
+        Classify as senior (5+ yrs), needs_review,
+        or unqualified (&lt;1 yr).
+        Return JSON: {"decision": "..."}</span>
+      <span class="kw">output:</span>
+        <span class="kw">format:</span> <span class="st">json</span>
+        <span class="kw">map:</span>
+          <span class="kw">decision:</span> <span class="st">vetting_decision</span>
+        <span class="kw">signal_from:</span> <span class="st">decision</span>
+      <span class="kw">retry:</span>
+        <span class="kw">attempts:</span> <span class="nm">3</span>
+        <span class="kw">on:</span> [<span class="st">parse_error</span>, <span class="st">timeout</span>]
+    <span class="kw">routes:</span>
+      <span class="kw">senior:</span>       <span class="st">"fast_track"</span>
+      <span class="kw">needs_review:</span> <span class="st">"manual_review"</span>
+      <span class="kw">unqualified:</span>  <span class="st">"END"</span>
+
+  - <span class="kw">id:</span> <span class="st">"fast_track"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"fast_track_candidate"</span>
+
+  - <span class="kw">id:</span> <span class="st">"manual_review"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"flag_for_review"</span></pre>
+                        </div>
+                        <div class="wf-code-pane" id="wc-node-agent">
+<pre class="code-block"><span class="cm"># nodes/onboarding.py</span>
+<span class="py-kw">from</span> typing <span class="py-kw">import</span> Any
+<span class="py-kw">from</span> tuvl_engine.nodes.base <span class="py-kw">import</span> node
+<span class="py-kw">from</span> tuvl_engine.repositories.registry <span class="py-kw">import</span> get_repository
+
+<span class="deco">@node</span>(<span class="st">"save_candidate"</span>)
+<span class="py-kw">async def</span> <span class="fn">save_candidate</span>(ctx: dict[str, Any]) -> dict[str, Any]:
+    <span class="cm">"""Persist candidate record before AI evaluation."""</span>
+    session = ctx[<span class="st">"_session"</span>]
+    repo = <span class="fn">get_repository</span>(<span class="st">"Candidate"</span>, session)
+    candidate = <span class="py-kw">await</span> repo.<span class="fn">add</span>({
+        <span class="st">"email"</span>:            ctx[<span class="st">"email"</span>],
+        <span class="st">"full_name"</span>:        ctx[<span class="st">"full_name"</span>],
+        <span class="st">"experience_years"</span>: ctx.get(<span class="st">"experience_years"</span>, <span class="nm">0</span>),
+        <span class="st">"status"</span>:           <span class="st">"pending"</span>,
+    })
+    ctx[<span class="st">"id"</span>]     = <span class="fn">str</span>(candidate.id)
+    ctx[<span class="st">"status"</span>] = candidate.status
+    <span class="py-kw">return</span> ctx  <span class="cm"># ↓ ai_vetting step runs next</span>
+
+<span class="deco">@node</span>(<span class="st">"fast_track_candidate"</span>)
+<span class="py-kw">async def</span> <span class="fn">fast_track_candidate</span>(ctx: dict[str, Any]) -> dict[str, Any]:
+    <span class="cm">"""Mark senior candidates for immediate interview."""</span>
+    session = ctx[<span class="st">"_session"</span>]
+    repo = <span class="fn">get_repository</span>(<span class="st">"Candidate"</span>, session)
+    <span class="py-kw">await</span> repo.<span class="fn">update</span>(ctx[<span class="st">"id"</span>], {<span class="st">"status"</span>: <span class="st">"fast_tracked"</span>})
+    ctx[<span class="st">"status"</span>] = <span class="st">"fast_tracked"</span>
+    <span class="py-kw">return</span> ctx
+
+<span class="deco">@node</span>(<span class="st">"flag_for_review"</span>)
+<span class="py-kw">async def</span> <span class="fn">flag_for_review</span>(ctx: dict[str, Any]) -> dict[str, Any]:
+    <span class="cm">"""Queue candidate for human assessment."""</span>
+    session = ctx[<span class="st">"_session"</span>]
+    repo = <span class="fn">get_repository</span>(<span class="st">"Candidate"</span>, session)
+    <span class="py-kw">await</span> repo.<span class="fn">update</span>(ctx[<span class="st">"id"</span>], {<span class="st">"status"</span>: <span class="st">"review"</span>})
+    ctx[<span class="st">"status"</span>] = <span class="st">"review"</span>
+    <span class="py-kw">return</span> ctx</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3-Step Code Preview -->
+        <section class="code-section">
+            <div class="section-eyebrow">Get Started</div>
+            <h2 class="section-title">From Idea to API<br>in 3 Steps.</h2>
+            <div class="code-window">
+                <div class="tab-header">
+                    <button class="tab-btn active" data-step="1">
+                        <span class="tab-num">01</span> Define Model
+                    </button>
+                    <button class="tab-btn" data-step="2">
+                        <span class="tab-num">02</span> Compose Workflow
+                    </button>
+                    <button class="tab-btn" data-step="3">
+                        <span class="tab-num">03</span> Deploy API
+                    </button>
+                </div>
+                <div class="code-display">
+                    <!-- Step 1 -->
+                    <div class="code-pane active" id="pane-1">
+<pre class="code-block"><span class="cm"># models/contact.yaml</span>
+<span class="kw">kind:</span> <span class="st">"ModelDefinition"</span>
+<span class="kw">version:</span> <span class="st">"v1"</span>
+<span class="kw">metadata:</span>
+  <span class="kw">name:</span> <span class="st">"Contact"</span>
+<span class="kw">spec:</span>
+  <span class="kw">tablename:</span> <span class="st">"contacts"</span>
+  <span class="kw">schema:</span> <span class="nm">true</span>
+  <span class="kw">fields:</span>
+    - <span class="kw">name:</span> <span class="st">"id"</span>
+      <span class="kw">type:</span> <span class="st">"uuid"</span>
+      <span class="kw">primary_key:</span> <span class="nm">true</span>
+      <span class="kw">default:</span> <span class="st">"uuid4"</span>
+    - <span class="kw">name:</span> <span class="st">"email"</span>
+      <span class="kw">type:</span> <span class="st">"string"</span>
+      <span class="kw">unique:</span> <span class="nm">true</span>
+      <span class="kw">required:</span> <span class="nm">true</span>
+    - <span class="kw">name:</span> <span class="st">"name"</span>
+      <span class="kw">type:</span> <span class="st">"string"</span>
+      <span class="kw">required:</span> <span class="nm">true</span>
+    - <span class="kw">name:</span> <span class="st">"priority"</span>
+      <span class="kw">type:</span> <span class="st">"string"</span>
+      <span class="kw">input:</span> <span class="nm">false</span>
+      <span class="kw">description:</span> <span class="st">"AI-assigned priority level"</span></pre>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="code-pane" id="pane-2">
+<pre class="code-block"><span class="cm"># workflows/contact_intake.yaml</span>
+<span class="kw">kind:</span> <span class="st">"Workflow"</span>
+<span class="kw">context:</span> <span class="st">"Contact"</span>
+<span class="kw">trigger:</span>
+  <span class="kw">path:</span> <span class="st">"/api/contacts"</span>
+  <span class="kw">method:</span> <span class="st">"POST"</span>
+
+<span class="kw">steps:</span>
+  - <span class="kw">id:</span> <span class="st">"save"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"save_contact"</span>
+
+  - <span class="kw">id:</span> <span class="st">"prioritize"</span>        <span class="cm"># ✦ LLM step</span>
+    <span class="kw">kind:</span> <span class="ag">"agent"</span>
+    <span class="kw">agent:</span>
+      <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
+      <span class="kw">prompt:</span> <span class="st">|
+        Contact: {{ name }} — {{ email }}
+        Assign a priority: high | medium | low
+        Return JSON: {"priority": "..."}</span>
+      <span class="kw">output:</span>
+        <span class="kw">format:</span> <span class="st">json</span>
+        <span class="kw">map:</span>
+          <span class="kw">priority:</span> <span class="st">priority</span>
+    <span class="kw">routes:</span>
+      <span class="kw">default:</span> <span class="st">"enrich"</span>
+
+  - <span class="kw">id:</span> <span class="st">"enrich"</span>
+    <span class="kw">kind:</span> <span class="fn">"functional"</span>
+    <span class="kw">runner:</span> <span class="st">"enrich_contact"</span></pre>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="code-pane" id="pane-3">
+<pre class="code-block"><span class="cm"># Start the dev server</span>
+<span class="fn">$</span> tuvl dev
+
+<span class="cm"># tuvl auto-generates the API endpoint from trigger.path
+# POST /api/contacts → runs contact_intake workflow</span>
+
+<span class="fn">$</span> curl -X POST http://localhost:8000/api/contacts \
+  -H <span class="st">"Content-Type: application/json"</span> \
+  -d <span class="st">'{"email": "ada@example.com", "name": "Ada"}'</span>
+
+<span class="cm"># Response includes the AI-enriched context:</span>
+{
+  <span class="kw">"id"</span>:       <span class="st">"9f4a1c..."</span>,
+  <span class="kw">"email"</span>:    <span class="st">"ada@example.com"</span>,
+  <span class="kw">"name"</span>:     <span class="st">"Ada"</span>,
+  <span class="kw">"priority"</span>: <span class="st">"high"</span>,
+  <span class="kw">"status"</span>:   <span class="st">"enriched"</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stat-box">
+                <span class="stat-val">50ms</span>
+                <span class="stat-lbl">Execution Overhead</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+                <span class="stat-val">100%</span>
+                <span class="stat-lbl">Local Privacy</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+                <span class="stat-val">Zero</span>
+                <span class="stat-lbl">Cloud Dependencies</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+                <span class="stat-val">3</span>
+                <span class="stat-lbl">Files to Production</span>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter" id="notify">
+            <div class="newsletter-glow"></div>
+            <div class="newsletter-inner">
+                <div class="nl-badge">Early Access</div>
+                <h2>Join the Vanguards.</h2>
+                <p>Be the first to deploy AI workflows on your own terms. No cloud required.</p>
+                <form class="nl-form" onsubmit="handleSignup(event)">
+                    <input type="email" placeholder="you@example.com" required class="nl-input">
+                    <button type="submit" class="btn btn-primary btn-nl">Secure My Spot</button>
+                </form>
+                <p class="nl-note">No spam. You'll only hear from us when it matters.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-brand">
+                <img src="assets/logo.png" alt="tuvl" class="footer-logo">
+                <div>
+                    <div class="footer-name">tuvl</div>
+                    <div class="footer-tagline">തൂവൽ — Featherlight AI Workflows.</div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/tuvl/tuvl" target="_blank">GitHub</a>
+                <a href="mailto:hello@tuvl.dev">Contact</a>
+                <a href="#workflows">Workflows</a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
