@@ -81,6 +81,13 @@ body {
     backdrop-filter: blur(20px) saturate(1.4);
     background: rgba(7, 5, 15, 0.75);
     border-bottom: 1px solid var(--border);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.nav.nav--visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 .nav-inner {
     max-width: 1180px; margin: 0 auto; padding: 0 28px;
@@ -125,6 +132,30 @@ body {
     min-height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     text-align: center; padding: 120px 0 80px;
+}
+
+/* Hero brand mark */
+.hero-brand {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px; margin-bottom: 56px;
+    animation: fadeInDown 0.7s ease-out backwards;
+}
+.hero-brand-lockup {
+    display: flex; align-items: center; gap: 16px;
+}
+.hero-brand-logo {
+    width: 40px; height: 40px;
+    filter: drop-shadow(0 0 20px rgba(139,92,246,0.55));
+}
+.hero-brand-name {
+    font-size: 3rem; font-weight: 900; line-height: 1;
+    letter-spacing: -0.04em;
+    background: var(--grad-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-brand-sub {
+    font-size: 0.92rem; color: var(--text-3);
+    letter-spacing: 0.1em;
+    animation: fadeInDown 0.8s ease-out 0.15s backwards;
 }
 
 .hero-badge {
