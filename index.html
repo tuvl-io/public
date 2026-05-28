@@ -178,6 +178,8 @@
                 <a href="https://www.biscuitsec.org" target="_blank" class="stack-item">Biscuit</a>
                 <a href="https://docs.pydantic.dev" target="_blank" class="stack-item">Pydantic</a>
                 <a href="https://grpc.io/docs/platforms/web" target="_blank" class="stack-item">gRPC-Web</a>
+                <a href="https://opentelemetry.io" target="_blank" class="stack-item">OpenTelemetry</a>
+                <a href="https://www.structlog.org" target="_blank" class="stack-item">structlog</a>
             </div>
         </div>
 
@@ -254,7 +256,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
                     </div>
                     <h3>Local-First, Any LLM</h3>
-                    <p>Run fully on your infra with Ollama, or connect OpenAI, Anthropic, or LiteLLM. Your data never leaves your network unless you choose. Built for regulated industries.</p>
+                    <p>Choose any model — tuvl uses <strong>LiteLLM</strong> as its model layer, so a single <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">model:</code> string unlocks 100+ providers: <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">ollama/llama3</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gpt-4o</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">claude-3-5-sonnet</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gemini/gemini-2.0-flash</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">groq/llama3-70b-8192</code> and more. Your data never leaves your network unless you choose.</p>
                 </div>
                 <div class="f-card">
                     <div class="f-icon-wrap f-icon-blue">
@@ -288,8 +290,8 @@
                     <div class="f-icon-wrap f-icon-blue">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/><path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
                     </div>
-                    <h3>OpenTelemetry Observability</h3>
-                    <p>Every step emits an OTel span carrying signal, duration, and context attributes. Configure your OTLP exporter in <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">.tuvl/telemetry.yaml</code> and connect Jaeger, Grafana Tempo, or any OpenTelemetry-compatible collector.</p>
+                    <h3>Production Observability</h3>
+                    <p>Two correlated pillars: <strong>structured JSON logs</strong> (structlog) and <strong>distributed traces</strong> (OpenTelemetry). Every log line carries <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">trace_id</code> + <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">span_id</code>. Workflow executions produce a <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">workflow.execute</code> parent span with <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">node.&lt;kind&gt;</code> children — context snapshots included. LiteLLM's <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gen_ai.*</code> spans surface per-model token usage in the same trace. PII fields marked <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">secure: true</code> are masked before any data reaches the collector.</p>
                 </div>
             </div>
         </section>
@@ -417,6 +419,7 @@
                             <li><span class="trait-dot trait-amber"></span>Structured JSON output</li>
                             <li><span class="trait-dot trait-amber"></span>Signal-from-field routing</li>
                             <li><span class="trait-dot trait-amber"></span>Retry on parse errors</li>
+                            <li><span class="trait-dot trait-amber"></span>Context injection for RAG grounding</li>
                         </ul>
                     </div>
                     <div class="wf-diagram">
@@ -470,6 +473,8 @@
   - <span class="kw">id:</span> <span class="st">"ai_vetting"</span>
     <span class="kw">kind:</span> <span class="ag">"agent"</span>
     <span class="kw">agent:</span>
+      <span class="cm"># any LiteLLM model string — e.g. gpt-4o, claude-3-5-sonnet,</span>
+      <span class="cm"># gemini/gemini-2.0-flash, groq/llama3-70b-8192, ollama/llama3</span>
       <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
       <span class="kw">prompt:</span> <span class="st">|
         Evaluate {{ full_name }} ({{ experience_years }} yrs).
@@ -479,6 +484,7 @@
         <span class="kw">format:</span> <span class="st">json</span>
         <span class="kw">signal_from:</span> <span class="st">decision</span>
       <span class="kw">retry:</span> {<span class="kw">attempts:</span> <span class="nm">3</span>, <span class="kw">on:</span> [<span class="st">parse_error</span>]}
+      <span class="kw">context_injection:</span> [<span class="st">resume_text</span>]  <span class="cm"># RAG grounding</span>
     <span class="kw">routes:</span>
       <span class="kw">senior:</span>       <span class="st">"fast_track"</span>
       <span class="kw">needs_review:</span> <span class="st">"manual_review"</span>
@@ -620,6 +626,8 @@
   - <span class="kw">id:</span> <span class="st">"prioritize"</span>
     <span class="kw">kind:</span> <span class="ag">"agent"</span>
     <span class="kw">agent:</span>
+      <span class="cm"># any LiteLLM model string — e.g. gpt-4o, claude-3-5-sonnet,</span>
+      <span class="cm"># gemini/gemini-2.0-flash, groq/llama3-70b-8192, ollama/llama3</span>
       <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
       <span class="kw">prompt:</span> <span class="st">|
         Contact: {{ name }} — {{ email }}
@@ -709,7 +717,7 @@
                 <a href="https://tuvl.dev/configuration/telemetry" target="_blank" class="doc-card">
                     <div class="doc-card-icon">📡</div>
                     <h4>Observability</h4>
-                    <p>OpenTelemetry span export, OTLP configuration, and integrating Jaeger or Grafana Tempo with your tuvl deployments.</p>
+                    <p>Structured JSON logging (structlog), distributed traces (OTel), LiteLLM GenAI spans, PII masking, and Jaeger / Grafana Tempo integration.</p>
                     <span class="doc-card-link">tuvl.dev/configuration/telemetry →</span>
                 </a>
             </div>
