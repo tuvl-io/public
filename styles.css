@@ -430,6 +430,14 @@ button { font: inherit; cursor: pointer; }
 .code-tab-run { margin-left: auto; color: var(--cyan); }
 .code-tab-run.active { color: var(--cyan); }
 .code-tab-icon { font-size: 12px; opacity: 0.7; }
+.code-tab-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cyan);
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+  margin-right: 2px;
+}
 .t-prompt-sm {
   font-family: var(--f-mono);
   font-size: 13px;
