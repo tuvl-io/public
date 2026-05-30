@@ -1,836 +1,700 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tuvl — AI Workflows, Featherlight.</title>
-    <meta name="description" content="tuvl is the open-source workflow engine that turns YAML into production-ready AI-powered APIs. Signal-driven. Auditable. Local-first.">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="portal-extra.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>tuvl — The signal-driven AI workflow engine.</title>
+  <meta name="description" content="tuvl is the open-source, local-first workflow engine that turns YAML into auditable AI-powered APIs. Featherlight. Signal-driven. Yours to own." />
+  <meta property="og:title" content="tuvl — The signal-driven AI workflow engine." />
+  <meta property="og:description" content="Compile declarative YAML into auditable, local-first FastAPI endpoints. Zero black boxes. Pure execution." />
+  <meta property="og:image" content="https://tuvl.io/assets/logo.png" />
+  <meta name="theme-color" content="#0a0a0b" />
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NBSPKBZSP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7NBSPKBZSP');
-        gtag('set', { site_id: 'portal' });
-    </script>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Malayalam:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NBSPKBZSP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7NBSPKBZSP');
+    gtag('set', { site_id: 'portal' });
+  </script>
 </head>
 <body>
 
-    <!-- Background -->
-    <div class="bg-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+  <!-- ── Ambient background ───────────────────────────────────────── -->
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-noise" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <div class="nav-brand">
-                <img src="assets/logo.png" alt="tuvl" class="nav-logo">
-                <span class="nav-name">tuvl</span>
-            </div>
-            <div class="nav-links">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#workflows" class="nav-link">Workflows</a>
-                <a href="#sdk" class="nav-link">SDK</a>
-                <a href="https://tuvl.dev" class="nav-link" target="_blank">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    Docs
-                </a>
-                <a href="https://github.com/tuvl-io/tuvl" class="nav-link" target="_blank">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-                <a href="#notify" class="btn btn-sm btn-primary">Early Access</a>
-            </div>
-        </div>
-    </nav>
+  <!-- ── Nav ──────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">
+        <img src="assets/logo.png" alt="" class="nav-logo" />
+        <span class="nav-wordmark">tuvl</span>
+        <span class="nav-mal" aria-hidden="true">തൂവൽ</span>
+      </a>
+      <div class="nav-center">
+        <a href="#insight" class="nav-link">Insight</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#workflows" class="nav-link">Workflows</a>
+        <a href="#sdk" class="nav-link">SDK</a>
+        <a href="https://tuvl.dev" class="nav-link" target="_blank" rel="noopener">Docs</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/tuvl-io/tuvl" target="_blank" rel="noopener" class="nav-icon-link" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="#early-access" class="btn btn-ghost btn-xs">Early access →</a>
+      </div>
+    </div>
+  </nav>
 
-    <main class="container">
+  <main>
 
-        <!-- ── Hero ─────────────────────────────────────────────────── -->
-        <header class="hero">
+    <!-- ── Hero ───────────────────────────────────────────────────── -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
 
-            <!-- Text-based brand mark -->
-            <div class="hero-brand">
-                <div class="hero-brand-lockup">
-                    <img src="assets/logo.png" alt="" class="hero-brand-logo">
-                    <span class="hero-brand-name">tuvl</span>
-                </div>
-                <p class="hero-brand-sub">/ˈtuːvəl/ &nbsp;·&nbsp; തൂവൽ &nbsp;·&nbsp; feather</p>
-            </div>
+        <a class="pill" href="#insight">
+          <span class="pill-dot"></span>
+          <span>v25.4 — Insight portal is live</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
 
-            <div class="hero-badge">
-                <span class="badge-pulse"></span>
-                Open Source &nbsp;·&nbsp; Launching Soon
-            </div>
+        <h1 class="hero-title">
+          Stop vibing with AI.
+          <span class="grad">Engineer&nbsp;it.</span>
+        </h1>
 
-            <h1 class="hero-title">
-                Stop vibing with AI.<br>
-                <span class="gradient-text">Engineer it.</span>
-            </h1>
+        <p class="hero-sub">
+          tuvl compiles declarative YAML into auditable, local-first FastAPI endpoints.
+          Signal-driven routing. Streaming observability. Zero black boxes.
+        </p>
 
-            <p class="hero-description">
-                Force non-deterministic models to play by strict software rules. tuvl is the featherlight engine that compiles declarative YAML into auditable, local-first FastAPI endpoints.<br>
-                Zero black boxes. Pure execution.
-            </p>
-
-            <div class="cta-container">
-                <a href="https://tuvl.dev" class="btn btn-primary" target="_blank">
-                    Read the Docs
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="https://github.com/tuvl-io/tuvl" class="btn btn-ghost" target="_blank">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="hero-terminal">
-                <div class="terminal-bar">
-                    <div class="terminal-dots">
-                        <span class="dot dot-red"></span>
-                        <span class="dot dot-yellow"></span>
-                        <span class="dot dot-green"></span>
-                    </div>
-                    <span class="terminal-title">terminal</span>
-                </div>
-                <div class="terminal-body">
-                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add tuvl &amp;&amp; tuvl init my-app --sample &amp;&amp; cd my-app</span></div>
-                    <div class="t-line t-out"><span class="t-check">✓</span> Project scaffolded: <span class="t-path">my-app/</span></div>
-                    <div class="t-line t-out"><span class="t-check">✓</span> Sample workflow, nodes, tests &amp; telemetry config written</div>
-                    <div class="t-line t-out"><span class="t-check">✓</span> Edit <span class="t-path">.env</span> to connect your database and LLM</div>
-                    <div class="t-gap"></div>
-
-                    <div class="t-line"><span class="cm"># dev mode — hot-reload, built-in UI, security key auth</span></div>
-                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl dev</span></div>
-                    <div class="t-line t-out" style="color:rgba(255,255,255,0.5)">→ Starting tuvl engine (project: <span class="t-path">/home/user/my-app</span>)</div>
-                    <div class="t-line t-out" style="color:rgba(255,255,255,0.5)">→ UI: <span class="t-url">http://localhost:5173</span>  (live — always current code)</div>
-                    <div class="t-line t-out" style="color:rgba(255,255,255,0.5)">→ Ctrl-C to stop both</div>
-                    <div class="t-gap"></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">╭─</span><span style="color:rgba(255,255,255,0.2)">───────────────────────</span> <span style="color:#4ade80;font-weight:700;">tuvl dev</span> <span style="color:rgba(255,255,255,0.2)">───────────────────────</span><span style="color:rgba(255,255,255,0.35)">─╮</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Starting tuvl engine in <strong>dev mode</strong> on port <strong>8000</strong>.</div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Project: <span class="t-path">/home/user/my-app</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Security key <span style="color:rgba(255,255,255,0.4)">(click to select, then paste into the UI):</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> <span class="t-key">885A-U4CH-26HH-XYSC</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Open <span class="t-url">http://127.0.0.1:8000/ui/</span> and paste the key above.</div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">╰─</span><span style="color:rgba(255,255,255,0.2)">────────────────────────────────────────────────────────</span><span style="color:rgba(255,255,255,0.35)">─╯</span></div>
-                    <div class="t-gap"></div>
-
-                    <div class="t-line"><span class="cm"># production — multi-worker, no UI, binds to all interfaces</span></div>
-                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl run --workers 4 --port 8000</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">╭─</span><span style="color:rgba(255,255,255,0.2)">───────────────────────</span> <span style="color:#60a5fa;font-weight:700;">tuvl run</span> <span style="color:rgba(255,255,255,0.2)">───────────────────────</span><span style="color:rgba(255,255,255,0.35)">─╮</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Starting tuvl engine in <strong>production mode</strong></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Project: <span class="t-path">/home/user/my-app</span></div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">│</span> Listening on <strong>0.0.0.0:8000</strong> with <strong>4</strong> worker(s).</div>
-                    <div class="t-line t-out"><span style="color:rgba(255,255,255,0.35)">╰─</span><span style="color:rgba(255,255,255,0.2)">────────────────────────────────────────────────────────</span><span style="color:rgba(255,255,255,0.35)">─╯</span></div>
-                    <div class="t-gap"></div>
-
-                    <div class="t-line"><span class="cm"># run LLM-as-a-Judge tests — no real DB or LLM needed</span></div>
-                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">TUVL_TEST_JUDGE=gpt-4o tuvl test</span></div>
-                    <div class="t-line t-out"><span class="t-check">✓</span> test_screen_candidate_pass &nbsp;&nbsp; <span style="color:#4ade80">passed</span> <span style="color:rgba(255,255,255,0.4)">(2 assertions)</span></div>
-                    <div class="t-line t-out"><span class="t-check">✓</span> test_screen_candidate_reject &nbsp;<span style="color:#4ade80">passed</span> <span style="color:rgba(255,255,255,0.4)">(2 assertions)</span></div>
-                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
-                </div>
-            </div>
-        </header>
-
-        <!-- ── Stats ─────────────────────────────────────────────────── -->
-        <section class="stats">
-            <div class="stat-box">
-                <span class="stat-val">&lt;50ms</span>
-                <span class="stat-lbl">Execution Overhead</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-box">
-                <span class="stat-val">3</span>
-                <span class="stat-lbl">Files to Production</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-box">
-                <span class="stat-val">100%</span>
-                <span class="stat-lbl">Local Privacy</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-box">
-                <span class="stat-val">Zero</span>
-                <span class="stat-lbl">Cloud Lock-in</span>
-            </div>
-        </section>
-
-        <!-- ── Tech Stack Strip ─────────────────────────────────────────── -->
-        <div class="stack-strip">
-            <span class="stack-label">Built on</span>
-            <div class="stack-items">
-                <a href="https://fastapi.tiangolo.com" target="_blank" class="stack-item">FastAPI</a>
-                <a href="https://www.sqlalchemy.org" target="_blank" class="stack-item">SQLAlchemy</a>
-                <a href="https://www.biscuitsec.org" target="_blank" class="stack-item">Biscuit</a>
-                <a href="https://docs.pydantic.dev" target="_blank" class="stack-item">Pydantic</a>
-                <a href="https://grpc.io/docs/platforms/web" target="_blank" class="stack-item">gRPC-Web</a>
-                <a href="https://opentelemetry.io" target="_blank" class="stack-item">OpenTelemetry</a>
-                <a href="https://www.structlog.org" target="_blank" class="stack-item">structlog</a>
-            </div>
+        <div class="hero-name">
+          <img src="assets/logo.png" alt="" class="hero-name-mark" />
+          <div class="hero-name-text">
+            <span class="hero-name-word">tuvl</span>
+            <span class="hero-name-meta">
+              <span class="hero-name-mal">തൂവൽ</span>
+              <span class="hero-name-sep">·</span>
+              <span class="hero-name-ipa">/ˈtuːvəl/</span>
+              <span class="hero-name-sep">·</span>
+              <span class="hero-name-en">feather</span>
+            </span>
+          </div>
         </div>
 
-        <!-- ── Audience Strip ─────────────────────────────────────────── -->
-        <section class="audience-strip">
-            <div class="audience-card audience-dev">
-                <div class="aud-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </div>
-                <h3>For Developers</h3>
-                <p>Replace ad-hoc LLM scripts with signal-driven pipelines where every step is a plain Python function. Workflows live in YAML — version controlled alongside your code. Every execution streams structured step events with signals, snapshots, and timings you can actually inspect.</p>
-                <a href="https://tuvl.dev/getting-started/quickstart" target="_blank" class="aud-link">Quickstart →</a>
-            </div>
-            <div class="audience-card audience-pm">
-                <div class="aud-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                </div>
-                <h3>For Teams &amp; PMs</h3>
-                <p>Every step is named. Every AI decision is logged with its signal and context snapshot. Know exactly what your system did and why — without digging through code or re-running prompts.</p>
-                <a href="https://tuvl.dev/concepts/architecture" target="_blank" class="aud-link">See Architecture →</a>
-            </div>
-            <div class="audience-card audience-inv">
-                <div class="aud-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <h3>For Investors &amp; Sponsors</h3>
-                <p>Open-source infrastructure for production AI backends. Enterprise IAM, audit trails, and data sovereignty built in. A platform play in the fastest-growing developer tooling category.</p>
-                <a href="#invest" class="aud-link">Why tuvl →</a>
-            </div>
-        </section>
+        <div class="hero-cta">
+          <a href="https://tuvl.dev/getting-started/quickstart" target="_blank" rel="noopener" class="btn btn-primary">
+            Start building
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://github.com/tuvl-io/tuvl" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            Star on GitHub
+          </a>
+        </div>
 
-        <!-- ── Features ───────────────────────────────────────────────── -->
-        <section class="features" id="features">
-            <div class="section-eyebrow">Core Capabilities</div>
-            <h2 class="section-title">Built for developers.<br>Designed for production.</h2>
-            <div class="features-grid">
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-purple">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                    </div>
-                    <h3>YAML → Live API</h3>
-                    <p>Define a workflow in YAML. Run <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">tuvl dev</code>. Your HTTP endpoint is instantly live — no controllers, no boilerplate, no serialization code.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-amber">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    </div>
-                    <h3>Featherlight Execution</h3>
-                    <p>No heavy message brokers or bloated background workers. tuvl executes your workflows with pure, signal-driven efficiency on top of a lightning-fast FastAPI core.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <h3>Total Auditability</h3>
-                    <p>AI shouldn't be a black box. With deep state snapshotting and OpenTelemetry-ready design, every routing decision, latency spike, and context mutation is fully auditable.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-purple">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <h3>Cryptographic Security</h3>
-                    <p>Hardened by design. Whether executing a REST call or streaming a deep workflow trace, every interaction is secured and scoped natively via Ed25519 Biscuit tokens.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <h3>Dynamic Data Models</h3>
-                    <p>YAML-defined schemas auto-generate PostgreSQL tables and full CRUD REST APIs at startup. One definition drives the whole stack — no migrations to write.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                    </div>
-                    <h3>Local-First, Any LLM</h3>
-                    <p>Choose any model — tuvl uses <strong>LiteLLM</strong> as its model layer, so a single <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">model:</code> string unlocks 100+ providers: <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">ollama/llama3</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gpt-4o</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">claude-3-5-sonnet</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gemini/gemini-2.0-flash</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">groq/llama3-70b-8192</code> and more. Your data never leaves your network unless you choose.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-                    </div>
-                    <h3>MCP &amp; Tool Integrations</h3>
-                    <p>Model Context Protocol support built in. Connect LLMs to any external tool or API as a first-class workflow step — no glue code needed.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-amber">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                    </div>
-                    <h3>Developer UI — tuvl insight</h3>
-                    <p><code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">tuvl dev</code> serves a built-in developer dashboard at <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">/ui/</code>. Protected by a one-time security key printed on startup. Inspect live step events, browse workflows and models — no external tooling needed.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-purple">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M10 15l-3-3 3-3"/><path d="M14 9l3 3-3 3"/></svg>
-                    </div>
-                    <h3>Human-in-the-Loop</h3>
-                    <p>Pause any workflow at a designated step and await a human decision. The dev UI surfaces a live review queue — approve, reject, or supply context, then the engine resumes exactly where it paused. Timeouts and Redis-backed state included.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                    </div>
-                    <h3>LLM-as-a-Judge Testing</h3>
-                    <p>Write YAML test cases with stub data — no real LLM, database, or HTTP calls needed. Run <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">tuvl test</code> to replay the trace and let a judge model verify each step's output against natural-language assertions.</p>
-                </div>
-                <div class="f-card">
-                    <div class="f-icon-wrap f-icon-blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/><path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
-                    </div>
-                    <h3>Production Observability</h3>
-                    <p>Two correlated pillars: <strong>structured JSON logs</strong> (structlog) and <strong>distributed traces</strong> (OpenTelemetry). Every log line carries <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">trace_id</code> + <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">span_id</code>. Workflow executions produce a <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">workflow.execute</code> parent span with <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">node.&lt;kind&gt;</code> children — context snapshots included. LiteLLM's <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">gen_ai.*</code> spans surface per-model token usage in the same trace. PII fields marked <code style="font-family:'JetBrains Mono',monospace;font-size:0.82em;color:var(--primary-400)">secure: true</code> are masked before any data reaches the collector.</p>
-                </div>
+        <!-- terminal -->
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="t-dots"><i></i><i></i><i></i></span>
+            <span class="t-title">~/my-app · zsh</span>
+            <span class="t-meta">tuvl v25.4</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add tuvl</span></div>
+            <div class="t-out"><span class="t-ok">✓</span> Installed tuvl <span class="t-dim">25.4.26</span> &middot; 12 deps</div>
+            <div class="t-gap"></div>
+
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl init my-app --sample &amp;&amp; cd my-app</span></div>
+            <div class="t-out"><span class="t-ok">✓</span> Scaffolded <span class="t-path">my-app/</span> with sample recruitment workflow</div>
+            <div class="t-out"><span class="t-ok">✓</span> Edit <span class="t-path">.env</span> for DB &amp; LLM connection</div>
+            <div class="t-gap"></div>
+
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl dev</span></div>
+            <div class="t-out t-box">
+              <span class="t-box-title">tuvl dev</span><br />
+              Starting tuvl engine in <b>dev mode</b> on port <b>8000</b>.<br />
+              Project: <span class="t-path">/home/user/my-app</span><br />
+              <br />
+              Open <span class="t-url">http://127.0.0.1:8000/insight/</span>
+              and the security key is stored in <span class="t-path">.tuvl/.dev-session</span>.
             </div>
-        </section>
+            <div class="t-out"><span class="t-arrow">→</span> Insight portal opened in your browser</div>
+            <div class="t-out"><span class="t-arrow">→</span> Hot-reload watching <span class="t-path">workflows/</span>, <span class="t-path">models/</span>, <span class="t-path">llms/</span></div>
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
+          </div>
+        </div>
 
-        <!-- ── Workflow Showcase ───────────────────────────────────────── -->
-        <section class="workflows-section" id="workflows">
-            <div class="section-eyebrow">Workflow Showcase</div>
-            <h2 class="section-title">Two flavors.<br>One powerful engine.</h2>
-            <p class="section-desc">tuvl supports pure function-based pipelines for deterministic logic and agentic workflows where LLMs make routing decisions — compose them freely in a single YAML file.</p>
+      </div>
+    </section>
 
-            <div class="wf-toggle">
-                <button class="wf-tab active" data-wf="functional">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    Function-Based
-                </button>
-                <button class="wf-tab" data-wf="agentic">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
-                    Agentic
-                </button>
+    <!-- ── Logos / Built on ───────────────────────────────────────── -->
+    <section class="logos">
+      <div class="logos-inner">
+        <span class="logos-label">Built on the boring, reliable stuff</span>
+        <div class="logos-row">
+          <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener">FastAPI</a>
+          <a href="https://www.sqlalchemy.org" target="_blank" rel="noopener">SQLAlchemy</a>
+          <a href="https://docs.litellm.ai" target="_blank" rel="noopener">LiteLLM</a>
+          <a href="https://www.biscuitsec.org" target="_blank" rel="noopener">Biscuit</a>
+          <a href="https://docs.pydantic.dev" target="_blank" rel="noopener">Pydantic</a>
+          <a href="https://grpc.io/docs/platforms/web" target="_blank" rel="noopener">gRPC-Web</a>
+          <a href="https://opentelemetry.io" target="_blank" rel="noopener">OpenTelemetry</a>
+          <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Insight Portal showcase ────────────────────────────────── -->
+    <section class="insight" id="insight">
+      <div class="section-head">
+        <span class="eyebrow eyebrow-cyan">New · Insight Developer Portal</span>
+        <h2 class="section-title">Your AI backend,<br />on the table.</h2>
+        <p class="section-sub">
+          Every workflow, model, datasource, agent, and vector index — live in your browser.
+          Edit YAML, trigger executions, watch every step fire. No IDE required.
+        </p>
+      </div>
+
+      <div class="insight-app">
+        <div class="insight-chrome">
+          <span class="t-dots"><i></i><i></i><i></i></span>
+          <div class="insight-url">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>127.0.0.1:8000<b>/insight/</b><span id="insight-path">workflows</span></span>
+          </div>
+          <span class="insight-badge">dev</span>
+        </div>
+        <div class="insight-stage">
+          <div class="insight-tabs" role="tablist">
+            <button class="i-tab active" data-shot="workflows" data-path="workflows" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/></svg>
+              Workflows
+            </button>
+            <button class="i-tab" data-shot="models" data-path="models" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+              Models
+            </button>
+            <button class="i-tab" data-shot="datasources" data-path="datasources" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg>
+              Datasources
+            </button>
+            <button class="i-tab" data-shot="ai-models" data-path="agent-models" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              AI Models
+            </button>
+            <button class="i-tab" data-shot="embeddings" data-path="embeddings" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Embeddings
+            </button>
+            <button class="i-tab" data-shot="collections" data-path="collections" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              Collections
+            </button>
+            <button class="i-tab" data-shot="iam" data-path="iam" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              IAM
+            </button>
+            <button class="i-tab" data-shot="federation" data-path="federation" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Federation
+            </button>
+            <button class="i-tab" data-shot="api-docs" data-path="api-docs" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              API Docs
+            </button>
+            <button class="i-tab" data-shot="spectrum" data-path="spectrum" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Spectrum
+            </button>
+            <button class="i-tab" data-shot="settings" data-path="settings" role="tab">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Settings
+            </button>
+          </div>
+          <div class="insight-screen">
+            <img id="insight-img" src="assets/insight/insight-workflows.png" alt="tuvl Insight portal" />
+            <div class="insight-caption" id="insight-caption">
+              Edit any workflow YAML in the browser. Visual graph, live versioning, hot reload — no IDE required.
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Functional Panel -->
-            <div class="wf-panel active" id="wf-functional">
-                <div class="wf-panel-inner">
-                    <div class="wf-info">
-                        <div class="wf-kind-badge wf-kind-func">functional</div>
-                        <h3>Contact Intake Pipeline</h3>
-                        <p>Pure Python logic — validate, persist, and route without a single LLM call. Deterministic, fast, and predictable.</p>
-                        <ul class="wf-traits">
-                            <li><span class="trait-dot trait-green"></span>Deterministic execution</li>
-                            <li><span class="trait-dot trait-green"></span>Sub-millisecond latency</li>
-                            <li><span class="trait-dot trait-green"></span>Full type safety</li>
-                            <li><span class="trait-dot trait-green"></span>Signal-based routing</li>
-                        </ul>
-                    </div>
-                    <div class="wf-diagram">
-                        <div class="wf-flow">
-                            <div class="wf-node wf-node-func"><div class="wf-node-kind">fn</div><div class="wf-node-label">validate</div></div>
-                            <div class="wf-connector"><div class="wf-signal wf-signal-valid">valid</div><div class="wf-arrow-line"></div></div>
-                            <div class="wf-node wf-node-func"><div class="wf-node-kind">fn</div><div class="wf-node-label">save</div></div>
-                            <div class="wf-connector"><div class="wf-signal wf-signal-default">default</div><div class="wf-arrow-line"></div></div>
-                            <div class="wf-node wf-node-func"><div class="wf-node-kind">fn</div><div class="wf-node-label">notify</div></div>
-                            <div class="wf-connector"><div class="wf-signal wf-signal-default">default</div><div class="wf-arrow-line"></div></div>
-                            <div class="wf-node wf-node-end"><div class="wf-node-label">END</div></div>
-                        </div>
-                        <div class="wf-branch-note">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-                            <span>invalid signal → END (bypasses save &amp; notify)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wf-code-window">
-                    <div class="wf-code-tabs">
-                        <button class="wf-code-tab active" data-sub="workflow-func">workflow.yaml</button>
-                        <button class="wf-code-tab" data-sub="node-func">nodes/contact.py</button>
-                    </div>
-                    <div class="wf-code-body">
-                        <div class="wf-code-pane active" id="wc-workflow-func">
-<pre class="code-block"><span class="cm"># workflows/contact_intake.yaml</span>
-<span class="kw">kind:</span> <span class="st">"Workflow"</span>
+      <div class="insight-grid">
+        <div class="i-cell">
+          <div class="i-cell-num">11</div>
+          <div class="i-cell-text">tools in one place — workflows, models, datasources, agents, vector indexes, IAM, OAuth2, Swagger, Spectrum, settings.</div>
+        </div>
+        <div class="i-cell">
+          <div class="i-cell-num">0</div>
+          <div class="i-cell-text">extra processes to run. The portal is served by your dev engine on a single port.</div>
+        </div>
+        <div class="i-cell">
+          <div class="i-cell-num">gRPC<span class="hl">-Web</span></div>
+          <div class="i-cell-text">streams every step event from the engine to the canvas with millisecond latency.</div>
+        </div>
+        <div class="i-cell">
+          <div class="i-cell-num">dev<span class="hl"> only</span></div>
+          <div class="i-cell-text">never served in production. Zero attack surface added to your deployed engine.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Bento Features ─────────────────────────────────────────── -->
+    <section class="features" id="features">
+      <div class="section-head">
+        <span class="eyebrow">Core engine</span>
+        <h2 class="section-title">Eleven primitives.<br />Infinite workflows.</h2>
+        <p class="section-sub">
+          Every capability is a first-class primitive in the YAML. No glue code. No SDK lock-in.
+          Mix functional Python with agentic LLM steps in the same pipeline.
+        </p>
+      </div>
+
+      <div class="bento">
+        <article class="card card-wide card-feature">
+          <div class="card-glow"></div>
+          <div class="card-body">
+            <div class="card-kind">workflow</div>
+            <h3>YAML → Live API.</h3>
+            <p>Define a workflow. Run <code>tuvl dev</code>. Your HTTP endpoint is live. No controllers, no boilerplate, no serialisation code — ever.</p>
+          </div>
+          <div class="card-art card-art-yaml">
+            <pre><span class="kw">kind:</span> <span class="st">Workflow</span>
 <span class="kw">metadata:</span>
-  <span class="kw">name:</span> <span class="st">"contact_intake"</span>
-<span class="kw">context:</span> <span class="st">"Contact"</span>
-<span class="kw">trigger:</span>
-  <span class="kw">path:</span> <span class="st">"/api/contacts"</span>
-  <span class="kw">method:</span> <span class="st">"POST"</span>
+  <span class="kw">name:</span> <span class="st">screen_candidate</span>
+<span class="kw">spec:</span>
+  <span class="kw">steps:</span>
+    - <span class="kw">id:</span> <span class="st">save</span>
+      <span class="kw">kind:</span> <span class="vl">model-op</span>
+    - <span class="kw">id:</span> <span class="st">score</span>
+      <span class="kw">kind:</span> <span class="vl">agent</span>
+      <span class="kw">routes:</span>
+        <span class="kw">strong:</span>  <span class="st">fast_track</span>
+        <span class="kw">weak:</span>    <span class="st">reject</span></pre>
+          </div>
+        </article>
 
-<span class="kw">steps:</span>
-  - <span class="kw">id:</span> <span class="st">"validate"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"validate_contact"</span>
-    <span class="kw">routes:</span>
-      <span class="kw">valid:</span>   <span class="st">"save"</span>
-      <span class="kw">invalid:</span> <span class="st">"END"</span>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div>
+          <h3>Any LLM, any provider.</h3>
+          <p>One <code>model:</code> string unlocks 100+ providers via LiteLLM — Ollama, OpenAI, Anthropic, Gemini, Groq, Azure.</p>
+        </article>
 
-  - <span class="kw">id:</span> <span class="st">"save"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"save_contact"</span>
-    <span class="kw">routes:</span>
-      <span class="kw">default:</span> <span class="st">"notify"</span>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Signal-driven routing.</h3>
+          <p>Steps return signals. Routes are explicit YAML maps. Tracing your pipeline doesn't require reading a single line of code.</p>
+        </article>
 
-  - <span class="kw">id:</span> <span class="st">"notify"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"send_welcome_email"</span></pre>
-                        </div>
-                        <div class="wf-code-pane" id="wc-node-func">
-<pre class="code-block"><span class="cm"># nodes/contact_nodes.py</span>
-<span class="py-kw">from</span> tuvl_engine.nodes.base <span class="py-kw">import</span> node
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3>Biscuit-secured.</h3>
+          <p>Ed25519-signed Datalog tokens carry identity, group membership, and fine-grained <code>resource:action</code> scopes.</p>
+        </article>
 
-<span class="deco">@node</span>(<span class="st">"validate_contact"</span>)
-<span class="py-kw">async def</span> <span class="fn">validate_contact</span>(ctx: dict) -> str:
-    <span class="cm">"""Return signal based on validation result."""</span>
-    <span class="py-kw">if not</span> ctx.get(<span class="st">"email"</span>) <span class="py-kw">or</span> <span class="st">"@"</span> <span class="py-kw">not in</span> ctx[<span class="st">"email"</span>]:
-        <span class="py-kw">return</span> <span class="st">"invalid"</span>
-    <span class="py-kw">return</span> <span class="st">"valid"</span>
+        <article class="card card-tall">
+          <div class="card-icon card-icon-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>LLM-as-a-Judge testing.</h3>
+          <p>Write YAML test cases with stub data. Run <code>tuvl test</code>. A judge model replays the trace and verifies each step against natural-language assertions. No real LLM, DB, or HTTP calls needed.</p>
+          <div class="card-mini-term">
+            <span class="t-prompt">$</span> tuvl test<br />
+            <span class="t-ok">✓</span> test_screen_candidate_pass <span class="t-dim">(2 assertions)</span><br />
+            <span class="t-ok">✓</span> test_screen_candidate_reject <span class="t-dim">(2 assertions)</span><br />
+            <span class="t-dim">2 passed in 1.4s</span>
+          </div>
+        </article>
 
-<span class="deco">@node</span>(<span class="st">"save_contact"</span>)
-<span class="py-kw">async def</span> <span class="fn">save_contact</span>(ctx: dict) -> dict:
-    repo = ctx[<span class="st">"_repo"</span>](<span class="st">"Contact"</span>)
-    contact = <span class="py-kw">await</span> repo.<span class="fn">add</span>({
-        <span class="st">"email"</span>: ctx[<span class="st">"email"</span>],
-        <span class="st">"name"</span>:  ctx[<span class="st">"name"</span>],
-    })
-    ctx[<span class="st">"id"</span>] = <span class="fn">str</span>(contact.id)
-    <span class="py-kw">return</span> ctx
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3>Dynamic models.</h3>
+          <p>YAML schemas auto-generate PostgreSQL tables, Pydantic schemas and full CRUD REST routes at startup.</p>
+        </article>
 
-<span class="deco">@node</span>(<span class="st">"send_welcome_email"</span>)
-<span class="py-kw">async def</span> <span class="fn">send_welcome_email</span>(ctx: dict) -> dict:
-    ctx[<span class="st">"notified"</span>] = <span class="py-kw">True</span>
-    <span class="py-kw">return</span> ctx</pre>
-                        </div>
-                    </div>
-                </div>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M10 15l-3-3 3-3"/><path d="M14 9l3 3-3 3"/></svg></div>
+          <h3>Human-in-the-loop.</h3>
+          <p>Pause any workflow for a human decision. Redis-backed state, timeouts, and a built-in review queue in the portal.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg></div>
+          <h3>MCP &amp; tool calls.</h3>
+          <p>Model Context Protocol is a first-class step kind. Connect LLMs to any external tool or API as a workflow node.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/><path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>
+          <h3>OTel observability.</h3>
+          <p>Structured logs + distributed traces. Every log carries <code>trace_id</code>, every node a span, every LLM call its <code>gen_ai.*</code> attributes.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <h3>pgvector RAG.</h3>
+          <p>Embedding models and vector collections are first-class YAML. Auto-registered <code>rag_search</code> node ready to use.</p>
+        </article>
+
+        <article class="card card-wide card-spectrum">
+          <div class="card-body">
+            <div class="card-kind card-kind-warm">spectrum · debugging</div>
+            <h3>Watch every step fire.</h3>
+            <p>Trigger a workflow with custom JSON. See nodes glow as they execute. Click any completed node for its input, output, duration, and stack trace. Set breakpoints to pause mid-execution.</p>
+            <div class="spectrum-nodes">
+              <span class="sn sn-done">save_draft</span>
+              <span class="sn-arr">→</span>
+              <span class="sn sn-done">score_cv</span>
+              <span class="sn-arr">→</span>
+              <span class="sn sn-running">fast_track</span>
+              <span class="sn-arr">→</span>
+              <span class="sn sn-pending">notify</span>
             </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-            <!-- Agentic Panel -->
-            <div class="wf-panel" id="wf-agentic">
-                <div class="wf-panel-inner">
-                    <div class="wf-info">
-                        <div class="wf-kind-badge wf-kind-agent">agentic</div>
-                        <h3>Candidate Screening Pipeline</h3>
-                        <p>An LLM evaluates each candidate and returns a structured decision that drives routing — senior, needs review, or unqualified.</p>
-                        <ul class="wf-traits">
-                            <li><span class="trait-dot trait-amber"></span>LLM-powered decisions</li>
-                            <li><span class="trait-dot trait-amber"></span>Structured JSON output</li>
-                            <li><span class="trait-dot trait-amber"></span>Signal-from-field routing</li>
-                            <li><span class="trait-dot trait-amber"></span>Retry on parse errors</li>
-                            <li><span class="trait-dot trait-amber"></span>Context injection for RAG grounding</li>
-                        </ul>
-                    </div>
-                    <div class="wf-diagram">
-                        <div class="wf-flow wf-flow-branch">
-                            <div class="wf-node wf-node-func"><div class="wf-node-kind">fn</div><div class="wf-node-label">save_draft</div></div>
-                            <div class="wf-connector"><div class="wf-signal wf-signal-default">default</div><div class="wf-arrow-line"></div></div>
-                            <div class="wf-node wf-node-agent"><div class="wf-node-kind wf-node-kind-ai">ai</div><div class="wf-node-label">ai_vetting</div></div>
-                        </div>
-                        <div class="wf-branches-out">
-                            <div class="wf-branch-row">
-                                <div class="wf-branch-line"></div>
-                                <div class="wf-signal wf-signal-senior">senior</div>
-                                <div class="wf-node wf-node-func wf-node-sm"><div class="wf-node-kind">fn</div><div class="wf-node-label">fast_track</div></div>
-                            </div>
-                            <div class="wf-branch-row">
-                                <div class="wf-branch-line"></div>
-                                <div class="wf-signal wf-signal-review">needs_review</div>
-                                <div class="wf-node wf-node-func wf-node-sm"><div class="wf-node-kind">fn</div><div class="wf-node-label">manual_review</div></div>
-                            </div>
-                            <div class="wf-branch-row">
-                                <div class="wf-branch-line"></div>
-                                <div class="wf-signal wf-signal-invalid">unqualified</div>
-                                <div class="wf-node wf-node-end wf-node-sm"><div class="wf-node-label">END</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wf-code-window">
-                    <div class="wf-code-tabs">
-                        <button class="wf-code-tab active" data-sub="workflow-agent">workflow.yaml</button>
-                        <button class="wf-code-tab" data-sub="node-agent">nodes/screening.py</button>
-                    </div>
-                    <div class="wf-code-body">
-                        <div class="wf-code-pane active" id="wc-workflow-agent">
-<pre class="code-block"><span class="cm"># workflows/screening.yaml</span>
-<span class="kw">kind:</span> <span class="st">"Workflow"</span>
+    <!-- ── Workflow showcase ──────────────────────────────────────── -->
+    <section class="workflows" id="workflows">
+      <div class="section-head">
+        <span class="eyebrow">Two flavours, one engine</span>
+        <h2 class="section-title">Functional logic.<br />Agentic decisions.</h2>
+        <p class="section-sub">
+          Compose deterministic Python steps with LLM-routed branches in the same YAML file.
+          The engine streams every transition over SSE — no extra infrastructure.
+        </p>
+      </div>
+
+      <div class="wf-switch" role="tablist">
+        <button class="wf-btn active" data-wf="agentic">Agentic pipeline</button>
+        <button class="wf-btn" data-wf="functional">Pure functional</button>
+      </div>
+
+      <div class="wf-card">
+        <!-- agentic -->
+        <div class="wf-pane active" data-pane="agentic">
+          <div class="wf-pane-grid">
+            <div class="wf-yaml">
+              <div class="wf-yaml-head"><span>workflows/screen_candidate.yaml</span></div>
+<pre class="code"><span class="kw">kind:</span> <span class="st">Workflow</span>
 <span class="kw">metadata:</span>
-  <span class="kw">name:</span> <span class="st">"screen_candidate"</span>
-<span class="kw">context:</span> <span class="st">"Candidate"</span>
-<span class="kw">trigger:</span>
-  <span class="kw">path:</span> <span class="st">"/api/candidates/screen"</span>
-  <span class="kw">method:</span> <span class="st">"POST"</span>
+  <span class="kw">name:</span> <span class="st">screen_candidate</span>
+<span class="kw">enabled:</span> <span class="vl">true</span>
+<span class="kw">spec:</span>
+  <span class="kw">steps:</span>
+    - <span class="kw">id:</span> <span class="st">save_draft</span>
+      <span class="kw">kind:</span> <span class="vl">model-op</span>
+      <span class="kw">op:</span> <span class="st">add</span>
+      <span class="kw">model:</span> <span class="st">Candidate</span>
 
-<span class="kw">steps:</span>
-  - <span class="kw">id:</span> <span class="st">"save_draft"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"save_candidate"</span>
-    <span class="kw">routes:</span>
-      <span class="kw">default:</span> <span class="st">"ai_vetting"</span>
-
-  - <span class="kw">id:</span> <span class="st">"ai_vetting"</span>
-    <span class="kw">kind:</span> <span class="ag">"agent"</span>
-    <span class="kw">agent:</span>
-      <span class="cm"># any LiteLLM model string — e.g. gpt-4o, claude-3-5-sonnet,</span>
-      <span class="cm"># gemini/gemini-2.0-flash, groq/llama3-70b-8192, ollama/llama3</span>
-      <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
-      <span class="kw">prompt:</span> <span class="st">|
-        Evaluate {{ full_name }} ({{ experience_years }} yrs).
-        Classify as senior | needs_review | unqualified.
-        Return JSON: {"decision": "..."}</span>
-      <span class="kw">output:</span>
-        <span class="kw">format:</span> <span class="st">json</span>
-        <span class="kw">signal_from:</span> <span class="st">decision</span>
-      <span class="kw">retry:</span> {<span class="kw">attempts:</span> <span class="nm">3</span>, <span class="kw">on:</span> [<span class="st">parse_error</span>]}
-      <span class="kw">context_injection:</span> [<span class="st">resume_text</span>]  <span class="cm"># RAG grounding</span>
-    <span class="kw">routes:</span>
-      <span class="kw">senior:</span>       <span class="st">"fast_track"</span>
-      <span class="kw">needs_review:</span> <span class="st">"manual_review"</span>
-      <span class="kw">unqualified:</span>  <span class="st">"END"</span></pre>
-                        </div>
-                        <div class="wf-code-pane" id="wc-node-agent">
-<pre class="code-block"><span class="cm"># nodes/screening.py</span>
-<span class="py-kw">from</span> tuvl_engine.nodes.base <span class="py-kw">import</span> node
-
-<span class="deco">@node</span>(<span class="st">"save_candidate"</span>)
-<span class="py-kw">async def</span> <span class="fn">save_candidate</span>(ctx: dict) -> dict:
-    repo = ctx[<span class="st">"_repo"</span>](<span class="st">"Candidate"</span>)
-    record = <span class="py-kw">await</span> repo.<span class="fn">add</span>({
-        <span class="st">"email"</span>:            ctx[<span class="st">"email"</span>],
-        <span class="st">"full_name"</span>:        ctx[<span class="st">"full_name"</span>],
-        <span class="st">"experience_years"</span>: ctx.get(<span class="st">"experience_years"</span>, <span class="nm">0</span>),
-        <span class="st">"status"</span>:           <span class="st">"pending"</span>,
-    })
-    ctx[<span class="st">"id"</span>] = <span class="fn">str</span>(record.id)
-    <span class="py-kw">return</span> ctx
-
-<span class="deco">@node</span>(<span class="st">"fast_track_candidate"</span>)
-<span class="py-kw">async def</span> <span class="fn">fast_track_candidate</span>(ctx: dict) -> dict:
-    repo = ctx[<span class="st">"_repo"</span>](<span class="st">"Candidate"</span>)
-    <span class="py-kw">await</span> repo.<span class="fn">update</span>(ctx[<span class="st">"id"</span>], {<span class="st">"status"</span>: <span class="st">"fast_tracked"</span>})
-    ctx[<span class="st">"status"</span>] = <span class="st">"fast_tracked"</span>
-    <span class="py-kw">return</span> ctx</pre>
-                        </div>
-                    </div>
-                </div>
+    - <span class="kw">id:</span> <span class="st">score_cv</span>
+      <span class="kw">kind:</span> <span class="vl">agent</span>
+      <span class="kw">agent:</span>
+        <span class="kw">model:</span> <span class="st">default</span>           <span class="cm"># ollama/llama3 · gpt-4o · claude-3-5</span>
+        <span class="kw">prompt:</span> <span class="st">|</span>
+          Score {{ full_name }} ({{ experience_years }}y).
+          Return JSON: {"score": int, "route": "strong|weak"}
+        <span class="kw">output:</span>
+          <span class="kw">format:</span> <span class="st">json</span>
+          <span class="kw">signal_from:</span> <span class="st">route</span>
+      <span class="kw">routes:</span>
+        <span class="kw">strong:</span>  <span class="st">fast_track</span>
+        <span class="kw">weak:</span>    <span class="st">reject</span></pre>
             </div>
-        </section>
-
-        <!-- ── SDK Section ────────────────────────────────────────────── -->
-        <section class="sdk-section" id="sdk">
-            <div class="sdk-inner">
-                <div class="sdk-info">
-                    <div class="section-eyebrow">TypeScript SDK</div>
-                    <h2 class="sdk-title">@tuvl/client</h2>
-                    <p class="section-desc" style="margin-bottom:32px;">Full auth lifecycle, workflow execution, and real-time step streaming — all from one npm package. No Biscuit parsing, no raw fetch calls, no wiring.</p>
-                    <ul class="sdk-features">
-                        <li><span class="sdk-check">✓</span><span><strong>TuvlAuth</strong> — login, OAuth2 PKCE, token refresh, logout, <code>getMe()</code> — Biscuit parsing handled server-side, zero WASM in your app</span></li>
-                        <li><span class="sdk-check">✓</span><span><strong>TuvlClient</strong> — execute any workflow with a single <code>execute()</code> call; REST, SSE, or gRPC-Web negotiated automatically</span></li>
-                        <li><span class="sdk-check">✓</span><span><strong>Zero raw fetch / zero token plumbing</strong> — the SDK owns the full token lifecycle including refresh and revocation</span></li>
-                        <li><span class="sdk-check">✓</span><span><strong>Live step streaming</strong> — <code>onProgress</code> fires for every engine event with step id, signal, and duration</span></li>
-                        <li><span class="sdk-check">✓</span><span><strong>Full TypeScript types</strong> — <code>StepEvent</code>, <code>MeResponse</code>, <code>WorkflowResult</code>, <code>WorkflowManifest</code> and more</span></li>
-                    </ul>
-                    <div class="sdk-ctas">
-                        <a href="https://tuvl.dev/sdk/quickstart" target="_blank" class="btn btn-primary btn-sm">SDK Quickstart →</a>
-                        <a href="https://tuvl.dev/sdk/api-reference" target="_blank" class="btn btn-ghost btn-sm">API Reference →</a>
-                    </div>
+            <div class="wf-graph">
+              <div class="wf-graph-row">
+                <div class="wf-node n-model">save_draft</div>
+                <div class="wf-line"><span class="wf-sig">default</span></div>
+                <div class="wf-node n-agent">score_cv <span class="n-tag">ai</span></div>
+              </div>
+              <div class="wf-graph-branches">
+                <div class="wf-branch">
+                  <div class="wf-branch-line"></div>
+                  <span class="wf-sig wf-sig-pos">strong</span>
+                  <div class="wf-node n-func wf-node-sm">fast_track</div>
                 </div>
-                <div class="sdk-code">
-                    <div class="hero-terminal" style="max-width:100%;margin:0;">
-                        <div class="terminal-bar">
-                            <div class="terminal-dots">
-                                <span class="dot dot-red"></span>
-                                <span class="dot dot-yellow"></span>
-                                <span class="dot dot-green"></span>
-                            </div>
-                            <span class="terminal-title">app.ts</span>
-                        </div>
-                        <div class="terminal-body">
-<pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.8;white-space:pre;"><span class="cm">// npm install @tuvl/client</span>
-<span class="py-kw">import</span> { <span class="fn">TuvlAuth</span>, <span class="fn">TuvlClient</span> } <span class="py-kw">from</span> <span class="st">"@tuvl/client"</span>;
+                <div class="wf-branch">
+                  <div class="wf-branch-line"></div>
+                  <span class="wf-sig wf-sig-neg">weak</span>
+                  <div class="wf-node n-end wf-node-sm">reject</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<span class="py-kw">const</span> auth = <span class="py-kw">new</span> <span class="fn">TuvlAuth</span>({ baseUrl: <span class="st">"http://localhost:8000"</span> });
+        <!-- functional -->
+        <div class="wf-pane" data-pane="functional">
+          <div class="wf-pane-grid">
+            <div class="wf-yaml">
+              <div class="wf-yaml-head"><span>workflows/contact_intake.yaml</span></div>
+<pre class="code"><span class="kw">kind:</span> <span class="st">Workflow</span>
+<span class="kw">metadata:</span>
+  <span class="kw">name:</span> <span class="st">contact_intake</span>
+<span class="kw">spec:</span>
+  <span class="kw">steps:</span>
+    - <span class="kw">id:</span> <span class="st">validate</span>
+      <span class="kw">kind:</span> <span class="vl">functional</span>
+      <span class="kw">runner:</span> <span class="st">validate_contact</span>
+      <span class="kw">routes:</span>
+        <span class="kw">valid:</span>   <span class="st">save</span>
+        <span class="kw">invalid:</span> <span class="st">END</span>
 
-<span class="cm">// Password login — returns a Biscuit bearer token</span>
-<span class="py-kw">const</span> { access_token } = <span class="py-kw">await</span> auth.<span class="fn">loginWithPassword</span>(
+    - <span class="kw">id:</span> <span class="st">save</span>
+      <span class="kw">kind:</span> <span class="vl">model-op</span>
+      <span class="kw">op:</span> <span class="st">add</span>
+      <span class="kw">model:</span> <span class="st">Contact</span>
+      <span class="kw">routes:</span>
+        <span class="kw">default:</span> <span class="st">notify</span>
+
+    - <span class="kw">id:</span> <span class="st">notify</span>
+      <span class="kw">kind:</span> <span class="vl">functional</span>
+      <span class="kw">runner:</span> <span class="st">send_welcome_email</span></pre>
+            </div>
+            <div class="wf-graph">
+              <div class="wf-graph-row">
+                <div class="wf-node n-func">validate</div>
+                <div class="wf-line"><span class="wf-sig wf-sig-pos">valid</span></div>
+                <div class="wf-node n-model">save</div>
+                <div class="wf-line"><span class="wf-sig">default</span></div>
+                <div class="wf-node n-func">notify</div>
+              </div>
+              <div class="wf-graph-branches">
+                <div class="wf-branch">
+                  <div class="wf-branch-line wf-branch-line-short"></div>
+                  <span class="wf-sig wf-sig-neg">invalid</span>
+                  <div class="wf-node n-end wf-node-sm">END</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SDK ────────────────────────────────────────────────────── -->
+    <section class="sdk" id="sdk">
+      <div class="sdk-grid">
+        <div class="sdk-info">
+          <span class="eyebrow">TypeScript SDK</span>
+          <h2 class="section-title section-title-sm">@tuvl/client.<br />Zero plumbing.</h2>
+          <p class="section-sub" style="margin:0 0 28px;">
+            Auth lifecycle, workflow execution, and SSE streaming — all from one npm package.
+            Biscuit parsed server-side, no WASM in your bundle.
+          </p>
+          <ul class="sdk-list">
+            <li><span class="sdk-tick">✓</span><div><b>TuvlAuth</b> — password, OAuth2 PKCE, refresh, revoke, <code>getMe()</code></div></li>
+            <li><span class="sdk-tick">✓</span><div><b>TuvlClient</b> — one <code>execute()</code> call; REST · SSE · gRPC-Web auto-negotiated</div></li>
+            <li><span class="sdk-tick">✓</span><div><b>Live step streaming</b> — <code>onProgress</code> fires per engine event with signal &amp; duration</div></li>
+            <li><span class="sdk-tick">✓</span><div><b>Full TypeScript types</b> — <code>StepEvent</code>, <code>WorkflowResult</code>, <code>MeResponse</code></div></li>
+          </ul>
+          <div class="sdk-cta">
+            <a href="https://tuvl.dev/sdk/quickstart" target="_blank" rel="noopener" class="btn btn-primary btn-sm">SDK Quickstart →</a>
+            <a href="https://tuvl.dev/sdk/api-reference" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">API reference →</a>
+          </div>
+        </div>
+        <div class="sdk-code">
+          <div class="terminal terminal-sm">
+            <div class="terminal-bar">
+              <span class="t-dots"><i></i><i></i><i></i></span>
+              <span class="t-title">app.ts</span>
+              <span class="t-meta">TypeScript</span>
+            </div>
+            <div class="terminal-body">
+<pre class="code"><span class="cm">// npm install @tuvl/client</span>
+<span class="pkw">import</span> { TuvlAuth, TuvlClient } <span class="pkw">from</span> <span class="st">"@tuvl/client"</span>;
+
+<span class="pkw">const</span> auth = <span class="pkw">new</span> TuvlAuth({ baseUrl });
+
+<span class="cm">// password login → Biscuit bearer token</span>
+<span class="pkw">const</span> { access_token } = <span class="pkw">await</span> auth.loginWithPassword(
   <span class="st">"me@example.com"</span>, <span class="st">"secret"</span>
 );
 
-<span class="cm">// Decode roles + scopes without touching Biscuit internals</span>
-<span class="py-kw">const</span> me = <span class="py-kw">await</span> auth.<span class="fn">getMe</span>(access_token);
-<span class="cm">// { user_id, groups: ["hr_manager"], scopes: ["candidate:read"] }</span>
+<span class="cm">// roles + scopes — no Biscuit internals</span>
+<span class="pkw">const</span> me = <span class="pkw">await</span> auth.getMe(access_token);
+<span class="cm">// { user_id, groups: ["hr_manager"], scopes: [...] }</span>
 
-<span class="cm">// Execute a workflow — streams live step events via SSE</span>
-<span class="py-kw">const</span> client = <span class="py-kw">new</span> <span class="fn">TuvlClient</span>({ baseUrl: <span class="st">"http://localhost:8000"</span>, token: access_token });
-<span class="py-kw">const</span> result = <span class="py-kw">await</span> client.<span class="fn">execute</span>(<span class="st">"screen-candidate"</span>, {
-  payload:    { candidate_id: <span class="nm">42</span> },
-  onProgress: (ev) => console.<span class="fn">log</span>(<span class="st">`[${ev.step_id}] ${ev.signal} (${ev.duration_ms}ms)`</span>),
+<span class="cm">// execute a workflow — streams live step events</span>
+<span class="pkw">const</span> client = <span class="pkw">new</span> TuvlClient({ baseUrl, token: access_token });
+<span class="pkw">const</span> result = <span class="pkw">await</span> client.execute(<span class="st">"screen_candidate"</span>, {
+  payload:    { candidate_id: <span class="vl">42</span> },
+  onProgress: (ev) =&gt; console.log(
+    <span class="st">`[${ev.step_id}] ${ev.signal} (${ev.duration_ms}ms)`</span>
+  ),
 });</pre>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- ── 3-Step Get Started ──────────────────────────────────────── -->
-        <section class="code-section">
-            <div class="section-eyebrow">Get Started</div>
-            <h2 class="section-title">From idea to API<br>in 3 steps.</h2>
-            <div class="code-window">
-                <div class="tab-header">
-                    <button class="tab-btn active" data-step="1"><span class="tab-num">01</span> Define Model</button>
-                    <button class="tab-btn" data-step="2"><span class="tab-num">02</span> Compose Workflow</button>
-                    <button class="tab-btn" data-step="3"><span class="tab-num">03</span> Deploy API</button>
-                </div>
-                <div class="code-display">
-                    <div class="code-pane active" id="pane-1">
-<pre class="code-block"><span class="cm"># models/contact.yaml</span>
-<span class="kw">kind:</span> <span class="st">"ModelDefinition"</span>
-<span class="kw">version:</span> <span class="st">"v1"</span>
+    <!-- ── 3 steps ────────────────────────────────────────────────── -->
+    <section class="getstarted">
+      <div class="section-head">
+        <span class="eyebrow">Get started</span>
+        <h2 class="section-title">Three files.<br />One production API.</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-head"><span class="step-num">01</span><h4>Define a model</h4></div>
+<pre class="code step-code"><span class="cm"># models/candidate.yaml</span>
+<span class="kw">kind:</span> <span class="st">ModelDefinition</span>
 <span class="kw">metadata:</span>
-  <span class="kw">name:</span> <span class="st">"Contact"</span>
+  <span class="kw">name:</span> <span class="st">Candidate</span>
 <span class="kw">spec:</span>
-  <span class="kw">tablename:</span> <span class="st">"contacts"</span>
+  <span class="kw">table:</span> <span class="st">candidates</span>
   <span class="kw">fields:</span>
-    - <span class="kw">name:</span> <span class="st">"id"</span>
-      <span class="kw">type:</span> <span class="st">"uuid"</span>
-      <span class="kw">primary_key:</span> <span class="nm">true</span>
-      <span class="kw">default:</span> <span class="st">"uuid4"</span>
-    - <span class="kw">name:</span> <span class="st">"email"</span>
-      <span class="kw">type:</span> <span class="st">"string"</span>
-      <span class="kw">unique:</span> <span class="nm">true</span>
-      <span class="kw">required:</span> <span class="nm">true</span>
-    - <span class="kw">name:</span> <span class="st">"name"</span>
-      <span class="kw">type:</span> <span class="st">"string"</span>
-      <span class="kw">required:</span> <span class="nm">true</span>
-    - <span class="kw">name:</span> <span class="st">"priority"</span>
-      <span class="kw">type:</span> <span class="st">"string"</span>
-      <span class="kw">input:</span> <span class="nm">false</span>
-      <span class="kw">description:</span> <span class="st">"AI-assigned priority level"</span></pre>
-                    </div>
-                    <div class="code-pane" id="pane-2">
-<pre class="code-block"><span class="cm"># workflows/contact_intake.yaml</span>
-<span class="kw">kind:</span> <span class="st">"Workflow"</span>
-<span class="kw">context:</span> <span class="st">"Contact"</span>
-<span class="kw">trigger:</span>
-  <span class="kw">path:</span> <span class="st">"/api/contacts"</span>
-  <span class="kw">method:</span> <span class="st">"POST"</span>
+    - { <span class="kw">name:</span> <span class="st">full_name</span>, <span class="kw">type:</span> <span class="st">str</span> }
+    - { <span class="kw">name:</span> <span class="st">email</span>,     <span class="kw">type:</span> <span class="st">str</span>, <span class="kw">unique:</span> <span class="vl">true</span> }
+    - { <span class="kw">name:</span> <span class="st">score</span>,     <span class="kw">type:</span> <span class="st">int</span>, <span class="kw">default:</span> <span class="vl">0</span> }</pre>
+        </article>
 
-<span class="kw">steps:</span>
-  - <span class="kw">id:</span> <span class="st">"save"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"save_contact"</span>
+        <article class="step">
+          <div class="step-head"><span class="step-num">02</span><h4>Compose a workflow</h4></div>
+<pre class="code step-code"><span class="cm"># workflows/screen.yaml</span>
+<span class="kw">kind:</span> <span class="st">Workflow</span>
+<span class="kw">metadata:</span>
+  <span class="kw">name:</span> <span class="st">screen</span>
+<span class="kw">spec:</span>
+  <span class="kw">steps:</span>
+    - <span class="kw">id:</span> <span class="st">save</span>
+      <span class="kw">kind:</span> <span class="vl">model-op</span>
+      <span class="kw">op:</span> <span class="st">add</span>
+      <span class="kw">model:</span> <span class="st">Candidate</span>
+    - <span class="kw">id:</span> <span class="st">score</span>
+      <span class="kw">kind:</span> <span class="vl">agent</span>
+      <span class="kw">agent:</span>
+        <span class="kw">model:</span> <span class="st">default</span>
+        <span class="kw">prompt:</span> <span class="st">"Score CV..."</span></pre>
+        </article>
 
-  - <span class="kw">id:</span> <span class="st">"prioritize"</span>
-    <span class="kw">kind:</span> <span class="ag">"agent"</span>
-    <span class="kw">agent:</span>
-      <span class="cm"># any LiteLLM model string — e.g. gpt-4o, claude-3-5-sonnet,</span>
-      <span class="cm"># gemini/gemini-2.0-flash, groq/llama3-70b-8192, ollama/llama3</span>
-      <span class="kw">model:</span> <span class="st">"ollama/llama3"</span>
-      <span class="kw">prompt:</span> <span class="st">|
-        Contact: {{ name }} — {{ email }}
-        Assign a priority: high | medium | low
-        Return JSON: {"priority": "..."}</span>
-      <span class="kw">output:</span>
-        <span class="kw">format:</span> <span class="st">json</span>
-        <span class="kw">map:</span>
-          <span class="kw">priority:</span> <span class="st">priority</span>
-    <span class="kw">routes:</span>
-      <span class="kw">default:</span> <span class="st">"enrich"</span>
+        <article class="step">
+          <div class="step-head"><span class="step-num">03</span><h4>Deploy</h4></div>
+<pre class="code step-code"><span class="cm"># dev — hot reload, Insight portal</span>
+<span class="t-prompt">$</span> tuvl dev
 
-  - <span class="kw">id:</span> <span class="st">"enrich"</span>
-    <span class="kw">kind:</span> <span class="fn">"functional"</span>
-    <span class="kw">runner:</span> <span class="st">"enrich_contact"</span></pre>
-                    </div>
-                    <div class="code-pane" id="pane-3">
-<pre class="code-block"><span class="cm"># Start the dev server</span>
-<span class="fn">$</span> tuvl dev
+<span class="cm"># or production — multi-worker</span>
+<span class="t-prompt">$</span> tuvl run --workers 4
 
-<span class="cm"># tuvl auto-generates the endpoint from trigger.path
-# POST /api/contacts → runs contact_intake workflow</span>
+<span class="cm"># curl your new endpoint</span>
+<span class="t-prompt">$</span> curl -X POST localhost:8000<span class="st">/api/workflows/</span><span class="vl">\</span>
+    screen/run -d <span class="st">'{"full_name":"Jane"}'</span>
 
-<span class="fn">$</span> curl -X POST http://localhost:8000/api/contacts \
-  -H <span class="st">"Content-Type: application/json"</span> \
-  -d <span class="st">'{"email": "ada@example.com", "name": "Ada"}'</span>
+{<span class="kw">"route"</span>: <span class="st">"strong"</span>, <span class="kw">"score"</span>: <span class="vl">8</span>}</pre>
+        </article>
+      </div>
+    </section>
 
-<span class="cm"># Response: AI-enriched context, instantly</span>
-{
-  <span class="kw">"id"</span>:       <span class="st">"9f4a1c..."</span>,
-  <span class="kw">"email"</span>:    <span class="st">"ada@example.com"</span>,
-  <span class="kw">"name"</span>:     <span class="st">"Ada"</span>,
-  <span class="kw">"priority"</span>: <span class="st">"high"</span>
-}</pre>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ── Audience ───────────────────────────────────────────────── -->
+    <section class="audience">
+      <div class="section-head">
+        <span class="eyebrow">Built for</span>
+        <h2 class="section-title">Different roles.<br />Same source of truth.</h2>
+      </div>
+      <div class="aud-grid">
+        <article class="aud-card">
+          <div class="aud-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Developers</h3>
+          <p>Replace ad-hoc LLM scripts with signal-driven pipelines. YAML lives next to your code. Every execution streams structured events you can inspect.</p>
+          <a class="aud-link" href="https://tuvl.dev/getting-started/quickstart" target="_blank" rel="noopener">Quickstart →</a>
+        </article>
+        <article class="aud-card">
+          <div class="aud-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3>Teams &amp; PMs</h3>
+          <p>Every step is named. Every AI decision is logged with its signal and context snapshot. Know exactly what your system did — and why.</p>
+          <a class="aud-link" href="https://tuvl.dev/concepts/architecture" target="_blank" rel="noopener">Architecture →</a>
+        </article>
+        <article class="aud-card">
+          <div class="aud-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3>Founders &amp; investors</h3>
+          <p>Open-source infrastructure for production AI backends. Enterprise IAM, audit trails, data sovereignty — built in from day one.</p>
+          <a class="aud-link" href="#early-access">Get in touch →</a>
+        </article>
+      </div>
+    </section>
 
-        <!-- ── Documentation ──────────────────────────────────────────── -->
-        <section class="docs-section" id="docs">
-            <div class="section-eyebrow">Documentation</div>
-            <h2 class="section-title">Everything you need is at<br><a href="https://tuvl.dev" target="_blank" class="docs-url-link">tuvl.dev</a></h2>
-            <div class="docs-grid">
-                <a href="https://tuvl.dev/getting-started/quickstart" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">🚀</div>
-                    <h4>Quickstart</h4>
-                    <p>Install tuvl, scaffold a project, and deploy your first AI workflow API in under 5 minutes.</p>
-                    <span class="doc-card-link">tuvl.dev/getting-started →</span>
-                </a>
-                <a href="https://tuvl.dev/concepts/workflows" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">⬡</div>
-                    <h4>Concepts</h4>
-                    <p>Workflows, nodes, models, context objects, signal routing — the full mental model explained.</p>
-                    <span class="doc-card-link">tuvl.dev/concepts →</span>
-                </a>
-                <a href="https://tuvl.dev/security/iam" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">🔑</div>
-                    <h4>Security &amp; IAM</h4>
-                    <p>Biscuit tokens, role scopes, OAuth2 federation, token lifecycle, and production hardening.</p>
-                    <span class="doc-card-link">tuvl.dev/security →</span>
-                </a>
-                <a href="https://tuvl.dev/sdk/quickstart" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">📦</div>
-                    <h4>TypeScript SDK</h4>
-                    <p>@tuvl/client — auth, workflow execution, SSE streaming, gRPC-Web. Complete API reference.</p>
-                    <span class="doc-card-link">tuvl.dev/sdk →</span>
-                </a>
-                <a href="https://tuvl.dev/api/endpoints" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">⚡</div>
-                    <h4>API Reference</h4>
-                    <p>All HTTP endpoints, request/response schemas, and workflow manifest structures documented.</p>
-                    <span class="doc-card-link">tuvl.dev/api →</span>
-                </a>
-                <a href="https://tuvl.dev/examples/candidate-onboarding" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">💡</div>
-                    <h4>Examples</h4>
-                    <p>Real-world pipelines — candidate onboarding, contact intake, custom nodes, agentic routing.</p>
-                    <span class="doc-card-link">tuvl.dev/examples →</span>
-                </a>
-                <a href="https://tuvl.dev/tools/testing" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">🧪</div>
-                    <h4>Testing Workflows</h4>
-                    <p>LLM-as-a-Judge YAML test cases, stub injection, and <code>tuvl test</code> — catch prompt regressions before they reach production.</p>
-                    <span class="doc-card-link">tuvl.dev/tools/testing →</span>
-                </a>
-                <a href="https://tuvl.dev/configuration/telemetry" target="_blank" class="doc-card">
-                    <div class="doc-card-icon">📡</div>
-                    <h4>Observability</h4>
-                    <p>Structured JSON logging (structlog), distributed traces (OTel), LiteLLM GenAI spans, PII masking, and Jaeger / Grafana Tempo integration.</p>
-                    <span class="doc-card-link">tuvl.dev/configuration/telemetry →</span>
-                </a>
-            </div>
-        </section>
+    <!-- ── CTA ────────────────────────────────────────────────────── -->
+    <section class="cta" id="early-access">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <span class="eyebrow eyebrow-cyan">Early access</span>
+        <h2>Engineer your AI backend.<br /><span class="grad">Not vibe with it.</span></h2>
+        <p>Join the vanguards shipping AI on their own terms. Local-first. Open source. No cloud required.</p>
+        <form class="cta-form" id="earlyForm" onsubmit="handleSignup(event)">
+          <input type="hidden" name="_formspree_id" value="meedaqpl" />
+          <input class="cta-input" type="email" name="email" placeholder="you@company.com" required autocomplete="email" />
+          <button class="btn btn-primary" type="submit" id="earlyBtn">
+            Secure my spot
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+        <div class="cta-success" id="earlySuccess" hidden>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          You're on the list — we'll be in touch.
+        </div>
+        <p class="cta-note">No spam. You'll only hear from us when it matters.</p>
+      </div>
+    </section>
 
-        <!-- ── Investor / Sponsor Section ─────────────────────────────── -->
-        <section class="investor-section" id="invest">
-            <div class="inv-header">
-                <div class="section-eyebrow">Why tuvl</div>
-                <h2 class="section-title">The missing infrastructure layer<br>for AI backends.</h2>
-                <p class="section-desc">AI tooling is the fastest-growing developer category. tuvl is the first opinionated, production-ready framework that bridges the gap between an LLM API call and a real backend system — deterministic, auditable, and yours to own.</p>
-            </div>
-            <div class="inv-grid">
-                <div class="inv-card">
-                    <div class="inv-num">01</div>
-                    <h4>Open Source Core</h4>
-                    <p>Apache/MIT licensed. Community-driven node ecosystem. Clear path to enterprise features: multi-tenancy, hosted registry, visual workflow editor, cloud-managed execution.</p>
-                </div>
-                <div class="inv-card">
-                    <div class="inv-num">02</div>
-                    <h4>Enterprise-Ready Day One</h4>
-                    <p>Built-in IAM, Biscuit tokens, OAuth2 federation, audit trails, and data sovereignty. Purpose-built for regulated industries — healthcare, finance, HR — from the very first release.</p>
-                </div>
-                <div class="inv-card">
-                    <div class="inv-num">03</div>
-                    <h4>Protocol-Native Ecosystem</h4>
-                    <p>MCP-native for the LLM tool ecosystem. REST, SSE, gRPC-Web transports. TypeScript SDK. Python node API. Language-agnostic by design with a clear community extension model.</p>
-                </div>
-                <div class="inv-card">
-                    <div class="inv-num">04</div>
-                    <h4>Developer Moat</h4>
-                    <p>YAML-as-code workflows create attachment through familiarity, not lock-out. Teams that adopt tuvl build faster, ship more confidently, and can't go back to raw LLM scripts.</p>
-                </div>
-            </div>
-            <div class="inv-contact">
-                <p>Interested in sponsoring, investing, or partnering? Drop us a message.</p>
-                <div class="contact-form-wrap" id="contact-section">
-                    <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
-                        <!-- Replace YOUR_FORM_ID with your Formspree form ID from formspree.io -->
-                        <input type="hidden" name="_formspree_id" value="meedaqpl">
-                        <div class="contact-row">
-                            <div class="contact-field">
-                                <label for="c-name">Name</label>
-                                <input type="text" id="c-name" name="name" placeholder="Your name" required>
-                            </div>
-                            <div class="contact-field">
-                                <label for="c-email">Email</label>
-                                <input type="email" id="c-email" name="email" placeholder="you@company.com" required>
-                            </div>
-                        </div>
-                        <div class="contact-field">
-                            <label for="c-type">Enquiry type</label>
-                            <select id="c-type" name="enquiry_type">
-                                <option value="investment">Investment / Sponsorship</option>
-                                <option value="partnership">Partnership / Integration</option>
-                                <option value="general">General</option>
-                            </select>
-                        </div>
-                        <div class="contact-field">
-                            <label for="c-msg">Message</label>
-                            <textarea id="c-msg" name="message" rows="4" placeholder="Tell us what you're thinking..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary contact-submit" id="contactBtn">
-                            Send Message
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                    </form>
-                    <div class="contact-success" id="contactSuccess" style="display:none">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-                        <h4>Message sent!</h4>
-                        <p>We'll get back to you at the email you provided.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ── Footer ─────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="" class="footer-logo" />
+          <div>
+            <div class="footer-name">tuvl <span class="footer-mal">തൂവൽ</span></div>
+            <div class="footer-tag">Featherlight AI workflows.</div>
+          </div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h6>Product</h6>
+            <a href="#insight">Insight portal</a>
+            <a href="#features">Features</a>
+            <a href="#workflows">Workflows</a>
+            <a href="#sdk">SDK</a>
+          </div>
+          <div class="footer-col">
+            <h6>Docs</h6>
+            <a href="https://tuvl.dev/getting-started/quickstart" target="_blank" rel="noopener">Quickstart</a>
+            <a href="https://tuvl.dev/concepts/architecture" target="_blank" rel="noopener">Architecture</a>
+            <a href="https://tuvl.dev/security/iam" target="_blank" rel="noopener">Security &amp; IAM</a>
+            <a href="https://tuvl.dev/insight/overview" target="_blank" rel="noopener">Insight guide</a>
+          </div>
+          <div class="footer-col">
+            <h6>Community</h6>
+            <a href="https://github.com/tuvl-io/tuvl" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://discord.gg/tuvl" target="_blank" rel="noopener">Discord</a>
+            <a href="mailto:developer@tuvl.io">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 tuvl · MIT licensed</span>
+        <span class="footer-pron">/ˈtuːvəl/ · തൂവൽ · feather</span>
+      </div>
+    </footer>
+  </main>
 
-        <!-- ── Newsletter ──────────────────────────────────────────────── -->
-        <section class="newsletter" id="notify">
-            <div class="newsletter-glow"></div>
-            <div class="newsletter-inner">
-                <div class="nl-badge">Early Access</div>
-                <h2>Join the Vanguards.</h2>
-                <p>Be the first to deploy AI workflows on your own terms. No cloud required.</p>
-                <form class="nl-form" onsubmit="handleSignup(event)">
-                    <!-- Replace YOUR_EARLYACCESS_FORM_ID with your Formspree form ID -->
-                    <input type="hidden" name="_formspree_id" value="meedaqpl">
-                    <input type="email" name="email" placeholder="you@example.com" required class="nl-input">
-                    <button type="submit" class="btn btn-primary btn-nl">Secure My Spot</button>
-                </form>
-                <p class="nl-note">No spam. You'll only hear from us when it matters.</p>
-            </div>
-        </section>
-
-        <!-- ── Footer ─────────────────────────────────────────────────── -->
-        <footer class="footer">
-            <div class="footer-brand">
-                <img src="assets/logo.png" alt="tuvl" class="footer-logo">
-                <div>
-                    <div class="footer-name">tuvl</div>
-                    <div class="footer-tagline">തൂവൽ — Featherlight AI Workflows.</div>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="https://tuvl.dev" target="_blank">Docs</a>
-                <a href="https://github.com/tuvl-io/tuvl" target="_blank">GitHub</a>
-                <a href="#workflows">Workflows</a>
-                <a href="#sdk">SDK</a>
-                <a href="#invest">Investors</a>
-                <a href="mailto:developer@tuvl.io">Contact</a>
-            </div>
-        </footer>
-    </main>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
