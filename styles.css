@@ -384,6 +384,16 @@ button { font: inherit; cursor: pointer; }
 
 /* ── Terminal ─────────────────────────────────────────────────── */
 /* ── Code demo (tabbed file viewer) ──────────────────────────── */
+.demo-label {
+  text-align: center;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0 0 14px;
+}
+.demo-label span { color: var(--cyan); }
 .code-demo {
   max-width: 780px;
   margin: 0 auto;
