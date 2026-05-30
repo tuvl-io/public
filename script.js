@@ -26,6 +26,34 @@
     docsNavLink.appendChild(badge);
   }
 
+  // ── Beta countdown ────────────────────────────────────────────
+  // Target: public beta release date. Adjust as needed.
+  const BETA_DATE = new Date("2026-06-15T00:00:00Z");
+  const countdownEl = document.getElementById("announceCountdown");
+  if (countdownEl) {
+    const tick = () => {
+      const diff = BETA_DATE - Date.now();
+      if (diff <= 0) { countdownEl.textContent = "today"; return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      countdownEl.textContent = d > 0 ? `${d}d ${h}h ${m}m` : `${h}h ${m}m ${s}s`;
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ── Code demo tab switcher ────────────────────────────────────
+  document.querySelectorAll(".code-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const panel = tab.dataset.panel;
+      document.querySelectorAll(".code-tab").forEach((t) => t.classList.remove("active"));
+      document.querySelectorAll(".code-panel").forEach((p) => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.getElementById(`panel-${panel}`).classList.add("active");
+    });
+  });
 
   // ── Insight portal tab switcher ──────────────────────────────
   const INSIGHT_CAPTIONS = {

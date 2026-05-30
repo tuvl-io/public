@@ -34,6 +34,16 @@
 </head>
 <body>
 
+  <!-- ── Beta announcement bar ─────────────────────────────────── -->
+  <div class="announce-bar" id="announceBar">
+    <span class="announce-pulse"></span>
+    <span class="announce-text">
+      <strong>v2026.2.1-beta.1</strong> drops in <span id="announceCountdown">…</span> &mdash; limited early-access spots.
+      <a href="#early-access" class="announce-link">Secure yours &rarr;</a>
+    </span>
+    <button class="announce-close" aria-label="Dismiss" onclick="this.closest('.announce-bar').style.display='none'">×</button>
+  </div>
+
   <!-- ── Ambient background ───────────────────────────────────────── -->
   <div class="bg-mesh" aria-hidden="true"></div>
   <div class="bg-noise" aria-hidden="true"></div>
@@ -70,7 +80,7 @@
 
         <a class="pill" href="#insight">
           <span class="pill-dot"></span>
-          <span>v25.4 — Insight portal is live</span>
+          <span>v2026.2.1-beta.1 — beta dropping soon</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
         </a>
 
@@ -109,35 +119,104 @@
           </a>
         </div>
 
-        <!-- terminal -->
-        <div class="terminal">
-          <div class="terminal-bar">
-            <span class="t-dots"><i></i><i></i><i></i></span>
-            <span class="t-title">~/my-app · zsh</span>
-            <span class="t-meta">tuvl v25.4</span>
+        <!-- code demo -->
+        <div class="code-demo">
+          <div class="code-demo-tabs" role="tablist">
+            <button class="code-tab active" data-panel="ds" role="tab">
+              <span class="code-tab-icon">📂</span>datasources/postgres.yaml
+            </button>
+            <button class="code-tab" data-panel="model" role="tab">
+              <span class="code-tab-icon">📂</span>models/candidate.yaml
+            </button>
+            <button class="code-tab" data-panel="wf" role="tab">
+              <span class="code-tab-icon">📂</span>workflows/screening.yaml
+            </button>
+            <button class="code-tab code-tab-run" data-panel="run" role="tab">
+              <span class="code-tab-icon t-prompt-sm">$</span>tuvl dev
+            </button>
           </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add tuvl</span></div>
-            <div class="t-out"><span class="t-ok">✓</span> Installed tuvl <span class="t-dim">25.4.26</span> &middot; 12 deps</div>
-            <div class="t-gap"></div>
 
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl init my-app --sample &amp;&amp; cd my-app</span></div>
-            <div class="t-out"><span class="t-ok">✓</span> Scaffolded <span class="t-path">my-app/</span> with sample recruitment workflow</div>
-            <div class="t-out"><span class="t-ok">✓</span> Edit <span class="t-path">.env</span> for DB &amp; LLM connection</div>
-            <div class="t-gap"></div>
+          <!-- datasource -->
+          <div class="code-panel active" id="panel-ds">
+            <pre class="code-pre"><code><span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">DataSource</span>
+<span class="y-k">version</span><span class="y-p">:</span> <span class="y-v">v1</span>
+<span class="y-k">metadata</span><span class="y-p">:</span>
+  <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">main</span>
+<span class="y-k">spec</span><span class="y-p">:</span>
+  <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">postgresql</span>
+  <span class="y-k">driver</span><span class="y-p">:</span> <span class="y-v">asyncpg</span>
+  <span class="y-k">connection</span><span class="y-p">:</span>
+    <span class="y-k">host</span><span class="y-p">:</span>     <span class="y-env">${POSTGRES_HOST}</span>
+    <span class="y-k">port</span><span class="y-p">:</span>     <span class="y-env">${POSTGRES_PORT<span class="y-def">:5432</span>}</span>
+    <span class="y-k">database</span><span class="y-p">:</span> <span class="y-env">${POSTGRES_DB}</span>
+    <span class="y-k">username</span><span class="y-p">:</span> <span class="y-env">${POSTGRES_USER}</span>
+    <span class="y-k">password</span><span class="y-p">:</span> <span class="y-env">${POSTGRES_PASSWORD}</span>
+  <span class="y-k">pooling</span><span class="y-p">:</span>
+    <span class="y-k">min_size</span><span class="y-p">:</span> <span class="y-num">2</span>
+    <span class="y-k">max_size</span><span class="y-p">:</span> <span class="y-num">20</span></code></pre>
+          </div>
 
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl dev</span></div>
-            <div class="t-out t-box">
-              <span class="t-box-title">tuvl dev</span><br />
-              Starting tuvl engine in <b>dev mode</b> on port <b>8000</b>.<br />
-              Project: <span class="t-path">/home/user/my-app</span><br />
-              <br />
-              Open <span class="t-url">http://127.0.0.1:8000/insight/</span>
-              and the security key is stored in <span class="t-path">.tuvl/.dev-session</span>.
+          <!-- model -->
+          <div class="code-panel" id="panel-model">
+            <pre class="code-pre"><code><span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">ModelDefinition</span>
+<span class="y-k">version</span><span class="y-p">:</span> <span class="y-v">v1</span>
+<span class="y-k">metadata</span><span class="y-p">:</span>
+  <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">Candidate</span>
+<span class="y-k">spec</span><span class="y-p">:</span>
+  <span class="y-k">tablename</span><span class="y-p">:</span>   <span class="y-v">candidates</span>
+  <span class="y-k">datasource</span><span class="y-p">:</span>  <span class="y-v">main</span>
+  <span class="y-k">fields</span><span class="y-p">:</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">id</span>      <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">uuid</span>    <span class="y-k">primary_key</span><span class="y-p">:</span> <span class="y-kw">true</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">name</span>    <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">str</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">email</span>   <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">str</span>     <span class="y-k">unique</span><span class="y-p">:</span> <span class="y-kw">true</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">score</span>   <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">float</span>   <span class="y-k">nullable</span><span class="y-p">:</span> <span class="y-kw">true</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">status</span>  <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">str</span>     <span class="y-k">default</span><span class="y-p">:</span> <span class="y-str">pending</span>
+<span class="y-cm"># → auto-generates: SQLModel table, Pydantic schema,</span>
+<span class="y-cm">#   CRUD REST routes, and OpenAPI docs</span></code></pre>
+          </div>
+
+          <!-- workflow -->
+          <div class="code-panel" id="panel-wf">
+            <pre class="code-pre"><code><span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">Workflow</span>
+<span class="y-k">version</span><span class="y-p">:</span> <span class="y-v">v1</span>
+<span class="y-k">metadata</span><span class="y-p">:</span>
+  <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">screen_candidate</span>
+<span class="y-k">context</span><span class="y-p">:</span> <span class="y-v">Candidate</span>
+<span class="y-k">trigger</span><span class="y-p">:</span>
+  <span class="y-k">path</span><span class="y-p">:</span>   <span class="y-str">/api/screen</span>
+  <span class="y-k">method</span><span class="y-p">:</span> <span class="y-v">POST</span>
+<span class="y-k">steps</span><span class="y-p">:</span>
+  <span class="y-li">-</span> <span class="y-k">id</span><span class="y-p">:</span> <span class="y-v">save</span>
+    <span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">functional</span>   <span class="y-k">runner</span><span class="y-p">:</span> <span class="y-v">save_candidate</span>
+    <span class="y-k">routes</span><span class="y-p">:</span>  <span class="y-k">default</span><span class="y-p">:</span> <span class="y-v">score</span>
+  <span class="y-li">-</span> <span class="y-k">id</span><span class="y-p">:</span> <span class="y-v">score</span>
+    <span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">agent</span>
+    <span class="y-k">agent</span><span class="y-p">:</span>
+      <span class="y-k">model</span><span class="y-p">:</span> <span class="y-v">default</span>
+      <span class="y-k">prompt</span><span class="y-p">:</span> <span class="y-str">Rate {{ name }} ({{ experience }}y exp) out of 10.</span>
+      <span class="y-k">output</span><span class="y-p">:</span>  <span class="y-k">format</span><span class="y-p">:</span> <span class="y-v">json</span>  <span class="y-k">map</span><span class="y-p">:</span>  <span class="y-k">score</span><span class="y-p">:</span> <span class="y-v">score</span>
+    <span class="y-k">routes</span><span class="y-p">:</span>  <span class="y-k">default</span><span class="y-p">:</span> <span class="y-v">done</span>
+  <span class="y-li">-</span> <span class="y-k">id</span><span class="y-p">:</span> <span class="y-v">done</span>
+    <span class="y-k">kind</span><span class="y-p">:</span> <span class="y-v">functional</span>   <span class="y-k">runner</span><span class="y-p">:</span> <span class="y-v">finalize</span></code></pre>
+          </div>
+
+          <!-- deploy -->
+          <div class="code-panel" id="panel-run">
+            <div class="terminal-body" style="border-radius:0">
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">tuvl dev</span></div>
+              <div class="t-out"><span class="t-ok">✓</span> DataSource <b>main</b> connected <span class="t-dim">· postgresql asyncpg</span></div>
+              <div class="t-out"><span class="t-ok">✓</span> Model <b>Candidate</b> → table <span class="t-path">candidates</span> <span class="t-dim">· 5 fields · CRUD routes mounted</span></div>
+              <div class="t-out"><span class="t-ok">✓</span> Workflow <b>screen_candidate</b> → <span class="t-url">POST /api/screen</span></div>
+              <div class="t-out"><span class="t-ok">✓</span> Insight portal → <span class="t-url">http://127.0.0.1:8000/insight/</span></div>
+              <div class="t-gap"></div>
+              <div class="t-out t-dim">watching workflows/ · models/ · datasources/ · nodes/</div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
             </div>
-            <div class="t-out"><span class="t-arrow">→</span> Insight portal opened in your browser</div>
-            <div class="t-out"><span class="t-arrow">→</span> Hot-reload watching <span class="t-path">workflows/</span>, <span class="t-path">models/</span>, <span class="t-path">llms/</span></div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
+          </div>
+
+          <div class="code-demo-footer">
+            <span class="t-dim">3 files &nbsp;·&nbsp; 1 production API &nbsp;·&nbsp; zero boilerplate</span>
+            <span class="code-demo-version">tuvl v2026.2.1-beta.1</span>
           </div>
         </div>
 
