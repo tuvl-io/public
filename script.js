@@ -51,7 +51,8 @@
       document.querySelectorAll(".code-tab").forEach((t) => t.classList.remove("active"));
       document.querySelectorAll(".code-panel").forEach((p) => p.classList.remove("active"));
       tab.classList.add("active");
-      document.getElementById(`panel-${panel}`).classList.add("active");
+      const el = document.getElementById(`panel-${panel}`);
+      if (el) el.classList.add("active");
     });
   });
 
