@@ -162,6 +162,21 @@ button { font: inherit; cursor: pointer; }
 }
 .nav-link:hover { color: var(--text-0); background: rgba(255, 255, 255, 0.04); }
 
+.docs-version-badge {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--accent, #06b6d4);
+  vertical-align: middle;
+  pointer-events: none;
+}
+
 .nav-right { display: flex; align-items: center; gap: 8px; }
 .nav-icon-link {
   display: flex;

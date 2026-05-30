@@ -2,6 +2,31 @@
 (() => {
   "use strict";
 
+  // ── Docs version ──────────────────────────────────────────────
+  // Update this to match the current release tag (without leading 'v').
+  // The alias (beta / latest) is appended automatically.
+  const DOCS_VERSION = "2026.2.1-beta.1";
+  const DOCS_ALIAS   = DOCS_VERSION.includes("-beta.") || DOCS_VERSION.includes("-alpha.") || DOCS_VERSION.includes("-rc.")
+    ? "beta"
+    : "latest";
+  const DOCS_BASE    = `https://tuvl.dev/${DOCS_ALIAS}`;
+
+  // Prefix all docs links with the versioned base path
+  document.querySelectorAll('a[href^="https://tuvl.dev"]').forEach((a) => {
+    const path = a.getAttribute("href").replace("https://tuvl.dev", "") || "/";
+    a.setAttribute("href", DOCS_BASE + path);
+  });
+
+  // Inject version badge next to the nav Docs link
+  const docsNavLink = document.querySelector('a.nav-link[href*="tuvl.dev"]');
+  if (docsNavLink) {
+    const badge = document.createElement("span");
+    badge.className = "docs-version-badge";
+    badge.textContent = DOCS_ALIAS;
+    docsNavLink.appendChild(badge);
+  }
+
+
   // ── Insight portal tab switcher ──────────────────────────────
   const INSIGHT_CAPTIONS = {
     "workflows": "Edit any workflow YAML in the browser. Visual graph, live versioning, hot reload — no IDE required.",
