@@ -120,6 +120,7 @@
         </div>
 
         <!-- code demo -->
+        <p class="demo-label"><span>Three steps.</span> One production API.</p>
         <div class="code-demo">
           <div class="code-demo-tabs" role="tablist">
             <button class="code-tab active" data-panel="ds" role="tab">
@@ -161,9 +162,14 @@
 <span class="y-k">spec</span><span class="y-p">:</span>
   <span class="y-k">table</span><span class="y-p">:</span> <span class="y-v">candidates</span>
   <span class="y-k">fields</span><span class="y-p">:</span>
-    <span class="y-li">-</span> <span class="y-p">{</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">full_name</span><span class="y-p">,</span> <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">str</span> <span class="y-p">}</span>
-    <span class="y-li">-</span> <span class="y-p">{</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">email</span><span class="y-p">,</span>     <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">str</span><span class="y-p">,</span> <span class="y-k">unique</span><span class="y-p">:</span> <span class="y-kw">true</span> <span class="y-p">}</span>
-    <span class="y-li">-</span> <span class="y-p">{</span> <span class="y-k">name</span><span class="y-p">:</span> <span class="y-v">score</span><span class="y-p">,</span>     <span class="y-k">type</span><span class="y-p">:</span> <span class="y-v">int</span><span class="y-p">,</span>  <span class="y-k">default</span><span class="y-p">:</span> <span class="y-num">0</span> <span class="y-p">}</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span>    <span class="y-v">full_name</span>
+      <span class="y-k">type</span><span class="y-p">:</span>    <span class="y-v">str</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span>    <span class="y-v">email</span>
+      <span class="y-k">type</span><span class="y-p">:</span>    <span class="y-v">str</span>
+      <span class="y-k">unique</span><span class="y-p">:</span>  <span class="y-kw">true</span>
+    <span class="y-li">-</span> <span class="y-k">name</span><span class="y-p">:</span>    <span class="y-v">score</span>
+      <span class="y-k">type</span><span class="y-p">:</span>    <span class="y-v">int</span>
+      <span class="y-k">default</span><span class="y-p">:</span> <span class="y-num">0</span>
 <span class="y-cm">
 # → PostgreSQL table  ·  Pydantic schema  ·  CRUD REST routes</span></code></pre>
           </div>
@@ -208,7 +214,6 @@
           </div>
 
           <div class="code-demo-footer">
-            <span class="t-dim">3 files &nbsp;·&nbsp; 1 production API &nbsp;·&nbsp; zero boilerplate</span>
             <span class="code-demo-version">tuvl v2026.2.1-beta.1</span>
           </div>
         </div>
@@ -613,64 +618,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ── 3 steps ────────────────────────────────────────────────── -->
-    <section class="getstarted">
-      <div class="section-head">
-        <span class="eyebrow">Get started</span>
-        <h2 class="section-title">Three files.<br />One production API.</h2>
-      </div>
-
-      <div class="steps">
-        <article class="step">
-          <div class="step-head"><span class="step-num">01</span><h4>Define a model</h4></div>
-<pre class="code step-code"><span class="cm"># models/candidate.yaml</span>
-<span class="kw">kind:</span> <span class="st">ModelDefinition</span>
-<span class="kw">metadata:</span>
-  <span class="kw">name:</span> <span class="st">Candidate</span>
-<span class="kw">spec:</span>
-  <span class="kw">table:</span> <span class="st">candidates</span>
-  <span class="kw">fields:</span>
-    - { <span class="kw">name:</span> <span class="st">full_name</span>, <span class="kw">type:</span> <span class="st">str</span> }
-    - { <span class="kw">name:</span> <span class="st">email</span>,     <span class="kw">type:</span> <span class="st">str</span>, <span class="kw">unique:</span> <span class="vl">true</span> }
-    - { <span class="kw">name:</span> <span class="st">score</span>,     <span class="kw">type:</span> <span class="st">int</span>, <span class="kw">default:</span> <span class="vl">0</span> }</pre>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-num">02</span><h4>Compose a workflow</h4></div>
-<pre class="code step-code"><span class="cm"># workflows/screen.yaml</span>
-<span class="kw">kind:</span> <span class="st">Workflow</span>
-<span class="kw">metadata:</span>
-  <span class="kw">name:</span> <span class="st">screen</span>
-<span class="kw">spec:</span>
-  <span class="kw">steps:</span>
-    - <span class="kw">id:</span> <span class="st">save</span>
-      <span class="kw">kind:</span> <span class="vl">model-op</span>
-      <span class="kw">op:</span> <span class="st">add</span>
-      <span class="kw">model:</span> <span class="st">Candidate</span>
-    - <span class="kw">id:</span> <span class="st">score</span>
-      <span class="kw">kind:</span> <span class="vl">agent</span>
-      <span class="kw">agent:</span>
-        <span class="kw">model:</span> <span class="st">default</span>
-        <span class="kw">prompt:</span> <span class="st">"Score CV..."</span></pre>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-num">03</span><h4>Deploy</h4></div>
-<pre class="code step-code"><span class="cm"># dev — hot reload, Insight portal</span>
-<span class="t-prompt">$</span> tuvl dev
-
-<span class="cm"># or production — multi-worker</span>
-<span class="t-prompt">$</span> tuvl run --workers 4
-
-<span class="cm"># curl your new endpoint</span>
-<span class="t-prompt">$</span> curl -X POST localhost:8000<span class="st">/api/workflows/</span><span class="vl">\</span>
-    screen/run -d <span class="st">'{"full_name":"Jane"}'</span>
-
-{<span class="kw">"route"</span>: <span class="st">"strong"</span>, <span class="kw">"score"</span>: <span class="vl">8</span>}</pre>
-        </article>
       </div>
     </section>
 
