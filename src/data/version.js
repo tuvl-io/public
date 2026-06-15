@@ -1,4 +1,4 @@
-export const VERSION_TAG = 'v2026.2.1-beta.2';
+export const VERSION_TAG = 'v2026.2.3-beta.1';
 
 const SEMVER = VERSION_TAG.replace(/^v/, '');
 const IS_PRERELEASE = /-(beta|alpha|rc)\./.test(SEMVER);
