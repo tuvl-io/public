@@ -3,6 +3,7 @@ import Background from './components/Background.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import Logos from './components/Logos.jsx';
+import AgenticEra from './components/AgenticEra.jsx';
 import Insight from './components/Insight.jsx';
 import Features from './components/Features.jsx';
 import Workflows from './components/Workflows.jsx';
@@ -23,6 +24,7 @@ export default function App() {
       <main>
         <Hero />
         <Logos />
+        <AgenticEra />
         <Insight />
         <Features />
         <Workflows />
