@@ -1,8 +1,18 @@
 name: Deploy Portal to GitHub Pages
 
+# Deploys the Vite-built React SPA at https://tuvl.io.
+#
+# Flow:
+#   1. checkout → pnpm install (frozen) → pnpm build → dist/
+#   2. dist/ is uploaded as a Pages artefact (vite copies public/CNAME →
+#      dist/CNAME automatically, which preserves the tuvl.io custom domain
+#      on every deploy — GitHub Pages reads it from the artefact, not the
+#      repo root)
+#   3. deploy-pages publishes the artefact
+
 on:
   push:
-    branches: ["main"]
+    branches: [release, main]
   workflow_dispatch:
 
 permissions:
@@ -10,44 +20,64 @@ permissions:
   pages: write
   id-token: write
 
+# One deploy at a time; cancel an in-progress run when a newer push arrives.
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
   build:
+    name: Build SPA
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 22
+          cache: pnpm
+
       - name: Install dependencies
-        run: pnpm install
-      - name: Build
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (vite)
+        # Output goes to ./dist; public/CNAME is copied to dist/CNAME by
+        # vite so the custom domain survives every deploy.
         run: pnpm run build
+
+      - name: Verify CNAME survived the build
+        # Belt and braces: fail the build if the deployed artefact is
+        # missing CNAME — would silently break tuvl.io.
+        run: |
+          if [ ! -f dist/CNAME ]; then
+            echo "::error::dist/CNAME is missing — public/CNAME must exist before build."
+            exit 1
+          fi
+          printf '  ✓ dist/CNAME → '; cat dist/CNAME
+
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artefact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: ./dist
 
   deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
