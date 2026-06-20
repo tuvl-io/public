@@ -85,10 +85,11 @@ export default function Insight() {
     <section className="insight" id="insight">
       <div className="section-head">
         <span className="eyebrow eyebrow-cyan">New · Insight Developer Portal</span>
-        <h2 className="section-title">Your AI backend,<br />on the table.</h2>
+        <h2 className="section-title">Your backend,<br />on the table.</h2>
         <p className="section-sub">
-          Every workflow, model, datasource, agent, and vector index — live in your browser.
-          Edit YAML, trigger executions, watch every step fire. No IDE required.
+          Every workflow, model, datasource, and vector index—rendered live. Trigger
+          full workflows or dry-run individual nodes in isolation. A purely local control
+          plane for your dev environment.
         </p>
       </div>
 
@@ -139,8 +140,8 @@ export default function Insight() {
           <div className="i-cell-text">extra processes to run. The portal is served by your dev engine on a single port.</div>
         </div>
         <div className="i-cell">
-          <div className="i-cell-num">gRPC<span className="hl">-Web</span></div>
-          <div className="i-cell-text">streams every step event from the engine to the canvas with millisecond latency.</div>
+          <div className="i-cell-num">Trace<span className="hl"> &amp; Eval</span></div>
+          <div className="i-cell-text">watch OpenTelemetry spans stream in real-time as you test. Validate your LLM-as-a-judge scoring locally before shipping to production.</div>
         </div>
         <div className="i-cell">
           <div className="i-cell-num">dev<span className="hl"> only</span></div>
