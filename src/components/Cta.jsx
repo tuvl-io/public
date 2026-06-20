@@ -1,18 +1,5 @@
+import { useState } from 'react';
 import { docs } from '../data/version.js';
-
-function ArrowRight() {
-  return (
-    <svg fill="none" height="14" viewBox="0 0 16 16" width="14">
-      <path
-        d="M3 8h10M9 4l4 4-4 4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.75"
-      />
-    </svg>
-  );
-}
 
 function GitHubMark() {
   return (
@@ -22,42 +9,59 @@ function GitHubMark() {
   );
 }
 
+const CMD = 'uv tool install tuvl && tuvl init my-app';
+const DOCS_LINK_LABEL = 'tuvl.dev';
+
 export default function Cta() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(CMD);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1400);
+    } catch {
+      /* ignore */
+    }
+  };
+
   return (
-    <section className="cta" id="get-started">
+    <section className="cta cta-futuristic" id="get-started">
       <div className="cta-card">
         <div className="cta-glow" />
-        <span className="eyebrow eyebrow-cyan">Available now · MIT licensed</span>
+        <span className="eyebrow eyebrow-cyan">open source · local-first · stateless</span>
         <h2>
-          Engineer your AI backend.<br />
-          <span className="grad">Not vibe with it.</span>
+          Ship the contract.<br />
+          <span className="grad">We handle the execution.</span>
         </h2>
-        <p>Local-first. Open source. No cloud required. Ship signal-driven AI on your own terms.</p>
-
-        <div className="hero-cta" style={{ marginTop: 4 }}>
-          <a
-            className="btn btn-primary"
-            href={docs('/getting-started/quickstart')}
-            rel="noopener"
-            target="_blank"
-          >
-            Start building
-            <ArrowRight />
-          </a>
-          <a
-            className="btn btn-ghost"
-            href="https://github.com/tuvl-io/tuvl"
-            rel="noopener"
-            target="_blank"
-          >
-            <GitHubMark />
-            Star on GitHub
-          </a>
-        </div>
-
-        <p className="cta-note">
-          Questions? <a href="mailto:developer@tuvl.io" style={{ color: 'var(--cyan)' }}>developer@tuvl.io</a>
+        <p>
+          Stop trapping your workflows inside proprietary cloud builders. Define your AI
+          routing in portable YAML, hand it to your IDE, and let tuvl&apos;s open-source
+          engine run it anywhere.
         </p>
+
+        <button
+          aria-label="Copy install command"
+          className={`cta-cmd${copied ? ' is-copied' : ''}`}
+          onClick={handleCopy}
+          type="button"
+        >
+          <span className="cta-cmd-prompt">$</span>
+          <code>{CMD}</code>
+          <span className="cta-cmd-copy">{copied ? 'copied' : 'copy'}</span>
+        </button>
+
+        <div className="cta-foot">
+          <a className="cta-foot-link" href={docs('/')} rel="noopener" target="_blank">
+            Docs ({DOCS_LINK_LABEL}) →
+          </a>
+          <span className="cta-foot-sep" aria-hidden="true">·</span>
+          <a className="cta-foot-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank">
+            <GitHubMark /> Star on GitHub
+          </a>
+          <span className="cta-foot-sep" aria-hidden="true">·</span>
+          <a className="cta-foot-link" href="mailto:developer@tuvl.io">developer@tuvl.io</a>
+        </div>
       </div>
     </section>
   );

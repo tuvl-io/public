@@ -8,16 +8,17 @@ export default function Footer() {
           <img alt="" className="footer-logo" src="/assets/logo.png" />
           <div>
             <div className="footer-name">tuvl <span className="footer-mal">തൂവൽ</span></div>
-            <div className="footer-tag">Featherlight AI workflows.</div>
+            <div className="footer-tag">Backends declared in YAML.</div>
           </div>
         </div>
         <div className="footer-cols">
           <div className="footer-col">
             <h6>Product</h6>
+            <a href="#reliability">Reliability</a>
+            <a href="#thesis">The bet</a>
             <a href="#insight">Insight portal</a>
-            <a href="#features">Features</a>
+            <a href="#architecture">Architecture</a>
             <a href="#workflows">Workflows</a>
-            <a href="#sdk">SDK</a>
           </div>
           <div className="footer-col">
             <h6>Docs</h6>

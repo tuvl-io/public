@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SELECTOR = '.card, .step, .aud-card, .i-cell';
+const SELECTOR = '.card, .step, .aud-card, .i-cell, .section-head, .pg, .wf-compare';
 
 export function useScrollReveal() {
   useEffect(() => {

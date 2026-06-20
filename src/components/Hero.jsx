@@ -1,5 +1,5 @@
-import { docs, VERSION_TAG } from '../data/version.js';
-import CodeDemo from './CodeDemo.jsx';
+import { useState } from 'react';
+import { VERSION_TAG, docs } from '../data/version.js';
 
 function ChevronRightTiny() {
   return (
@@ -9,85 +9,120 @@ function ChevronRightTiny() {
   );
 }
 
-function ArrowRight() {
+function CopyIcon() {
   return (
-    <svg fill="none" height="14" viewBox="0 0 16 16" width="14">
-      <path
-        d="M3 8h10M9 4l4 4-4 4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.75"
-      />
+    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
+      <rect height="13" rx="2" width="13" x="9" y="9" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </svg>
   );
 }
 
-function GitHubMark() {
+function CheckIcon() {
   return (
-    <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
-      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+    <svg fill="none" height="13" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" width="13">
+      <polyline points="20 6 9 17 4 12" />
     </svg>
   );
 }
+
+const INSTALL_CMD = 'uv tool install tuvl';
+
+const BUILT_ON = [
+  ['FastAPI', 'https://fastapi.tiangolo.com'],
+  ['SQLModel', 'https://sqlmodel.tiangolo.com'],
+  ['LiteLLM', 'https://docs.litellm.ai'],
+  ['Biscuit', 'https://www.biscuitsec.org'],
+  ['OpenTelemetry', 'https://opentelemetry.io'],
+  ['pgvector', 'https://github.com/pgvector/pgvector'],
+  ['MCP', 'https://modelcontextprotocol.io'],
+];
 
 export default function Hero() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(INSTALL_CMD);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1400);
+    } catch {
+      /* clipboard blocked — ignore */
+    }
+  };
+
   return (
-    <section className="hero" id="top">
+    <section className="hero hero-futuristic" id="top">
+      <div className="hero-grid" aria-hidden="true" />
       <div className="hero-inner">
-        <a className="pill" href="#insight">
+        <a className="pill" href={docs('/changelog')} rel="noopener" target="_blank">
           <span className="pill-dot" />
-          <span>{VERSION_TAG} — beta dropped</span>
+          <span>{VERSION_TAG} · stable beta</span>
           <ChevronRightTiny />
         </a>
 
         <h1 className="hero-title">
-          Stop vibing with AI.
-          <span className="grad">Engineer it.</span>
+          Give your AI agent a<br />
+          <span className="grad">contract it can&apos;t break.</span>
         </h1>
 
         <p className="hero-sub">
-          tuvl compiles declarative YAML into auditable, local-first FastAPI endpoints.
-          Signal-driven routing. Streaming observability. Zero black boxes.
+          Prompting an AI to write imperative backend logic creates brittle spaghetti.
+          tuvl shifts orchestration to a strict YAML schema. Your agent generates the
+          configuration perfectly; our stateless ASGI router handles the execution.
         </p>
 
-        <div className="hero-name">
-          <img alt="" className="hero-name-mark" src="/assets/logo.png" />
-          <div className="hero-name-text">
-            <span className="hero-name-word">tuvl</span>
-            <span className="hero-name-meta">
-              <span className="hero-name-mal">തൂവൽ</span>
-              <span className="hero-name-sep">·</span>
-              <span className="hero-name-ipa">/ˈtuːvəl/</span>
-              <span className="hero-name-sep">·</span>
-              <span className="hero-name-en">feather</span>
+        <div className="hero-install">
+          <button
+            aria-label="Copy install command"
+            className={`hero-install-line${copied ? ' is-copied' : ''}`}
+            onClick={handleCopy}
+            type="button"
+          >
+            <span className="hero-install-prompt">$</span>
+            <code>{INSTALL_CMD}</code>
+            <span className="hero-install-copy">
+              {copied ? <CheckIcon /> : <CopyIcon />}
+              {copied ? 'copied' : 'copy'}
             </span>
+          </button>
+          <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
+            Read the manual →
+          </a>
+        </div>
+
+        <div className="hero-builton" aria-label="Built on">
+          <span className="hero-builton-lbl">built on</span>
+          {BUILT_ON.map(([name, href], i) => (
+            <span key={name} className="hero-builton-item">
+              <a href={href} rel="noopener" target="_blank">{name}</a>
+              {i < BUILT_ON.length - 1 && <span className="hero-builton-sep" aria-hidden="true">·</span>}
+            </span>
+          ))}
+        </div>
+
+        <div className="hero-stats">
+          <div className="hero-stat">
+            <div className="hero-stat-num">
+              34<span className="hero-stat-unit">KB</span>
+            </div>
+            <div className="hero-stat-lbl">whole engine contract</div>
+          </div>
+          <span className="hero-stat-sep" aria-hidden="true" />
+          <div className="hero-stat">
+            <div className="hero-stat-num">
+              0<span className="hero-stat-unit">deps</span>
+            </div>
+            <div className="hero-stat-lbl">on torch / langchain</div>
+          </div>
+          <span className="hero-stat-sep" aria-hidden="true" />
+          <div className="hero-stat">
+            <div className="hero-stat-num">
+              &lt;300<span className="hero-stat-unit">ms</span>
+            </div>
+            <div className="hero-stat-lbl">cold start mount</div>
           </div>
         </div>
-
-        <div className="hero-cta">
-          <a
-            className="btn btn-primary"
-            href={docs('/getting-started/quickstart')}
-            rel="noopener"
-            target="_blank"
-          >
-            Start building
-            <ArrowRight />
-          </a>
-          <a
-            className="btn btn-ghost"
-            href="https://github.com/tuvl-io/tuvl"
-            rel="noopener"
-            target="_blank"
-          >
-            <GitHubMark />
-            Star on GitHub
-          </a>
-        </div>
-
-        <p className="demo-label"><span>Three steps.</span> One production API.</p>
-        <CodeDemo />
       </div>
     </section>
   );
