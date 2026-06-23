@@ -5,7 +5,7 @@ const ROWS = [
     detail: 'pure-Python, one PyPI artefact, MIT licensed.',
   },
   {
-    metric: '< 300 ms',
+    metric: 'sub-second',
     label: 'cold start · tuvl dev → first request',
     detail: 'YAML scan + Pydantic validate + ASGI mount.',
   },
