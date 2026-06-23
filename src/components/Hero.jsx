@@ -118,9 +118,9 @@ export default function Hero() {
           <span className="hero-stat-sep" aria-hidden="true" />
           <div className="hero-stat">
             <div className="hero-stat-num">
-              &lt;300<span className="hero-stat-unit">ms</span>
+              &lt;1<span className="hero-stat-unit">s</span>
             </div>
-            <div className="hero-stat-lbl">cold start mount</div>
+            <div className="hero-stat-lbl">cold start</div>
           </div>
         </div>
       </div>
