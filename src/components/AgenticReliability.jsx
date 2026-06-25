@@ -5,10 +5,10 @@ spec:
   context: [Candidate]
   steps:
     - id: save
-      kind: model-op
+      kind: ModelOp
       model: Candidate
     - id: score
-      kind: agent
+      kind: Agent
       agent:
         model: default
         output:

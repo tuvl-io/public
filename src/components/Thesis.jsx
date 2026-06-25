@@ -1,11 +1,11 @@
 const STEP_KINDS = [
-  'functional',
-  'agent',
-  'router',
-  'api_call',
-  'mcp',
-  'model-op',
-  'response',
+  'Functional',
+  'Agent',
+  'Router',
+  'APICall',
+  'MCP',
+  'ModelOp',
+  'Response',
   'HumanInTheLoop',
 ];
 

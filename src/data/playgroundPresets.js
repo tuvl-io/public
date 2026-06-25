@@ -12,14 +12,14 @@ metadata:
 spec:
   steps:
     - id: save_draft
-      kind: model-op
+      kind: ModelOp
       op: add
       model: Candidate
       routes:
         default: score_cv
 
     - id: score_cv
-      kind: agent
+      kind: Agent
       agent:
         model: default
       routes:
@@ -27,11 +27,11 @@ spec:
         weak: reject
 
     - id: fast_track
-      kind: functional
+      kind: Functional
       runner: notify_recruiter
 
     - id: reject
-      kind: response
+      kind: Response
 `,
   },
   {
@@ -43,21 +43,21 @@ metadata:
 spec:
   steps:
     - id: validate
-      kind: functional
+      kind: Functional
       runner: validate_contact
       routes:
         valid: save
         invalid: END
 
     - id: save
-      kind: model-op
+      kind: ModelOp
       op: add
       model: Contact
       routes:
         default: notify
 
     - id: notify
-      kind: functional
+      kind: Functional
       runner: send_welcome_email
 `,
   },
@@ -70,7 +70,7 @@ metadata:
 spec:
   steps:
     - id: classify
-      kind: agent
+      kind: Agent
       agent:
         model: default
       routes:
@@ -79,12 +79,12 @@ spec:
         other: ask_human
 
     - id: enrich
-      kind: api_call
+      kind: APICall
       routes:
         default: ask_human
 
     - id: charge
-      kind: mcp
+      kind: MCP
       tool: stripe.refund
       routes:
         ok: done
@@ -96,7 +96,7 @@ spec:
         default: done
 
     - id: done
-      kind: response
+      kind: Response
 `,
   },
   {
@@ -115,7 +115,7 @@ spec:
 
     # this route points at a step that was never declared
     - id: middle
-      kind: agent
+      kind: Agent
       agent:
         model: default
       routes:
