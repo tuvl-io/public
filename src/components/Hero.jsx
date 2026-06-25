@@ -28,16 +28,6 @@ function CheckIcon() {
 
 const INSTALL_CMD = 'uv tool install tuvl';
 
-const BUILT_ON = [
-  ['FastAPI', 'https://fastapi.tiangolo.com'],
-  ['SQLModel', 'https://sqlmodel.tiangolo.com'],
-  ['LiteLLM', 'https://docs.litellm.ai'],
-  ['Biscuit', 'https://www.biscuitsec.org'],
-  ['OpenTelemetry', 'https://opentelemetry.io'],
-  ['pgvector', 'https://github.com/pgvector/pgvector'],
-  ['MCP', 'https://modelcontextprotocol.io'],
-];
-
 export default function Hero() {
   const [copied, setCopied] = useState(false);
 
@@ -62,14 +52,12 @@ export default function Hero() {
         </a>
 
         <h1 className="hero-title">
-          Give your AI agent a<br />
-          <span className="grad">contract it can&apos;t break.</span>
+          Build fast, local AI workflows<br />
+          <span className="grad">with just YAML.</span>
         </h1>
 
         <p className="hero-sub">
-          Prompting an AI to write imperative backend logic creates brittle spaghetti.
-          tuvl shifts orchestration to a strict YAML schema. Your agent generates the
-          configuration perfectly; our stateless ASGI router handles the execution.
+          Stop writing complex, brittle Python boilerplate. Define your AI logic in a simple configuration file and get a production-ready API instantly. Open-source, local-first, and incredibly fast.
         </p>
 
         <div className="hero-install">
@@ -91,16 +79,6 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-builton" aria-label="Built on">
-          <span className="hero-builton-lbl">built on</span>
-          {BUILT_ON.map(([name, href], i) => (
-            <span key={name} className="hero-builton-item">
-              <a href={href} rel="noopener" target="_blank">{name}</a>
-              {i < BUILT_ON.length - 1 && <span className="hero-builton-sep" aria-hidden="true">·</span>}
-            </span>
-          ))}
-        </div>
-
         <div className="hero-stats">
           <div className="hero-stat">
             <div className="hero-stat-num">
@@ -113,7 +91,7 @@ export default function Hero() {
             <div className="hero-stat-num">
               0<span className="hero-stat-unit">deps</span>
             </div>
-            <div className="hero-stat-lbl">on torch / langchain</div>
+            <div className="hero-stat-lbl">on complex cloud services</div>
           </div>
           <span className="hero-stat-sep" aria-hidden="true" />
           <div className="hero-stat">
