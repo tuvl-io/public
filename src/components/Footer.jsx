@@ -14,11 +14,12 @@ export default function Footer() {
         <div className="footer-cols">
           <div className="footer-col">
             <h6>Product</h6>
-            <a href="#reliability">Reliability</a>
-            <a href="#thesis">The bet</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#building-blocks">Workflows</a>
+            <a href="#features">Features</a>
+            <a href="#use-cases">Use cases</a>
             <a href="#insight">Insight portal</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#workflows">Workflows</a>
+            <a href="#powered-by">Built on</a>
           </div>
           <div className="footer-col">
             <h6>Docs</h6>

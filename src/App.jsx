@@ -3,6 +3,7 @@ import Background from './components/Background.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
+import StepKinds from './components/StepKinds.jsx';
 import Features from './components/Features.jsx';
 import UseCases from './components/UseCases.jsx';
 import Insight from './components/Insight.jsx';
@@ -24,6 +25,7 @@ export default function App() {
       <main>
         <Hero />
         <HowItWorks />
+        <StepKinds />
         <Features />
         <UseCases />
         <Insight />

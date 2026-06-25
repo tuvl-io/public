@@ -18,11 +18,11 @@ export default function Nav() {
           <span aria-hidden="true" className="nav-mal">തൂവൽ</span>
         </a>
         <div className="nav-center">
-          <a className="nav-link" href="#reliability">Reliability</a>
-          <a className="nav-link" href="#thesis">The bet</a>
+          <a className="nav-link" href="#how-it-works">How it works</a>
+          <a className="nav-link" href="#building-blocks">Workflows</a>
+          <a className="nav-link" href="#features">Features</a>
+          <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
-          <a className="nav-link" href="#architecture">Architecture</a>
-          <a className="nav-link" href="#workflows">Workflows</a>
           <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
             Docs
             <span className="docs-version-badge">{DOCS_ALIAS}</span>

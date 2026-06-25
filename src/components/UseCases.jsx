@@ -51,12 +51,12 @@ export default function UseCases() {
         </p>
       </div>
 
-      <div className="insight-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', padding: '0 2rem' }}>
+      <div className="insight-grid uc-grid">
         {CASES.map((useCase, i) => (
-          <div className="i-cell" key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            <div style={{ color: '#00f0ff', marginBottom: '1rem' }}>{useCase.icon}</div>
-            <div className="i-cell-num" style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{useCase.title}</div>
-            <div className="i-cell-text" style={{ fontSize: '1rem' }}>{useCase.description}</div>
+          <div className="i-cell uc-card" key={i}>
+            <div className="uc-icon">{useCase.icon}</div>
+            <div className="uc-title">{useCase.title}</div>
+            <div className="i-cell-text uc-desc">{useCase.description}</div>
           </div>
         ))}
       </div>

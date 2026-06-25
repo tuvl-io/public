@@ -6,23 +6,23 @@
 
 // closed set — mirrors the engine's step-kind catalogue (AGENT.md §3)
 export const STEP_KINDS = [
-  'functional', 'agent', 'router', 'api_call',
-  'mcp', 'model-op', 'response', 'HumanInTheLoop',
+  'Functional', 'Agent', 'Router', 'APICall',
+  'MCP', 'ModelOp', 'Response', 'HumanInTheLoop',
 ];
 
 // step kind → graph node style (reuses the existing .n-* node classes)
 const KIND_NODE = {
-  agent: 'agent',
-  functional: 'func',
-  'model-op': 'model',
-  response: 'end',
-  router: 'func',
-  api_call: 'func',
-  mcp: 'func',
+  Agent: 'agent',
+  Functional: 'func',
+  ModelOp: 'model',
+  Response: 'end',
+  Router: 'func',
+  APICall: 'func',
+  MCP: 'func',
   HumanInTheLoop: 'func',
 };
 
-const KIND_TAG = { agent: 'ai', router: 'fork', mcp: 'mcp', HumanInTheLoop: 'hitl' };
+const KIND_TAG = { Agent: 'ai', Router: 'fork', MCP: 'mcp', HumanInTheLoop: 'hitl' };
 
 const TERMINALS = new Set(['END', 'end', 'STOP', 'stop']);
 const NEG = /^(reject|invalid|weak|fail|failed|error|errored|no|deny|denied|low|timeout)$/i;

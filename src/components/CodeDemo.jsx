@@ -61,7 +61,7 @@ function WorkflowPanel() {
       <span className="y-k">spec</span><span className="y-p">:</span>{'\n'}
       {'  '}<span className="y-k">steps</span><span className="y-p">:</span>{'\n'}
       {'    '}<span className="y-li">-</span>{' '}<span className="y-k">id</span><span className="y-p">:</span>{' '}<span className="y-v">save</span>{'\n'}
-      {'      '}<span className="y-k">kind</span><span className="y-p">:</span>{' '}<span className="y-v">model-op</span>{'\n'}
+      {'      '}<span className="y-k">kind</span><span className="y-p">:</span>{' '}<span className="y-v">ModelOp</span>{'\n'}
       {'      '}<span className="y-k">op</span><span className="y-p">:</span>{'   '}<span className="y-v">add</span>{'\n'}
       {'      '}<span className="y-k">model</span><span className="y-p">:</span>{' '}<span className="y-v">Candidate</span>{'\n'}
       {'    '}<span className="y-li">-</span>{' '}<span className="y-k">id</span><span className="y-p">:</span>{' '}<span className="y-v">score</span>{'\n'}
