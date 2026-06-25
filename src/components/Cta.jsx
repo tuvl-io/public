@@ -29,15 +29,13 @@ export default function Cta() {
     <section className="cta cta-futuristic" id="get-started">
       <div className="cta-card">
         <div className="cta-glow" />
-        <span className="eyebrow eyebrow-cyan">open source · local-first · stateless</span>
+        <span className="eyebrow eyebrow-cyan">open source · local-first</span>
         <h2>
-          Ship the contract.<br />
-          <span className="grad">We handle the execution.</span>
+          Ready to simplify<br />
+          <span className="grad">your AI stack?</span>
         </h2>
         <p>
-          Stop trapping your workflows inside proprietary cloud builders. Define your AI
-          routing in portable YAML, hand it to your IDE, and let tuvl&apos;s open-source
-          engine run it anywhere.
+          Join the developers building faster, local-first AI applications. Define your workflows in portable YAML and let tuvl&apos;s open-source engine run them anywhere.
         </p>
 
         <button

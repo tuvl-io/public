@@ -84,12 +84,10 @@ export default function Insight() {
   return (
     <section className="insight" id="insight">
       <div className="section-head">
-        <span className="eyebrow eyebrow-cyan">New · Insight Developer Portal</span>
-        <h2 className="section-title">Your backend,<br />on the table.</h2>
+        <span className="eyebrow eyebrow-cyan">Built-in Dev Portal</span>
+        <h2 className="section-title">Visualize, test, and debug <br /><span className="grad">before shipping.</span></h2>
         <p className="section-sub">
-          Every workflow, model, datasource, and vector index—rendered live. Trigger
-          full workflows or dry-run individual nodes in isolation. A purely local control
-          plane for your dev environment.
+          Every workflow, model, datasource, and vector index—rendered live. Trigger full workflows or dry-run individual nodes in isolation. A purely local control plane for your dev environment.
         </p>
       </div>
 
