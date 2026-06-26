@@ -113,7 +113,7 @@ spec:
           <div className="card-icon"><ShieldIcon /></div>
           <h3>Zero hallucination surface.</h3>
           <p>
-            <strong>Eight step kinds. Eleven document kinds.</strong> That's the entire engine
+            <strong>Nine step kinds. Eleven document kinds.</strong> That's the entire engine
             surface. Your agent can't invent a method that doesn't exist or call an API that
             hallucinated itself into being — invalid YAML fails Pydantic validation before a
             single endpoint mounts.

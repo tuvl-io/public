@@ -21,6 +21,18 @@ function BotIcon() {
   );
 }
 
+function AutonomousIcon() {
+  return (
+    <svg fill="none" height="19" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" viewBox="0 0 24 24" width="19">
+      <path d="m17 2 4 4-4 4" />
+      <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+      <path d="m7 22-4-4 4-4" />
+      <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+      <circle cx="12" cy="12" r="2.2" />
+    </svg>
+  );
+}
+
 function BranchIcon() {
   return (
     <svg fill="none" height="19" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" viewBox="0 0 24 24" width="19">
@@ -84,6 +96,7 @@ function HumanIcon() {
 const KINDS = [
   { icon: <BracesIcon />, name: 'Functional', desc: 'Run a registered Python node — your escape hatch for any custom logic.' },
   { icon: <BotIcon />, name: 'Agent', desc: 'Call any LLM with a prompt template and route on its structured output.' },
+  { icon: <AutonomousIcon />, name: 'AutonomousAgent', desc: 'Give an LLM a goal and tools — it loops, calling them until it reaches a bounded outcome.' },
   { icon: <BranchIcon />, name: 'Router', desc: 'Evaluate a condition on the context and branch to a named route.' },
   { icon: <GlobeIcon />, name: 'APICall', desc: 'Make an outbound HTTP request and map the response into context.' },
   { icon: <PlugIcon />, name: 'MCP', desc: 'Invoke a tool over the Model Context Protocol — stdio or SSE.' },
@@ -99,7 +112,7 @@ export default function StepKinds() {
         <span className="eyebrow eyebrow-cyan">Composable primitives</span>
         <h2 className="section-title">
           Workflows, curated from<br />
-          <span className="grad">eight building blocks.</span>
+          <span className="grad">nine building blocks.</span>
         </h2>
         <p className="section-sub">
           Every tuvl workflow is composed from a small, closed set of step kinds — fixed by
