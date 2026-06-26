@@ -52,12 +52,12 @@ export default function Hero() {
         </a>
 
         <h1 className="hero-title">
-          Build fast, local AI workflows<br />
-          <span className="grad">with just YAML.</span>
+          Business logic,<br />
+          <span className="grad">declared in YAML.</span>
         </h1>
 
         <p className="hero-sub">
-          Stop writing complex, brittle Python boilerplate. Define your AI logic in a simple configuration file and get a production-ready API instantly. Open-source, local-first, and incredibly fast.
+          A production runtime for AI workflows and APIs, driven by YAML-defined business logic. No brittle Python boilerplate — declare it once, get a production-ready API instantly. Open-source, local-first, and fast.
         </p>
 
         <div className="hero-install">
