@@ -2247,6 +2247,13 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--cyan);
 }
 
+.hero-install-note {
+  width: 100%;
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-3, var(--text-2));
+}
+
 /* ── Hero stats strip ────────────────────────────────────────── */
 .hero-stats {
   display: flex;
