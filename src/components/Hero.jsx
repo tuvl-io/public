@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="hero-inner">
         <a className="pill" href={docs('/changelog')} rel="noopener" target="_blank">
           <span className="pill-dot" />
-          <span>{VERSION_TAG} · stable release</span>
+          <span>{VERSION_TAG} · beta</span>
           <ChevronRightTiny />
         </a>
 
