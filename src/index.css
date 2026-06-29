@@ -3612,6 +3612,23 @@ button { font: inherit; cursor: pointer; }
   padding: 3px 9px;
   width: fit-content;
 }
+.kind-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.kind-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #a5b4fc;
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
 .kind-desc {
   margin: 0;
   font-size: 13px;
