@@ -9,7 +9,7 @@ export default function AnnounceBar() {
     <div className="announce-bar">
       <span className="announce-pulse" />
       <span className="announce-text">
-        <strong>{VERSION_TAG}</strong> · now on PyPI
+        <strong>{VERSION_TAG}</strong> · Beta — great for building &amp; evaluating; production-ready stable coming soon
       </span>
       <button
         aria-label="Dismiss"

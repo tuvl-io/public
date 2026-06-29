@@ -77,6 +77,9 @@ export default function Hero() {
           <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
             Read the manual →
           </a>
+          <p className="hero-install-note">
+            Beta — solid for building &amp; evaluating; hold off on production until the stable release (coming soon).
+          </p>
         </div>
 
         <div className="hero-stats">
