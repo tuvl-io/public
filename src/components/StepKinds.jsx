@@ -96,7 +96,7 @@ function HumanIcon() {
 const KINDS = [
   { icon: <BracesIcon />, name: 'Functional', desc: 'Run a registered Python node — your escape hatch for any custom logic.' },
   { icon: <BotIcon />, name: 'Agent', desc: 'Call any LLM with a prompt template and route on its structured output.' },
-  { icon: <AutonomousIcon />, name: 'AutonomousAgent', desc: 'Give an LLM a goal and tools — it loops, calling them until it reaches a bounded outcome.' },
+  { icon: <AutonomousIcon />, name: 'AutonomousAgent', desc: 'Hand an LLM a goal, tools, and skills — it runs a bounded tool-calling loop (capped iterations & token budget) until it reaches a declared outcome.', experimental: true },
   { icon: <BranchIcon />, name: 'Router', desc: 'Evaluate a condition on the context and branch to a named route.' },
   { icon: <GlobeIcon />, name: 'APICall', desc: 'Make an outbound HTTP request and map the response into context.' },
   { icon: <PlugIcon />, name: 'MCP', desc: 'Invoke a tool over the Model Context Protocol — stdio or SSE.' },
@@ -125,7 +125,10 @@ export default function StepKinds() {
         {KINDS.map((kind) => (
           <div className="card kind-card" key={kind.name}>
             <div className="kind-icon">{kind.icon}</div>
-            <code className="kind-name">{kind.name}</code>
+            <div className="kind-name-row">
+              <code className="kind-name">{kind.name}</code>
+              {kind.experimental && <span className="kind-tag">experimental</span>}
+            </div>
             <p className="kind-desc">{kind.desc}</p>
           </div>
         ))}
