@@ -96,7 +96,7 @@ function HumanIcon() {
 const KINDS = [
   { icon: <BracesIcon />, name: 'Functional', desc: 'Run a registered Python node — your escape hatch for any custom logic.' },
   { icon: <BotIcon />, name: 'Agent', desc: 'Call any LLM with a prompt template and route on its structured output.' },
-  { icon: <AutonomousIcon />, name: 'AutonomousAgent', desc: 'Hand an LLM a goal, tools, and skills — it runs a bounded tool-calling loop (capped iterations & token budget) until it reaches a declared outcome.', experimental: true },
+  { icon: <AutonomousIcon />, name: 'AutonomousAgent', desc: 'Hand an LLM its steering, tools, and skills — it runs a bounded tool-calling loop (capped iterations & token budget) until it reaches a declared outcome. Optionally watched by a workflow supervisor that can pause, steer, or abort it live.', experimental: true },
   { icon: <BranchIcon />, name: 'Router', desc: 'Evaluate a condition on the context and branch to a named route.' },
   { icon: <GlobeIcon />, name: 'APICall', desc: 'Make an outbound HTTP request and map the response into context.' },
   { icon: <PlugIcon />, name: 'MCP', desc: 'Invoke a tool over the Model Context Protocol — stdio or SSE.' },
