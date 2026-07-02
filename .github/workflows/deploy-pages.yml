@@ -97,6 +97,13 @@ jobs:
         working-directory: docs-src
         run: |
           uv sync
+          # Disable Material's instant loading FOR THE MIRROR ONLY. Docs and the
+          # React SPA now share the tuvl.io origin, so the instant loader would
+          # hijack same-origin links back to the marketing site (e.g. the
+          # "tuvl.io" nav tab) and XHR-render the SPA into the docs DOM — the
+          # page only appears after a manual refresh. Stripped from this
+          # ephemeral checkout only; the tuvl.dev deploy keeps instant loading.
+          sed -i '/^\s*-\s*navigation\.instant\s*$/d' mkdocs.yml
           uv run mkdocs build --site-dir "$GITHUB_WORKSPACE/dist/docs"
           if [ ! -f "$GITHUB_WORKSPACE/dist/docs/index.html" ]; then
             echo "::error::dist/docs/index.html missing — docs build produced no output."

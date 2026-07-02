@@ -50,7 +50,7 @@ export default function Cta() {
         </button>
 
         <div className="cta-foot">
-          <a className="cta-foot-link" href={docs('/')}>
+          <a className="cta-foot-link" href={docs('/')} rel="noopener" target="_blank">
             Docs ({DOCS_LINK_LABEL}) →
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>
