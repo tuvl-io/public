@@ -10,7 +10,7 @@ function GitHubMark() {
 }
 
 const CMD = 'uv tool install tuvl && tuvl init my-app';
-const DOCS_LINK_LABEL = 'tuvl.dev';
+const DOCS_LINK_LABEL = 'tuvl.io/docs';
 
 export default function Cta() {
   const [copied, setCopied] = useState(false);
@@ -50,7 +50,7 @@ export default function Cta() {
         </button>
 
         <div className="cta-foot">
-          <a className="cta-foot-link" href={docs('/')} rel="noopener" target="_blank">
+          <a className="cta-foot-link" href={docs('/')}>
             Docs ({DOCS_LINK_LABEL}) →
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>

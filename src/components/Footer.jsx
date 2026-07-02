@@ -23,10 +23,10 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h6>Docs</h6>
-            <a href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">Quickstart</a>
-            <a href={docs('/concepts/architecture')} rel="noopener" target="_blank">Architecture</a>
-            <a href={docs('/security/iam')} rel="noopener" target="_blank">Security &amp; IAM</a>
-            <a href={docs('/insight/overview')} rel="noopener" target="_blank">Insight guide</a>
+            <a href={docs('/getting-started/quickstart')}>Quickstart</a>
+            <a href={docs('/concepts/architecture')}>Architecture</a>
+            <a href={docs('/security/iam')}>Security &amp; IAM</a>
+            <a href={docs('/insight/overview')}>Insight guide</a>
           </div>
           <div className="footer-col">
             <h6>Community</h6>
