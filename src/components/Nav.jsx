@@ -23,7 +23,7 @@ export default function Nav() {
           <a className="nav-link" href="#features">Features</a>
           <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
-          <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
+          <a className="nav-link" href={docs('/')}>
             Docs
             <span className="docs-version-badge">{DOCS_ALIAS}</span>
           </a>
@@ -38,7 +38,7 @@ export default function Nav() {
           >
             <GitHubIcon />
           </a>
-          <a className="btn btn-ghost btn-xs" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
+          <a className="btn btn-ghost btn-xs" href={docs('/getting-started/quickstart')}>
             Start building →
           </a>
         </div>
