@@ -9,14 +9,17 @@ import Features from './components/Features.jsx';
 import UseCases from './components/UseCases.jsx';
 import Insight from './components/Insight.jsx';
 import PoweredBy from './components/PoweredBy.jsx';
+import WhyAdopt from './components/WhyAdopt.jsx';
 import Cta from './components/Cta.jsx';
 import Footer from './components/Footer.jsx';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 import { usePointerGlow } from './hooks/usePointerGlow.js';
+import { useAnalytics } from './hooks/useAnalytics.js';
 
 export default function App() {
   useScrollReveal();
   usePointerGlow();
+  useAnalytics();
 
   return (
     <>
@@ -32,6 +35,7 @@ export default function App() {
         <UseCases />
         <Insight />
         <PoweredBy />
+        <WhyAdopt />
         <Cta />
       </main>
       <Footer />

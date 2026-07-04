@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { docs } from '../data/version.js';
+import { track } from '../lib/analytics.js';
 
 function GitHubMark() {
   return (
@@ -18,6 +19,7 @@ export default function Cta() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(CMD);
+      track('install_copy', { location: 'cta', command: CMD });
       setCopied(true);
       setTimeout(() => setCopied(false), 1400);
     } catch {
