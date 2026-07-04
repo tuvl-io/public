@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VERSION_TAG, docs } from '../data/version.js';
+import { track } from '../lib/analytics.js';
 
 function ChevronRightTiny() {
   return (
@@ -34,6 +35,7 @@ export default function Hero() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(INSTALL_CMD);
+      track('install_copy', { location: 'hero', command: INSTALL_CMD });
       setCopied(true);
       setTimeout(() => setCopied(false), 1400);
     } catch {

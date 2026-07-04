@@ -3648,3 +3648,62 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 540px) {
   .kinds-grid { grid-template-columns: 1fr; }
 }
+
+/* ── WhyAdopt — the adoption case, one card per persona ─────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.why-card { padding: 30px 28px; gap: 12px; }
+.why-role {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.why-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.why-card li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.why-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  opacity: 0.85;
+}
+.why-card li strong { color: var(--text-1); font-weight: 600; }
+.why-card li em { color: var(--text-1); }
+.why-link {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cyan-bright);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+.why-link:hover { color: var(--text-0); }
+
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
