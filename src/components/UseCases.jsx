@@ -10,8 +10,11 @@ const EXAMPLES_REPO = 'https://github.com/tuvl-io/examples';
 
 const CASES = [
   {
-    title: 'Smart Document Extraction',
-    description: 'Parse, route, and extract structured JSON from PDFs and images — no glue code, just YAML.',
+    title: 'Invoice Extraction API',
+    level: 'Easy',
+    href: `${EXAMPLES_REPO}/tree/release/invoice-extraction-api`,
+    description:
+      'Raw invoice text in, validated Postgres records out. One Agent step with typed JSON output, a deterministic totals check, enum currencies, and a masked tax id.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -23,8 +26,11 @@ const CASES = [
     ),
   },
   {
-    title: 'Customer Support Triage',
-    description: 'Classify incoming tickets, route by intent, and hand off to the right agent or human.',
+    title: 'Content Moderation Pipeline',
+    level: 'Medium',
+    href: `${EXAMPLES_REPO}/tree/release/content-moderation-pipeline`,
+    description:
+      'An LLM classifies, deterministic match: routing applies region policy, and borderline content suspends for a moderator group — the submitter cannot approve their own post.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -35,13 +41,15 @@ const CASES = [
     ),
   },
   {
-    title: 'Local RAG Pipelines',
-    description: 'Connect local LLMs to private data and retrieve over pgvector — without leaving your machine.',
+    title: 'KYC Onboarding',
+    level: 'Complex',
+    href: `${EXAMPLES_REPO}/tree/release/kyc-onboarding`,
+    description:
+      'An autonomous investigator under a fail-closed supervisor, policy RAG over pgvector, compliance-gated human approval, and versioned risk schemas — every field of PII masked.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-        <ellipse cx="12" cy="5" rx="9" ry="3" />
-        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
       </svg>
     ),
   },
@@ -57,18 +65,22 @@ export default function UseCases() {
           <span className="grad">Cloned, not copied.</span>
         </h2>
         <p className="section-sub">
-          A growing, open collection of production-ready YAML templates and reference
-          architectures. Clone one, run it locally, make it yours — new examples land regularly.
+          Open example projects, from a one-screen API to a compliance-grade agent pipeline.
+          Each ships a build specification and runs with <code>tuvl dev</code> — clone one,
+          point it at your Postgres, make it yours.
         </p>
       </div>
 
       <div className="insight-grid uc-grid">
         {CASES.map((useCase) => (
-          <div className="i-cell uc-card" key={useCase.title}>
-            <div className="uc-icon">{useCase.icon}</div>
+          <a className="i-cell uc-card" href={useCase.href} key={useCase.title} rel="noopener" target="_blank">
+            <div className="uc-head">
+              <div className="uc-icon">{useCase.icon}</div>
+              <span className="uc-level">{useCase.level}</span>
+            </div>
             <div className="uc-title">{useCase.title}</div>
             <div className="i-cell-text uc-desc">{useCase.description}</div>
-          </div>
+          </a>
         ))}
       </div>
 
