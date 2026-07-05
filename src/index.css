@@ -3463,6 +3463,26 @@ button { font: inherit; cursor: pointer; }
   align-items: flex-start;
   gap: 12px;
   padding: 28px 26px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.uc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.uc-level {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan-bright);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: 999px;
+  padding: 3px 10px;
 }
 .uc-icon {
   display: inline-flex;
