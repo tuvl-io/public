@@ -9,7 +9,7 @@ export default function AnnounceBar() {
     <div className="announce-bar">
       <span className="announce-pulse" />
       <span className="announce-text">
-        <strong>{VERSION_TAG}</strong> · Beta — great for building &amp; evaluating; production-ready stable coming soon
+        <strong>{VERSION_TAG}</strong> · Early stable — production-ready, with a stable API &amp; YAML schema
       </span>
       <button
         aria-label="Dismiss"

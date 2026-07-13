@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="hero-inner">
         <a className="pill" href={docs('/changelog')} rel="noopener" target="_blank">
           <span className="pill-dot" />
-          <span>{VERSION_TAG} · beta</span>
+          <span>{VERSION_TAG} · early stable</span>
           <ChevronRightTiny />
         </a>
 
@@ -80,7 +80,7 @@ export default function Hero() {
             Read the manual →
           </a>
           <p className="hero-install-note">
-            Beta — solid for building &amp; evaluating; hold off on production until the stable release (coming soon).
+            Early stable — production-ready, with a stable API and YAML schema; actively maturing.
           </p>
         </div>
 
