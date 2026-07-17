@@ -3218,11 +3218,11 @@ button { font: inherit; cursor: pointer; }
 
 /* — Section flow: a faint luminous seam at the top of each major band
      so sections read as one continuous surface, not stacked boxes. — */
-.econ, .workflows, .insight, .arch, .thesis, .kinds {
+.econ, .workflows, .insight, .arch, .thesis {
   position: relative;
 }
 .econ::before, .workflows::before, .insight::before,
-.arch::before, .thesis::before, .kinds::before {
+.arch::before, .thesis::before {
   content: "";
   position: absolute;
   top: 0;
@@ -3514,51 +3514,11 @@ button { font: inherit; cursor: pointer; }
   margin-top: 32px;
 }
 
-/* ── Powered by · tech primitive chips ────────────────────────── */
-.powered { padding-top: clamp(64px, 8vw, 96px); padding-bottom: clamp(64px, 8vw, 96px); }
-.powered .section-head { margin-bottom: 36px; }
-.powered-grid {
-  max-width: 880px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-.powered-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 6px;
-  padding: 24px 16px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01));
-  border: 1px solid var(--border-1);
-  border-radius: 12px;
-  box-shadow: var(--hl-top), var(--shadow-sm);
-  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease-spring), background 0.2s var(--ease);
-}
-.powered-chip:hover {
-  border-color: var(--border-bright);
-  transform: translateY(-3px);
-  background: rgba(34, 211, 238, 0.04);
-}
-.powered-chip-name {
-  font-family: var(--f-mono);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-0);
-  letter-spacing: -0.01em;
-}
-.powered-chip-role { font-size: 12.5px; color: var(--text-3); }
 
 /* ── Responsive ───────────────────────────────────────────────── */
-@media (max-width: 880px) {
-  .powered-grid { grid-template-columns: repeat(2, 1fr); }
-}
 @media (max-width: 560px) {
   .hiw-step { grid-template-columns: 32px 1fr; gap: 14px; }
   .hiw-num { width: 32px; height: 32px; font-size: 14px; }
-  .powered-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* ── Features · 2-up benefit cards with icons ─────────────────── */
@@ -3590,83 +3550,6 @@ button { font: inherit; cursor: pointer; }
 }
 @media (max-width: 720px) {
   .feat-grid { grid-template-columns: 1fr; max-width: 480px; }
-}
-
-/* ── Step kinds · composable workflow primitives ──────────────── */
-.kinds {
-  padding: var(--sp-section) 24px;
-  max-width: var(--container-wide);
-  margin: 0 auto;
-}
-.kinds-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: var(--container);
-  margin: 0 auto;
-}
-.kind-card {
-  gap: 12px;
-  padding: 22px 20px;
-}
-.kind-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  color: var(--cyan-bright);
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  box-shadow: var(--hl-top);
-  transition: transform 0.25s var(--ease-spring), background 0.2s var(--ease), border-color 0.2s var(--ease);
-}
-.kinds-grid .card:hover .kind-icon {
-  transform: translateY(-2px) scale(1.06);
-  background: rgba(34, 211, 238, 0.16);
-  border-color: var(--border-bright);
-}
-.kind-name {
-  font-family: var(--f-mono);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--cyan-bright);
-  background: rgba(34, 211, 238, 0.07);
-  border: 1px solid rgba(34, 211, 238, 0.18);
-  border-radius: 6px;
-  padding: 3px 9px;
-  width: fit-content;
-}
-.kind-name-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.kind-tag {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #a5b4fc;
-  background: rgba(129, 140, 248, 0.12);
-  border: 1px solid rgba(129, 140, 248, 0.35);
-  border-radius: 999px;
-  padding: 1px 7px;
-}
-.kind-desc {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.5;
-}
-@media (max-width: 1024px) {
-  .kinds-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 540px) {
-  .kinds-grid { grid-template-columns: 1fr; }
 }
 
 /* ── WhyAdopt — the adoption case, one card per persona ─────────────────────── */
@@ -3726,4 +3609,16 @@ button { font: inherit; cursor: pointer; }
 
 @media (max-width: 900px) {
   .why-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+
+/* ── Determinism — guardrail points, one card per plane ─────────────────────── */
+.det-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .det-grid { grid-template-columns: 1fr; max-width: 480px; }
 }
