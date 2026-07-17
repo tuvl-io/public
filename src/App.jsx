@@ -3,12 +3,10 @@ import Background from './components/Background.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
+import Determinism from './components/Determinism.jsx';
 import AgentContract from './components/AgentContract.jsx';
-import StepKinds from './components/StepKinds.jsx';
-import Features from './components/Features.jsx';
 import UseCases from './components/UseCases.jsx';
 import Insight from './components/Insight.jsx';
-import PoweredBy from './components/PoweredBy.jsx';
 import WhyAdopt from './components/WhyAdopt.jsx';
 import Cta from './components/Cta.jsx';
 import Footer from './components/Footer.jsx';
@@ -29,12 +27,10 @@ export default function App() {
       <main>
         <Hero />
         <HowItWorks />
+        <Determinism />
         <AgentContract />
-        <StepKinds />
-        <Features />
         <UseCases />
         <Insight />
-        <PoweredBy />
         <WhyAdopt />
         <Cta />
       </main>

@@ -56,8 +56,8 @@ export default function Cta() {
             Docs ({DOCS_LINK_LABEL}) →
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>
-          <a className="cta-foot-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank">
-            <GitHubMark /> Star on GitHub
+          <a className="cta-foot-link" href="https://github.com/tuvl-io/examples" rel="noopener" target="_blank">
+            <GitHubMark /> Browse examples
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>
           <a className="cta-foot-link" href="mailto:developer@tuvl.io">developer@tuvl.io</a>

@@ -19,8 +19,7 @@ export default function Nav() {
         </a>
         <div className="nav-center">
           <a className="nav-link" href="#how-it-works">How it works</a>
-          <a className="nav-link" href="#building-blocks">Workflows</a>
-          <a className="nav-link" href="#features">Features</a>
+          <a className="nav-link" href="#determinism">Determinism</a>
           <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
           <a className="nav-link" href="#why-tuvl">Why tuvl</a>
@@ -31,9 +30,9 @@ export default function Nav() {
         </div>
         <div className="nav-right">
           <a
-            aria-label="GitHub"
+            aria-label="Examples on GitHub"
             className="nav-icon-link"
-            href="https://github.com/tuvl-io/tuvl"
+            href="https://github.com/tuvl-io/examples"
             rel="noopener"
             target="_blank"
           >

@@ -139,7 +139,7 @@ export default function Insight() {
         </div>
         <div className="i-cell">
           <div className="i-cell-num">Trace<span className="hl"> &amp; Eval</span></div>
-          <div className="i-cell-text">watch OpenTelemetry spans stream in real-time as you test. Validate your LLM-as-a-judge scoring locally before shipping to production.</div>
+          <div className="i-cell-text">native OpenTelemetry on every step, route decision, and LLM call — watch spans stream in real-time as you test, validate LLM-as-a-judge scoring before shipping.</div>
         </div>
         <div className="i-cell">
           <div className="i-cell-num">dev<span className="hl"> only</span></div>

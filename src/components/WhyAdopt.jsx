@@ -19,8 +19,9 @@ const CASES = [
         Python — one decorated function per file, no framework in the way.
       </>,
       <>
-        FastAPI, Postgres, Redis, OpenTelemetry. No torch, no langchain, nothing exotic to
-        operate — <code>tuvl dev</code> on a laptop, one wheel anywhere ASGI runs.
+        FastAPI, Postgres + pgvector, Redis, LiteLLM, OpenTelemetry. No torch, no langchain,
+        nothing exotic to operate — <code>tuvl dev</code> on a laptop, one wheel anywhere ASGI
+        runs.
       </>,
     ],
     linkLabel: 'Read the engine contract →',
@@ -63,8 +64,8 @@ const CASES = [
         wheel. Adopting tuvl doesn&apos;t strand you in it.
       </>,
     ],
-    linkLabel: 'Inspect the source →',
-    href: 'https://github.com/tuvl-io/tuvl',
+    linkLabel: 'Install from PyPI →',
+    href: 'https://pypi.org/project/tuvl/',
   },
 ];
 

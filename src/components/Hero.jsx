@@ -54,12 +54,12 @@ export default function Hero() {
         </a>
 
         <h1 className="hero-title">
-          Business logic,<br />
-          <span className="grad">declared in YAML.</span>
+          Deterministic execution.<br />
+          <span className="grad">Zero vibes.</span>
         </h1>
 
         <p className="hero-sub">
-          A production runtime for AI workflows and APIs, driven by YAML-defined business logic. No brittle Python boilerplate — declare it once, get a production-ready API instantly. Open-source, local-first, and fast.
+          A production runtime for AI workflows and APIs, declared in YAML. Every route explicit, every schema validated at load, every agent bounded and supervised — the engine refuses what the contract doesn&apos;t declare. Open-source, local-first, and fast.
         </p>
 
         <div className="hero-install">

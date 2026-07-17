@@ -15,11 +15,9 @@ export default function Footer() {
           <div className="footer-col">
             <h6>Product</h6>
             <a href="#how-it-works">How it works</a>
-            <a href="#building-blocks">Workflows</a>
-            <a href="#features">Features</a>
+            <a href="#determinism">Determinism</a>
             <a href="#use-cases">Use cases</a>
             <a href="#insight">Insight portal</a>
-            <a href="#powered-by">Built on</a>
           </div>
           <div className="footer-col">
             <h6>Docs</h6>
@@ -30,7 +28,7 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h6>Community</h6>
-            <a href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank">GitHub</a>
+            <a href="https://github.com/tuvl-io/examples" rel="noopener" target="_blank">GitHub</a>
             <a href="https://discord.gg/tuvl" rel="noopener" target="_blank">Discord</a>
             <a href="mailto:developer@tuvl.io">Contact</a>
           </div>
