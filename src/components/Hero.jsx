@@ -47,7 +47,12 @@ export default function Hero() {
     <section className="hero hero-futuristic" id="top">
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-inner">
-        <a className="pill" href={docs('/changelog')} rel="noopener" target="_blank">
+        <a
+          className="pill"
+          href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md"
+          rel="noopener"
+          target="_blank"
+        >
           <span className="pill-dot" />
           <span>{VERSION_TAG} · early stable</span>
           <ChevronRightTiny />
