@@ -10,9 +10,9 @@ const CASES = [
     claim: 'A mechanism you can audit.',
     points: [
       <>
-        Nine step kinds, a <strong>closed set</strong> — validated by Pydantic before a single
+        Eight step kinds, a <strong>closed set</strong> — validated by Pydantic before a single
         route mounts. Invalid config can&apos;t boot. The entire contract spec is{' '}
-        <strong>34&nbsp;KB</strong>.
+        <strong>83&nbsp;KB</strong>.
       </>,
       <>
         When the closed set isn&apos;t enough, the <code>Functional</code> step drops to plain
