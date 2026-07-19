@@ -91,6 +91,7 @@ spec:
     # 3. Score skill fit for the role with an LLM
     - id: assess_fit
       kind: Agent
+      mode: completion       # one LLM call — never silently a loop
       agent:
         model: default
         system: |
@@ -99,13 +100,10 @@ spec:
         prompt: |
           Skills: {{ skills }}
           Experience: {{ years_experience }} years
-          Score role fit 0-100, then decide.
-          Return JSON: {"fit_score": int, "decision": "strong|weak"}
-        output:
+          Score role fit 0-100 and return it as fit_score.
+        outcome:
           format: json
-          map:
-            fit_score: fit_score
-          signal_from: decision
+          enum: [strong, weak]   # closed signal set — each value routed below
       routes:
         strong: shortlist
         weak: reject
@@ -117,6 +115,7 @@ spec:
       operation: update
       record_id: "{{ candidate.id }}"
       payload: { status: shortlisted }
+      output: candidate
       routes:
         default: respond
 
@@ -127,12 +126,16 @@ spec:
       operation: update
       record_id: "{{ candidate.id }}"
       payload: { status: rejected }
+      output: candidate
       routes:
         default: respond
 
     # 5. Return the decision
     - id: respond
-      kind: Response`;
+      kind: Response
+      mapping:
+        status: candidate.status
+        fit_score: fit_score`;
 
 const RUN_CMD = `$ tuvl run
 INFO   loaded models/candidate.yaml          -> Candidate
