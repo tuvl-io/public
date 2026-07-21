@@ -7,6 +7,7 @@ import Determinism from './components/Determinism.jsx';
 import AgentContract from './components/AgentContract.jsx';
 import UseCases from './components/UseCases.jsx';
 import Insight from './components/Insight.jsx';
+import Comparison from './components/Comparison.jsx';
 import WhyAdopt from './components/WhyAdopt.jsx';
 import Cta from './components/Cta.jsx';
 import Footer from './components/Footer.jsx';
@@ -31,6 +32,7 @@ export default function App() {
         <AgentContract />
         <UseCases />
         <Insight />
+        <Comparison />
         <WhyAdopt />
         <Cta />
       </main>

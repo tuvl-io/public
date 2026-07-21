@@ -3622,3 +3622,35 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 900px) {
   .det-grid { grid-template-columns: 1fr; max-width: 480px; }
 }
+
+/* ── Comparison — the field, named (cards reuse why-card; table reuses wf-compare) ── */
+.cmp-tools {
+  margin: -4px 0 4px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
+.cmp-card-tuvl {
+  border-color: rgba(34, 211, 238, 0.28);
+  background:
+    linear-gradient(180deg, rgba(34, 211, 238, 0.05), rgba(34, 211, 238, 0.012)),
+    var(--surface-1, rgba(255, 255, 255, 0.02));
+}
+.cmp-card-tuvl .why-role { color: var(--cyan-bright); }
+.cmp-row { grid-template-columns: 0.85fr 1.05fr 1.05fr 1.05fr; }
+.cmp-footnote {
+  margin: 18px 4px 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+.cmp-footnote a { color: var(--cyan); text-decoration: none; }
+.cmp-footnote a:hover { color: var(--cyan-bright); }
+@media (max-width: 880px) {
+  .cmp-row { grid-template-columns: 1fr; }
+  .cmp-row .wf-cell, .cmp-row .wf-axis { border-left: none; }
+  .cmp-row.wf-row-head { display: none; }
+  .cmp-row .wf-cell-aws::before { content: "the field · "; font-family: var(--f-mono); font-size: 10.5px; color: var(--text-3); }
+  .cmp-row .wf-cell-tuvl::before { content: "tuvl · "; font-family: var(--f-mono); font-size: 10.5px; color: var(--cyan); }
+}

@@ -18,6 +18,7 @@ export default function Footer() {
             <a href="#determinism">Determinism</a>
             <a href="#use-cases">Use cases</a>
             <a href="#insight">Insight portal</a>
+            <a href="#comparison">Compare</a>
           </div>
           <div className="footer-col">
             <h6>Docs</h6>
