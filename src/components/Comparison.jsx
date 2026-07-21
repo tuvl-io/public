@@ -15,8 +15,9 @@ const CATEGORIES = [
         contract you review in a pull request.
       </>,
       <>
-        The flow runs <em>inside the tool</em> — persistence, auth, and deployment are still
-        yours to build around it.
+        Hosted endpoints, yes — but an endpoint on the tool&apos;s runtime is not your backend:
+        the data model, the auth story, and the infrastructure around it are still yours to
+        assemble.
       </>,
       <>
         Open-ended component ecosystems: great for a human exploring, unbounded for a machine
@@ -34,11 +35,13 @@ const CATEGORIES = [
         <strong> fraction of the system you ship</strong>.
       </>,
       <>
-        Unbounded Python: the graph can do anything, so nothing <em>stops</em> it from doing
-        anything.
+        Conditional edges do constrain the graph — but <strong>the contract ends at the
+        graph</strong>. The routes, models, auth, and telemetry around it live in code only your
+        team can review.
       </>,
       <>
-        Churny surfaces — the LangChain deprecation treadmill is the canonical maintenance tax.
+        And the surface moves: majors and deprecations land on your calendar (ask anyone who
+        migrated legacy LangChain).
       </>,
     ],
   },
@@ -48,8 +51,8 @@ const CATEGORIES = [
     claim: 'A backend, declared.',
     points: [
       <>
-        <strong>YAML in git is the source of truth</strong> — reviewed like code; Insight is a
-        projection of the files, never the authority.
+        <strong>YAML in git is the source of truth</strong> — reviewed like code; Insight, the
+        bundled dev portal, is a projection of the files, never the authority.
       </>,
       <>
         One contract mounts the whole backend: typed routes, Postgres models, scoped auth,
@@ -57,8 +60,10 @@ const CATEGORIES = [
         agents route only through a declared <code>outcome.enum</code>.
       </>,
       <>
-        When the closed set isn&apos;t enough, <code>Functional</code> drops to plain Python —
-        and <code>tuvl ship</code> turns the validated project into a container and Helm chart.
+        When the closed set isn&apos;t enough, the <code>Functional</code> step drops to one
+        plain-Python function — <strong>still inside the contract</strong>: its exits route
+        through declared signals, its data access stays allowlisted. <code>tuvl ship</code>
+        turns the validated project into a container and Helm chart.
       </>,
     ],
   },
@@ -78,22 +83,28 @@ const ROWS = [
     tuvl: 'A mounted API: routes, models, auth, telemetry',
   },
   {
-    axis: 'When it fails',
-    flow: 'At runtime, in the tool',
+    axis: 'When it breaks',
+    flow: 'At runtime, inside the tool',
     code: 'Wherever the Python throws',
-    tuvl: <>Before it runs — <code>tuvl validate</code>, then refused at boot</>,
+    tuvl: 'Bad config never boots; runtime errors are routed signals, not 500s',
   },
   {
     axis: 'Can the model invent a path?',
     flow: 'Components are open-ended',
-    code: 'Whatever the code allows',
-    tuvl: <>No — routing comes from a closed <code>outcome.enum</code></>,
+    code: 'The graph constrains it; the app around it is code',
+    tuvl: 'No — it picks from routes you declared',
+  },
+  {
+    axis: 'Auth & tenancy',
+    flow: 'The tool\u2019s API keys; the rest is yours',
+    code: 'Bring your own',
+    tuvl: 'Scoped tokens per route; row-level tenancy',
   },
   {
     axis: 'Integrations',
     flow: 'Connector catalogs',
-    code: 'Whatever you write',
-    tuvl: <>Every MCP server, plus <code>APICall</code></>,
+    code: 'Ecosystems, plus whatever you write',
+    tuvl: <>Speaks MCP — one protocol — plus plain HTTP (<code>APICall</code>)</>,
   },
   {
     axis: 'Path to production',
@@ -113,7 +124,7 @@ export default function Comparison() {
         </h2>
         <p className="section-sub">
           Langflow lets a human sketch an AI flow. LangGraph lets an engineer code one. tuvl lets
-          a coding agent ship a production backend that can&apos;t go off-contract.
+          a coding agent ship a production backend where a model can never invent a path.
         </p>
       </div>
 
