@@ -22,6 +22,7 @@ export default function Nav() {
           <a className="nav-link" href="#determinism">Determinism</a>
           <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
+          <a className="nav-link" href="#comparison">Compare</a>
           <a className="nav-link" href="#why-tuvl">Why tuvl</a>
           <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
             Docs
