@@ -7,25 +7,34 @@ const PLANES = [
     claim: 'Every path is declared.',
     points: [
       <>
-        <strong>Closed set of nine step kinds</strong> — <code>Functional</code>,{' '}
-        <code>Agent</code>, <code>AutonomousAgent</code>, <code>Router</code>,{' '}
-        <code>APICall</code>, <code>MCP</code>, <code>ModelOp</code>, <code>Response</code>,{' '}
-        <code>HumanInTheLoop</code> — validated by Pydantic at load. An invalid workflow never
-        mounts; custom logic drops into <code>Functional</code>, not into the framework.
+        <strong>Closed set of eight step kinds</strong> — <code>Functional</code>,{' '}
+        <code>Router</code>, <code>Agent</code>, <code>APICall</code>, <code>MCP</code>,{' '}
+        <code>ModelOp</code>, <code>Response</code>, <code>HumanInTheLoop</code> — validated by
+        Pydantic at load. An invalid workflow never mounts; custom logic drops into{' '}
+        <code>Functional</code>, not into the framework.
       </>,
       <>
         <strong>No hidden routing defaults.</strong> Every signal a step can emit must be mapped
-        in <code>routes:</code> — an unmapped transition raises, it doesn&apos;t improvise.
+        in <code>routes:</code> — agents route only through a declared <code>outcome.enum</code>,
+        never an arbitrary LLM string, and an unmapped transition raises, it doesn&apos;t
+        improvise.
       </>,
       <>
         <strong>Branching stays out of the model.</strong> <code>Router</code> steps match on
         data — an LLM never decides what a lookup table should.
       </>,
       <>
-        <strong>Agents run bounded:</strong> a closed tool set, hard iteration caps and token
-        budgets — and every abnormal exit (<code>max_iterations</code>,{' '}
+        <strong>Agents run bounded:</strong> every <code>Agent</code> step declares{' '}
+        <code>mode: completion</code> or <code>mode: autonomous</code> — no default, so a step
+        can never silently become autonomous. The loop gets a closed tool set, hard iteration
+        caps and token budgets — and every abnormal exit (<code>max_iterations</code>,{' '}
         <code>budget_exceeded</code>, <code>error</code>, <code>aborted</code>) is a routable
         signal with a fallback branch.
+      </>,
+      <>
+        <strong>Guardrails are a closed check set</strong> — schema, deny-pattern, length, PII
+        mask, LLM judge — attached per gate, and a failing check exits through the reserved{' '}
+        <code>guardrail_violation</code> route: no exceptions, no 500s.
       </>,
       <>
         <strong>Supervised, not trusted.</strong> A live supervisor can pause, steer, or abort an
@@ -54,6 +63,12 @@ const PLANES = [
       <>
         <strong>PII masked at the source.</strong> Fields marked <code>secure: true</code> never
         reach logs or OpenTelemetry spans in the clear.
+      </>,
+      <>
+        <strong>Prompts are versioned artifacts.</strong> Prompts, steering, and skills resolve
+        from <code>artifact://name@version</code> references, type-checked at boot — production
+        refuses to start on a dangling ref, and external artifact packs are sha256-pinned or
+        refused.
       </>,
       <>
         <strong>Scoped access per model</strong> via cryptographic Biscuit tokens — read, write,
