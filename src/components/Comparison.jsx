@@ -62,7 +62,7 @@ const CATEGORIES = [
       <>
         When the closed set isn&apos;t enough, the <code>Functional</code> step drops to one
         plain-Python function — <strong>still inside the contract</strong>: its exits route
-        through declared signals, its data access stays allowlisted. <code>tuvl ship</code>
+        through declared signals and its DB handle stays allowlisted. <code>tuvl ship</code>
         turns the validated project into a container and Helm chart.
       </>,
     ],
@@ -80,13 +80,13 @@ const ROWS = [
     axis: 'What you ship',
     flow: 'A flow hosted inside the tool',
     code: 'A library inside an app you still build',
-    tuvl: 'A mounted API: routes, models, auth, telemetry',
+    tuvl: 'A mounted API — routes, models, auth, telemetry — live the day the YAML merges',
   },
   {
     axis: 'When it breaks',
     flow: 'At runtime, inside the tool',
     code: 'Wherever the Python throws',
-    tuvl: 'Bad config never boots; runtime errors are routed signals, not 500s',
+    tuvl: 'Invalid config is refused at boot; declared failures route as signals — an unhandled exception is still an error response',
   },
   {
     axis: 'Can the model invent a path?',
@@ -104,13 +104,19 @@ const ROWS = [
     axis: 'Integrations',
     flow: 'Connector catalogs',
     code: 'Ecosystems, plus whatever you write',
-    tuvl: <>Speaks MCP — one protocol — plus plain HTTP (<code>APICall</code>)</>,
+    tuvl: 'One protocol (MCP) for tools, plain HTTP for everything else',
+  },
+  {
+    axis: 'Lock-in & exit',
+    flow: 'Flows live in the tool\u2019s format and runtime',
+    code: 'A library you can pin, fork, or vendor — the cleanest exit here',
+    tuvl: 'A YAML dialect you adopt — its majors land on your calendar too. MIT engine; your data stays in your Postgres',
   },
   {
     axis: 'Path to production',
     flow: 'Export, then host around it',
     code: 'Your Dockerfile, your infra',
-    tuvl: <><code>tuvl ship</code> → container + Helm chart</>,
+    tuvl: <>One command to a container and deploy chart (<code>tuvl ship</code>)</>,
   },
 ];
 
