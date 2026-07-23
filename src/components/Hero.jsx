@@ -54,7 +54,7 @@ export default function Hero() {
           target="_blank"
         >
           <span className="pill-dot" />
-          <span>{VERSION_TAG} · early stable</span>
+          <span>{VERSION_TAG} · stable</span>
           <ChevronRightTiny />
         </a>
 
@@ -85,7 +85,7 @@ export default function Hero() {
             Read the manual →
           </a>
           <p className="hero-install-note">
-            Early stable — production-ready, with a stable API and YAML schema; actively maturing.
+            Stable — production-ready, with a versioned API and YAML schema.
           </p>
         </div>
 
