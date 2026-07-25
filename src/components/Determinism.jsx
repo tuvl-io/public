@@ -70,11 +70,6 @@ const PLANES = [
         refuses to start on a dangling ref, and external artifact packs are sha256-pinned or
         refused.
       </>,
-      <>
-        <strong>Scoped access per model</strong> via cryptographic Biscuit tokens — read, write,
-        and delete are separate grants, checked on every endpoint. Fails closed in production:
-        no signing key, no boot.
-      </>,
     ],
   },
 ];

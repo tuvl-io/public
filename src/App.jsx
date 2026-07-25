@@ -4,6 +4,7 @@ import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
 import Determinism from './components/Determinism.jsx';
+import Security from './components/Security.jsx';
 import AgentContract from './components/AgentContract.jsx';
 import UseCases from './components/UseCases.jsx';
 import Insight from './components/Insight.jsx';
@@ -29,6 +30,7 @@ export default function App() {
         <Hero />
         <HowItWorks />
         <Determinism />
+        <Security />
         <AgentContract />
         <UseCases />
         <Insight />
