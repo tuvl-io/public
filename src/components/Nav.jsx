@@ -20,6 +20,7 @@ export default function Nav() {
         <div className="nav-center">
           <a className="nav-link" href="#how-it-works">How it works</a>
           <a className="nav-link" href="#determinism">Determinism</a>
+          <a className="nav-link" href="#security">Security</a>
           <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
           <a className="nav-link" href="#comparison">Compare</a>
