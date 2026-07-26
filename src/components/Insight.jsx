@@ -96,7 +96,7 @@ export default function Insight() {
           <span className="t-dots"><i /><i /><i /></span>
           <div className="insight-url">
             <LockIcon />
-            <span>127.0.0.1:8000<b>/insight/</b>{active.path}</span>
+            <span>127.0.0.1:8885<b>/insight/</b>{active.path}</span>
           </div>
           <span className="insight-badge">dev</span>
         </div>

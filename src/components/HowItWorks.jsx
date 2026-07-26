@@ -141,9 +141,9 @@ const RUN_CMD = `$ tuvl run
 INFO   loaded models/candidate.yaml          -> Candidate
 INFO   loaded workflows/screen_candidate.yaml
 INFO   POST /v1/screen-candidate mounted
-INFO   Uvicorn running on http://127.0.0.1:8000`;
+INFO   Uvicorn running on http://127.0.0.1:8885`;
 
-const API_CMD = `$ curl -X POST http://127.0.0.1:8000/v1/screen-candidate \\
+const API_CMD = `$ curl -X POST http://127.0.0.1:8885/v1/screen-candidate \\
   -H "Content-Type: application/json" \\
   -d '{
         "full_name": "Asha Menon",
