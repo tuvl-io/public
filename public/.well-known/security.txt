@@ -1,0 +1,11 @@
+# Security contact information for tuvl (https://tuvl.io)
+# Please report vulnerabilities responsibly — do not open a public GitHub issue.
+# See the full policy linked below.
+
+Contact: mailto:security@tuvl.io
+Expires: 2027-07-26T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://tuvl.io/.well-known/security.txt
+Policy: https://github.com/tuvl-io/tuvl/blob/main/SECURITY.md
+
+# PGP-encrypted reports: request our public key at security@tuvl.io.
