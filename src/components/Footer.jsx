@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="footer-col">
             <h6>Community</h6>
             <a href="https://github.com/tuvl-io/examples" rel="noopener" target="_blank">GitHub</a>
-            <a href="https://discord.gg/tuvl" rel="noopener" target="_blank">Discord</a>
+            <a href="https://discord.tuvl.io" rel="noopener" target="_blank">Discord</a>
             <a href="mailto:developer@tuvl.io">Contact</a>
           </div>
         </div>
