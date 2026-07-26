@@ -85,7 +85,7 @@ function RunPanel() {
       <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">tuvl run --workers 4</span></div>
       <div className="t-gap" />
       <div className="t-out t-dim"># curl your new endpoint</div>
-      <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">curl -X POST localhost:8000/api/workflows/screen/run \</span></div>
+      <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">curl -X POST localhost:8885/api/workflows/screen/run \</span></div>
       <div className="t-line">     <span className="t-cmd">-d {`'{"full_name":"Jane Doe"}'`}</span></div>
       <div className="t-gap" style={{ height: 6 }} />
       <div className="t-out" style={{ color: '#a3e635' }}>{`{"route": "strong", "score": 8}`}</div>
