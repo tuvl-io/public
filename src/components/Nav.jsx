@@ -31,9 +31,9 @@ export default function Nav() {
         </div>
         <div className="nav-right">
           <a
-            aria-label="Examples on GitHub"
+            aria-label="tuvl on GitHub"
             className="nav-icon-link"
-            href="https://github.com/tuvl-io/examples"
+            href="https://github.com/tuvl-io/tuvl"
             rel="noopener"
             target="_blank"
           >
