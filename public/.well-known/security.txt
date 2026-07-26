@@ -7,5 +7,7 @@ Expires: 2027-07-26T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://tuvl.io/.well-known/security.txt
 Policy: https://github.com/tuvl-io/tuvl/blob/main/SECURITY.md
+Encryption: https://tuvl.io/.well-known/security-pgp.asc
 
-# PGP-encrypted reports: request our public key at security@tuvl.io.
+# For encrypted reports, verify this OpenPGP key fingerprint:
+#   BA7B 4C3D A0C3 3120 113D EECB 9C9F 1F4E A206 4503
