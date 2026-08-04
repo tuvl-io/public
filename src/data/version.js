@@ -1,4 +1,4 @@
-export const VERSION_TAG = 'v1.0.0';
+export const VERSION_TAG = 'v1.0.1';
 
 // tuvl.dev is the main documentation host (a single, unversioned MkDocs site).
 // The same content is also mirrored same-origin at tuvl.io/docs — the compiled
