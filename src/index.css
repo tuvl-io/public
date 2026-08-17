@@ -386,21 +386,52 @@ button { font: inherit; cursor: pointer; }
   box-shadow: var(--ring-cyan);
 }
 
-/* Try-live pill — the standout accent CTA (Gmail-Compose style: icon + glow) */
-.btn-try {
+/* Floating "Try live" CTA — pinned lower-right, stays in view while scrolling.
+   An icon-in-a-circle + caption pill with a soft "live" pulse. */
+.try-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px 11px 12px;
+  border-radius: 999px;
   background: var(--grad-accent);
   color: #04121a;
   font-weight: 600;
-  border-radius: 999px;
-  padding-left: 11px;
-  box-shadow: var(--shadow-glow), 0 5px 16px rgba(0, 0, 0, 0.32);
+  font-size: 14.5px;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  box-shadow: var(--shadow-glow), 0 12px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), filter 0.18s var(--ease);
+  animation: try-fab-pulse 2.8s ease-in-out infinite;
 }
-.btn-try:hover {
-  transform: translateY(-1px);
-  filter: saturate(1.08) brightness(1.05);
-  box-shadow: var(--shadow-glow), 0 10px 26px rgba(0, 0, 0, 0.44);
+.try-fab:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05) saturate(1.08);
+  box-shadow: var(--shadow-glow), 0 18px 44px rgba(0, 0, 0, 0.6);
 }
-.btn-try svg { flex-shrink: 0; }
+.try-fab-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(4, 18, 26, 0.16);
+}
+.try-fab-ico svg { margin-left: 1.5px; } /* optical centering of the play triangle */
+.try-fab-label { line-height: 1; }
+@keyframes try-fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.12), 0 0 0 0 rgba(34, 211, 238, 0.35), 0 12px 32px rgba(0, 0, 0, 0.5); }
+  55% { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.12), 0 0 0 12px rgba(34, 211, 238, 0), 0 12px 32px rgba(0, 0, 0, 0.5); }
+}
+@media (max-width: 560px) {
+  .try-fab { right: 14px; bottom: 14px; padding: 10px 15px 10px 11px; font-size: 13.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .try-fab { animation: none; } }
 
 /* ── Hero ─────────────────────────────────────────────────────── */
 .hero {

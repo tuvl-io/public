@@ -12,6 +12,7 @@ import Comparison from './components/Comparison.jsx';
 import WhyAdopt from './components/WhyAdopt.jsx';
 import Cta from './components/Cta.jsx';
 import Footer from './components/Footer.jsx';
+import TryLiveFab from './components/TryLiveFab.jsx';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 import { usePointerGlow } from './hooks/usePointerGlow.js';
 import { useAnalytics } from './hooks/useAnalytics.js';
@@ -39,6 +40,7 @@ export default function App() {
         <Cta />
       </main>
       <Footer />
+      <TryLiveFab />
     </>
   );
 }
