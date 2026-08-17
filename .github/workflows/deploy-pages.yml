@@ -1,14 +1,18 @@
 name: Deploy Portal to GitHub Pages
 
-# Deploys the Vite-built React SPA at https://tuvl.io.
+# Deploys the Vite-built React SPA at https://tuvl.io, with the compiled
+# MkDocs site bundled in as a same-origin subpage at https://tuvl.io/docs.
 #
 # Flow:
 #   1. checkout → pnpm install (frozen) → pnpm build → dist/
-#   2. dist/ is uploaded as a Pages artefact (vite copies public/CNAME →
+#   2. checkout tuvl-io/docs → mkdocs build → dist/docs/ (runs AFTER the vite
+#      build, which empties dist/). tuvl.dev is the main docs host; /docs is a
+#      same-origin mirror of the same (unversioned) content.
+#   3. dist/ is uploaded as a Pages artefact (vite copies public/CNAME →
 #      dist/CNAME automatically, which preserves the tuvl.io custom domain
 #      on every deploy — GitHub Pages reads it from the artefact, not the
 #      repo root)
-#   3. deploy-pages publishes the artefact
+#   4. deploy-pages publishes the artefact
 
 on:
   push:
@@ -61,6 +65,53 @@ jobs:
             exit 1
           fi
           printf '  ✓ dist/CNAME → '; cat dist/CNAME
+
+      # --- Docs subpage: compile tuvl-io/docs into dist/docs ------------------
+      # Must run AFTER the vite build, which empties dist/ on every run.
+      - name: Checkout docs source
+        uses: actions/checkout@v4
+        with:
+          repository: tuvl-io/docs
+          # `release` is the deploy-gated branch that mirrors production docs
+          # (see repo notes). Change here if the mirror should track a tag.
+          ref: release
+          path: docs-src
+          # github.token can read tuvl-io/docs if it is public. If it is
+          # private, add a repo-scoped PAT as the DOCS_CHECKOUT_TOKEN secret.
+          token: ${{ secrets.DOCS_CHECKOUT_TOKEN || github.token }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build docs (MkDocs → dist/docs)
+        # Plain mkdocs build (not mike): a flat, unversioned site with relative
+        # links that resolves under /docs. Page canonicals still point at
+        # tuvl.dev, so the mirror is not indexed as duplicate content.
+        working-directory: docs-src
+        run: |
+          uv sync
+          # Disable Material's instant loading FOR THE MIRROR ONLY. Docs and the
+          # React SPA now share the tuvl.io origin, so the instant loader would
+          # hijack same-origin links back to the marketing site (e.g. the
+          # "tuvl.io" nav tab) and XHR-render the SPA into the docs DOM — the
+          # page only appears after a manual refresh. Stripped from this
+          # ephemeral checkout only; the tuvl.dev deploy keeps instant loading.
+          sed -i '/^\s*-\s*navigation\.instant\s*$/d' mkdocs.yml
+          uv run mkdocs build --site-dir "$GITHUB_WORKSPACE/dist/docs"
+          if [ ! -f "$GITHUB_WORKSPACE/dist/docs/index.html" ]; then
+            echo "::error::dist/docs/index.html missing — docs build produced no output."
+            exit 1
+          fi
+          printf '  ✓ docs built → dist/docs/ ('; \
+            find "$GITHUB_WORKSPACE/dist/docs" -type f | wc -l | tr -d ' '; \
+            printf ' files)\n'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

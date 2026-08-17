@@ -14,11 +14,11 @@ export default function Footer() {
         <div className="footer-cols">
           <div className="footer-col">
             <h6>Product</h6>
-            <a href="#reliability">Reliability</a>
-            <a href="#thesis">The bet</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#determinism">Determinism</a>
+            <a href="#use-cases">Use cases</a>
             <a href="#insight">Insight portal</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#workflows">Workflows</a>
+            <a href="#comparison">Compare</a>
           </div>
           <div className="footer-col">
             <h6>Docs</h6>
@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="footer-col">
             <h6>Community</h6>
             <a href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank">GitHub</a>
-            <a href="https://discord.gg/tuvl" rel="noopener" target="_blank">Discord</a>
+            <a href="https://discord.tuvl.io" rel="noopener" target="_blank">Discord</a>
             <a href="mailto:developer@tuvl.io">Contact</a>
           </div>
         </div>

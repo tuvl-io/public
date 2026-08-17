@@ -1,4 +1,4 @@
-import { docs, DOCS_ALIAS } from '../data/version.js';
+import { docs } from '../data/version.js';
 
 function GitHubIcon({ size = 18 }) {
   return (
@@ -18,19 +18,20 @@ export default function Nav() {
           <span aria-hidden="true" className="nav-mal">തൂവൽ</span>
         </a>
         <div className="nav-center">
-          <a className="nav-link" href="#reliability">Reliability</a>
-          <a className="nav-link" href="#thesis">The bet</a>
+          <a className="nav-link" href="#how-it-works">How it works</a>
+          <a className="nav-link" href="#determinism">Determinism</a>
+          <a className="nav-link" href="#security">Security</a>
+          <a className="nav-link" href="#use-cases">Use cases</a>
           <a className="nav-link" href="#insight">Insight</a>
-          <a className="nav-link" href="#architecture">Architecture</a>
-          <a className="nav-link" href="#workflows">Workflows</a>
+          <a className="nav-link" href="#comparison">Compare</a>
+          <a className="nav-link" href="#why-tuvl">Why tuvl</a>
           <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
             Docs
-            <span className="docs-version-badge">{DOCS_ALIAS}</span>
           </a>
         </div>
         <div className="nav-right">
           <a
-            aria-label="GitHub"
+            aria-label="tuvl on GitHub"
             className="nav-icon-link"
             href="https://github.com/tuvl-io/tuvl"
             rel="noopener"
