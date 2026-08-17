@@ -386,6 +386,22 @@ button { font: inherit; cursor: pointer; }
   box-shadow: var(--ring-cyan);
 }
 
+/* Try-live pill — the standout accent CTA (Gmail-Compose style: icon + glow) */
+.btn-try {
+  background: var(--grad-accent);
+  color: #04121a;
+  font-weight: 600;
+  border-radius: 999px;
+  padding-left: 11px;
+  box-shadow: var(--shadow-glow), 0 5px 16px rgba(0, 0, 0, 0.32);
+}
+.btn-try:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08) brightness(1.05);
+  box-shadow: var(--shadow-glow), 0 10px 26px rgba(0, 0, 0, 0.44);
+}
+.btn-try svg { flex-shrink: 0; }
+
 /* ── Hero ─────────────────────────────────────────────────────── */
 .hero {
   padding: 80px 28px 60px;
