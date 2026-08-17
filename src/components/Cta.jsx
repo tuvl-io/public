@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { docs } from '../data/version.js';
+import { track } from '../lib/analytics.js';
 
 function GitHubMark() {
   return (
@@ -10,7 +11,7 @@ function GitHubMark() {
 }
 
 const CMD = 'uv tool install tuvl && tuvl init my-app';
-const DOCS_LINK_LABEL = 'tuvl.dev';
+const DOCS_LINK_LABEL = 'tuvl.io/docs';
 
 export default function Cta() {
   const [copied, setCopied] = useState(false);
@@ -18,6 +19,7 @@ export default function Cta() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(CMD);
+      track('install_copy', { location: 'cta', command: CMD });
       setCopied(true);
       setTimeout(() => setCopied(false), 1400);
     } catch {
@@ -29,15 +31,13 @@ export default function Cta() {
     <section className="cta cta-futuristic" id="get-started">
       <div className="cta-card">
         <div className="cta-glow" />
-        <span className="eyebrow eyebrow-cyan">open source · local-first · stateless</span>
+        <span className="eyebrow eyebrow-cyan">open source · local-first</span>
         <h2>
-          Ship the contract.<br />
-          <span className="grad">We handle the execution.</span>
+          Ready to simplify<br />
+          <span className="grad">your AI stack?</span>
         </h2>
         <p>
-          Stop trapping your workflows inside proprietary cloud builders. Define your AI
-          routing in portable YAML, hand it to your IDE, and let tuvl&apos;s open-source
-          engine run it anywhere.
+          Join the developers building faster, local-first AI applications. Define your workflows in portable YAML and let tuvl&apos;s open-source engine run them anywhere.
         </p>
 
         <button
@@ -52,12 +52,16 @@ export default function Cta() {
         </button>
 
         <div className="cta-foot">
+          <a className="cta-foot-link" href="https://try.tuvl.online" rel="noopener" target="_blank" onClick={() => track('try_live', { location: 'cta' })}>
+            ▶ Try it live in a sandbox
+          </a>
+          <span className="cta-foot-sep" aria-hidden="true">·</span>
           <a className="cta-foot-link" href={docs('/')} rel="noopener" target="_blank">
             Docs ({DOCS_LINK_LABEL}) →
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>
-          <a className="cta-foot-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank">
-            <GitHubMark /> Star on GitHub
+          <a className="cta-foot-link" href="https://github.com/tuvl-io/examples" rel="noopener" target="_blank">
+            <GitHubMark /> Browse examples
           </a>
           <span className="cta-foot-sep" aria-hidden="true">·</span>
           <a className="cta-foot-link" href="mailto:developer@tuvl.io">developer@tuvl.io</a>

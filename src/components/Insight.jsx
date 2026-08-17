@@ -84,12 +84,10 @@ export default function Insight() {
   return (
     <section className="insight" id="insight">
       <div className="section-head">
-        <span className="eyebrow eyebrow-cyan">New · Insight Developer Portal</span>
-        <h2 className="section-title">Your backend,<br />on the table.</h2>
+        <span className="eyebrow eyebrow-cyan">Built-in Dev Portal</span>
+        <h2 className="section-title">Visualize, test, and debug <br /><span className="grad">before shipping.</span></h2>
         <p className="section-sub">
-          Every workflow, model, datasource, and vector index—rendered live. Trigger
-          full workflows or dry-run individual nodes in isolation. A purely local control
-          plane for your dev environment.
+          Every workflow, model, datasource, and vector index—rendered live. Trigger full workflows or dry-run individual nodes in isolation. A purely local control plane for your dev environment.
         </p>
       </div>
 
@@ -98,7 +96,7 @@ export default function Insight() {
           <span className="t-dots"><i /><i /><i /></span>
           <div className="insight-url">
             <LockIcon />
-            <span>127.0.0.1:8000<b>/insight/</b>{active.path}</span>
+            <span>127.0.0.1:8885<b>/insight/</b>{active.path}</span>
           </div>
           <span className="insight-badge">dev</span>
         </div>
@@ -141,7 +139,7 @@ export default function Insight() {
         </div>
         <div className="i-cell">
           <div className="i-cell-num">Trace<span className="hl"> &amp; Eval</span></div>
-          <div className="i-cell-text">watch OpenTelemetry spans stream in real-time as you test. Validate your LLM-as-a-judge scoring locally before shipping to production.</div>
+          <div className="i-cell-text">native OpenTelemetry on every step, route decision, and LLM call — watch spans stream in real-time as you test, validate LLM-as-a-judge scoring before shipping.</div>
         </div>
         <div className="i-cell">
           <div className="i-cell-num">dev<span className="hl"> only</span></div>

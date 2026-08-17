@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VERSION_TAG, docs } from '../data/version.js';
+import { track } from '../lib/analytics.js';
 
 function ChevronRightTiny() {
   return (
@@ -28,22 +29,13 @@ function CheckIcon() {
 
 const INSTALL_CMD = 'uv tool install tuvl';
 
-const BUILT_ON = [
-  ['FastAPI', 'https://fastapi.tiangolo.com'],
-  ['SQLModel', 'https://sqlmodel.tiangolo.com'],
-  ['LiteLLM', 'https://docs.litellm.ai'],
-  ['Biscuit', 'https://www.biscuitsec.org'],
-  ['OpenTelemetry', 'https://opentelemetry.io'],
-  ['pgvector', 'https://github.com/pgvector/pgvector'],
-  ['MCP', 'https://modelcontextprotocol.io'],
-];
-
 export default function Hero() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(INSTALL_CMD);
+      track('install_copy', { location: 'hero', command: INSTALL_CMD });
       setCopied(true);
       setTimeout(() => setCopied(false), 1400);
     } catch {
@@ -55,21 +47,24 @@ export default function Hero() {
     <section className="hero hero-futuristic" id="top">
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-inner">
-        <a className="pill" href={docs('/changelog')} rel="noopener" target="_blank">
+        <a
+          className="pill"
+          href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md"
+          rel="noopener"
+          target="_blank"
+        >
           <span className="pill-dot" />
-          <span>{VERSION_TAG} · stable beta</span>
+          <span>{VERSION_TAG} · stable</span>
           <ChevronRightTiny />
         </a>
 
         <h1 className="hero-title">
-          Give your AI agent a<br />
-          <span className="grad">contract it can&apos;t break.</span>
+          Deterministic execution.<br />
+          <span className="grad">Zero vibes.</span>
         </h1>
 
         <p className="hero-sub">
-          Prompting an AI to write imperative backend logic creates brittle spaghetti.
-          tuvl shifts orchestration to a strict YAML schema. Your agent generates the
-          configuration perfectly; our stateless ASGI router handles the execution.
+          A production runtime for AI workflows and APIs, declared in YAML. Every route explicit, every schema validated at load, every agent bounded and supervised — the engine refuses what the contract doesn&apos;t declare. Open-source, local-first, and fast.
         </p>
 
         <div className="hero-install">
@@ -86,19 +81,21 @@ export default function Hero() {
               {copied ? 'copied' : 'copy'}
             </span>
           </button>
+          <a
+            className="hero-install-alt"
+            href="https://try.tuvl.online"
+            rel="noopener"
+            target="_blank"
+            onClick={() => track('try_live', { location: 'hero' })}
+          >
+            ▶ Try it live — no install →
+          </a>
           <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
             Read the manual →
           </a>
-        </div>
-
-        <div className="hero-builton" aria-label="Built on">
-          <span className="hero-builton-lbl">built on</span>
-          {BUILT_ON.map(([name, href], i) => (
-            <span key={name} className="hero-builton-item">
-              <a href={href} rel="noopener" target="_blank">{name}</a>
-              {i < BUILT_ON.length - 1 && <span className="hero-builton-sep" aria-hidden="true">·</span>}
-            </span>
-          ))}
+          <p className="hero-install-note">
+            Or run any example in a throwaway browser sandbox — <a href="https://try.tuvl.online" rel="noopener" target="_blank">try.tuvl.online</a>.
+          </p>
         </div>
 
         <div className="hero-stats">
@@ -113,14 +110,14 @@ export default function Hero() {
             <div className="hero-stat-num">
               0<span className="hero-stat-unit">deps</span>
             </div>
-            <div className="hero-stat-lbl">on torch / langchain</div>
+            <div className="hero-stat-lbl">on complex cloud services</div>
           </div>
           <span className="hero-stat-sep" aria-hidden="true" />
           <div className="hero-stat">
             <div className="hero-stat-num">
-              &lt;300<span className="hero-stat-unit">ms</span>
+              &lt;1<span className="hero-stat-unit">s</span>
             </div>
-            <div className="hero-stat-lbl">cold start mount</div>
+            <div className="hero-stat-lbl">cold start</div>
           </div>
         </div>
       </div>

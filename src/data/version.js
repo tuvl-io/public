@@ -1,9 +1,9 @@
-export const VERSION_TAG = 'v2026.2.3-beta.3';
+export const VERSION_TAG = 'v1.0.1';
 
-const SEMVER = VERSION_TAG.replace(/^v/, '');
-const IS_PRERELEASE = /-(beta|alpha|rc)\./.test(SEMVER);
-
-export const DOCS_ALIAS = IS_PRERELEASE ? 'beta' : 'latest';
-export const DOCS_BASE = `https://tuvl.dev/${DOCS_ALIAS}`;
+// tuvl.dev is the main documentation host (a single, unversioned MkDocs site).
+// The same content is also mirrored same-origin at tuvl.io/docs — the compiled
+// MkDocs site is copied into the Pages artefact by the portal's deploy-pages
+// workflow — and on-site nav links stay on tuvl.io via this base.
+export const DOCS_BASE = '/docs';
 
 export const docs = (path = '/') => `${DOCS_BASE}${path.startsWith('/') ? path : `/${path}`}`;

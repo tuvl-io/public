@@ -61,7 +61,7 @@ function WorkflowPanel() {
       <span className="y-k">spec</span><span className="y-p">:</span>{'\n'}
       {'  '}<span className="y-k">steps</span><span className="y-p">:</span>{'\n'}
       {'    '}<span className="y-li">-</span>{' '}<span className="y-k">id</span><span className="y-p">:</span>{' '}<span className="y-v">save</span>{'\n'}
-      {'      '}<span className="y-k">kind</span><span className="y-p">:</span>{' '}<span className="y-v">model-op</span>{'\n'}
+      {'      '}<span className="y-k">kind</span><span className="y-p">:</span>{' '}<span className="y-v">ModelOp</span>{'\n'}
       {'      '}<span className="y-k">op</span><span className="y-p">:</span>{'   '}<span className="y-v">add</span>{'\n'}
       {'      '}<span className="y-k">model</span><span className="y-p">:</span>{' '}<span className="y-v">Candidate</span>{'\n'}
       {'    '}<span className="y-li">-</span>{' '}<span className="y-k">id</span><span className="y-p">:</span>{' '}<span className="y-v">score</span>{'\n'}
@@ -85,7 +85,7 @@ function RunPanel() {
       <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">tuvl run --workers 4</span></div>
       <div className="t-gap" />
       <div className="t-out t-dim"># curl your new endpoint</div>
-      <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">curl -X POST localhost:8000/api/workflows/screen/run \</span></div>
+      <div className="t-line"><span className="t-prompt">$</span> <span className="t-cmd">curl -X POST localhost:8885/api/workflows/screen/run \</span></div>
       <div className="t-line">     <span className="t-cmd">-d {`'{"full_name":"Jane Doe"}'`}</span></div>
       <div className="t-gap" style={{ height: 6 }} />
       <div className="t-out" style={{ color: '#a3e635' }}>{`{"route": "strong", "score": 8}`}</div>
