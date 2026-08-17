@@ -25,6 +25,9 @@ export default function Nav() {
           <a className="nav-link" href="#insight">Insight</a>
           <a className="nav-link" href="#comparison">Compare</a>
           <a className="nav-link" href="#why-tuvl">Why tuvl</a>
+          <a className="nav-link" href="https://try.tuvl.online" rel="noopener" target="_blank">
+            Try live
+          </a>
           <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
             Docs
           </a>
@@ -38,6 +41,9 @@ export default function Nav() {
             target="_blank"
           >
             <GitHubIcon />
+          </a>
+          <a className="btn btn-ghost btn-xs" href="https://try.tuvl.online" rel="noopener" target="_blank">
+            Try live ↗
           </a>
           <a className="btn btn-ghost btn-xs" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
             Start building →

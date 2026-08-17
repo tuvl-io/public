@@ -81,11 +81,20 @@ export default function Hero() {
               {copied ? 'copied' : 'copy'}
             </span>
           </button>
+          <a
+            className="hero-install-alt"
+            href="https://try.tuvl.online"
+            rel="noopener"
+            target="_blank"
+            onClick={() => track('try_live', { location: 'hero' })}
+          >
+            ▶ Try it live — no install →
+          </a>
           <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
             Read the manual →
           </a>
           <p className="hero-install-note">
-            Stable — production-ready, with a versioned API and YAML schema.
+            Or run any example in a throwaway browser sandbox — <a href="https://try.tuvl.online" rel="noopener" target="_blank">try.tuvl.online</a>.
           </p>
         </div>
 
