@@ -8,15 +8,6 @@ function GitHubIcon({ size = 18 }) {
   );
 }
 
-// A filled play triangle — the "run it" symbol that sits inside the Try-live pill.
-function PlayIcon() {
-  return (
-    <svg aria-hidden="true" fill="currentColor" height="12" viewBox="0 0 24 24" width="12">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
 export default function Nav() {
   return (
     <nav className="nav">
@@ -47,10 +38,6 @@ export default function Nav() {
             target="_blank"
           >
             <GitHubIcon />
-          </a>
-          <a className="btn btn-xs btn-try" href="https://try.tuvl.online" rel="noopener" target="_blank">
-            <PlayIcon />
-            Try live
           </a>
           <a className="btn btn-ghost btn-xs" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
             Start building →
