@@ -10,7 +10,7 @@ function GitHubMark() {
   );
 }
 
-const CMD = 'uv tool install tuvl && tuvl init my-app';
+const CMD = 'uv tool install tuvl && tuvl init my-app --sample';
 const DOCS_LINK_LABEL = 'tuvl.io/docs';
 
 export default function Cta() {
@@ -37,7 +37,7 @@ export default function Cta() {
           <span className="grad">your AI stack?</span>
         </h2>
         <p>
-          Join the developers building faster, local-first AI applications. Define your workflows in portable YAML and let tuvl&apos;s open-source engine run them anywhere.
+          Start from the sample: a spec, a typed workflow, offline tests and a lock. Run it with <code>tuvl dev</code>, open Insight, and change it with your coding agent.
         </p>
 
         <button

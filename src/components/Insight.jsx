@@ -2,6 +2,24 @@ import { useState } from 'react';
 import { INSIGHT_TABS } from '../data/insightTabs.js';
 
 const icons = {
+  specs: (
+    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <path d="m9 15 2 2 4-4" />
+    </svg>
+  ),
+  runs: (
+    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
+      <circle cx="12" cy="12" r="10" />
+      <polygon points="10 8 16 12 10 16 10 8" />
+    </svg>
+  ),
+  artifacts: (
+    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+    </svg>
+  ),
   workflows: (
     <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
       <circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="12" cy="18" r="3" />
@@ -14,27 +32,10 @@ const icons = {
       <path d="M3 5v14a9 3 0 0 0 18 0V5" /><path d="M3 12a9 3 0 0 0 18 0" />
     </svg>
   ),
-  datasources: (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <rect height="5" rx="1" width="20" x="2" y="3" />
-      <rect height="5" rx="1" width="20" x="2" y="10" />
-      <rect height="4" rx="1" width="20" x="2" y="17" />
-    </svg>
-  ),
   'agent-models': (
     <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
       <circle cx="12" cy="12" r="3" />
       <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-    </svg>
-  ),
-  embeddings: (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-    </svg>
-  ),
-  collections: (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
     </svg>
   ),
   iam: (
@@ -44,20 +45,9 @@ const icons = {
       <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   ),
-  federation: (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  ),
   'api-docs': (
     <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
       <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
-    </svg>
-  ),
-  spectrum: (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
     </svg>
   ),
   settings: (
@@ -84,10 +74,10 @@ export default function Insight() {
   return (
     <section className="insight" id="insight">
       <div className="section-head">
-        <span className="eyebrow eyebrow-cyan">Built-in Dev Portal</span>
-        <h2 className="section-title">Visualize, test, and debug <br /><span className="grad">before shipping.</span></h2>
+        <span className="eyebrow eyebrow-cyan">Insight</span>
+        <h2 className="section-title">Build, run and debug <br /><span className="grad">in one place.</span></h2>
         <p className="section-sub">
-          Every workflow, model, datasource, and vector index—rendered live. Trigger full workflows or dry-run individual nodes in isolation. A purely local control plane for your dev environment.
+          Specs and the task board, a canvas over the same YAML, journaled runs with breakpoints, step mode and approvals, and judge calibration — served by your dev engine, never in production.
         </p>
       </div>
 
@@ -130,16 +120,16 @@ export default function Insight() {
 
       <div className="insight-grid">
         <div className="i-cell">
-          <div className="i-cell-num">11</div>
-          <div className="i-cell-text">tools in one place — workflows, models, datasources, agents, vector indexes, IAM, OAuth2, Swagger, Spectrum, settings.</div>
+          <div className="i-cell-num">1<span className="hl"> file</span></div>
+          <div className="i-cell-text">source of truth. The canvas, the forms and your editor all write the same YAML — round-trip safe, comments kept.</div>
         </div>
         <div className="i-cell">
-          <div className="i-cell-num">0</div>
-          <div className="i-cell-text">extra processes to run. The portal is served by your dev engine on a single port.</div>
+          <div className="i-cell-num">Step<span className="hl"> &amp; break</span></div>
+          <div className="i-cell-text">pause any run before an agent, inspect what it will see, edit its inputs, then continue — or approve a waiting step.</div>
         </div>
         <div className="i-cell">
-          <div className="i-cell-num">Trace<span className="hl"> &amp; Eval</span></div>
-          <div className="i-cell-text">native OpenTelemetry on every step, route decision, and LLM call — watch spans stream in real-time as you test, validate LLM-as-a-judge scoring before shipping.</div>
+          <div className="i-cell-num">0<span className="hl"> tok</span></div>
+          <div className="i-cell-text">to replay a pinned run. Change an agent&apos;s engine and check it against your fixtures before you save.</div>
         </div>
         <div className="i-cell">
           <div className="i-cell-num">dev<span className="hl"> only</span></div>

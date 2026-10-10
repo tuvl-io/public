@@ -10,38 +10,39 @@ const CASES = [
     claim: 'A mechanism you can audit.',
     points: [
       <>
-        Eight step kinds, a <strong>closed set</strong> — validated by Pydantic before a single
-        route mounts. Invalid config can&apos;t boot. The entire contract spec is{' '}
-        <strong>83&nbsp;KB</strong>.
+        Typed agent contracts and seven engines, a <strong>closed set</strong> — checked by 26
+        validation rules before anything runs, with a determinism profile and worst-case token
+        cost for every workflow.
       </>,
       <>
-        When the closed set isn&apos;t enough, the <code>Functional</code> step drops to plain
-        Python — one decorated function per file, no framework in the way.
+        When the closed set isn&apos;t enough, a <code>code</code> agent drops to plain Python —
+        a typed function whose signature is generated from its contract.
       </>,
       <>
-        FastAPI, Postgres + pgvector, Redis, LiteLLM, OpenTelemetry. No torch, no langchain,
-        nothing exotic to operate — <code>tuvl dev</code> on a laptop, one wheel anywhere ASGI
-        runs.
+        FastAPI, Postgres + pgvector, LiteLLM, OpenTelemetry. Durable runs are rows in your
+        Postgres — no extra workflow server, no torch, no langchain. <code>tuvl dev</code> on a
+        laptop; <code>tuvl ship</code> to a container and Helm chart.
       </>,
     ],
     linkLabel: 'Read the engine contract →',
-    href: docs('/concepts/workflows'),
+    href: docs('/internals/tuvl-agentic-manual/'),
   },
   {
     role: 'For product managers',
     claim: 'Scope that ships this sprint.',
     points: [
       <>
-        An endpoint is a YAML file: idea → reviewed → live API in a <strong>day</strong>, not a
-        quarter — and any coding agent generates it valid on the first try.
+        Start from a spec in plain language: analysis proposes the contracts and a task board
+        whose progress is <strong>derived from the project</strong>, not self-reported.
       </>,
       <>
-        <code>HumanInTheLoop</code> steps put sign-off <em>inside</em> the workflow — features
-        that legal or finance would veto become shippable, with the approval on record.
+        <code>human</code> agents put sign-off <em>inside</em> the workflow — the run waits,
+        durably, for days if needed — so features legal or finance would veto become shippable,
+        with the approval on record.
       </>,
       <>
-        Every run leaves a step-by-step trace. When someone asks{' '}
-        <em>&ldquo;why did the AI do that?&rdquo;</em> — you show them, you don&apos;t guess.
+        Every run is journaled step by step. When someone asks{' '}
+        <em>&ldquo;why did the AI do that?&rdquo;</em> — you open the run and show them.
       </>,
     ],
     linkLabel: 'See what teams build →',
@@ -56,8 +57,9 @@ const CASES = [
         only spend is your own infra and model tokens.
       </>,
       <>
-        Local-first: your data stays in <strong>your Postgres</strong>. Agents run supervised —
-        budget caps, iteration caps, and an automatic circuit breaker with a human override API.
+        Local-first: your data stays in <strong>your Postgres</strong>, and PII marked secure never
+        reaches a model. Every model call has a budget; loops have a supervisor and calibrated
+        judges that fail closed.
       </>,
       <>
         Exit costs near zero: the business logic is portable YAML, the runtime a standard Python
