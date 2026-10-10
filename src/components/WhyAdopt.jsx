@@ -57,8 +57,8 @@ const CASES = [
         only spend is your own infra and model tokens.
       </>,
       <>
-        Local-first: your data stays in <strong>your Postgres</strong>, and PII marked secure never
-        reaches a model. Every model call has a budget; loops have a supervisor and calibrated
+        Local-first: your data stays in <strong>your Postgres</strong>, PII marked secure never
+        reaches a model, and decisions can run on a self-hosted model in your own cluster. Every model call has a budget; loops have a supervisor and calibrated
         judges that fail closed.
       </>,
       <>
