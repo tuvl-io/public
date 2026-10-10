@@ -21,7 +21,8 @@ const PLANES = [
       </>,
       <>
         <strong>Rules before models.</strong> A <code>decide</code> agent evaluates its rules
-        first and asks a decision model only when none match. An unavailable model is an{' '}
+        first and asks a decision model only when none match — a typed-decision model such as
+        self-hosted Laya returns calibrated probabilities, not text. An unavailable model is an{' '}
         <code>error</code> — never a silent fallback — and a doubtful one routes{' '}
         <code>low_confidence</code>.
       </>,
