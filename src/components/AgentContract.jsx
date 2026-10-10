@@ -41,24 +41,24 @@ function FeatherIcon() {
 
 const ADVANTAGES = [
   {
-    icon: <CoinsIcon />,
-    title: 'Fewer tokens, faster generations',
-    description: 'Your agent emits a ~34 KB YAML contract against a closed schema — not thousands of lines of Python. Less to generate means cheaper runs and quicker turnarounds.',
+    icon: <FileCheckIcon />,
+    title: 'Specs drive the work',
+    description: 'Write the intent in a spec. tuvl spec analyse proposes the contracts and a task plan whose statuses are derived from the project — an agent can’t mark its own work done.',
   },
   {
     icon: <TargetIcon />,
     title: 'Right on the first try',
-    description: 'The closed set is validated by Pydantic at load time. The agent can’t invent a method or hallucinate an API — invalid YAML fails before a single endpoint mounts, so the debug loops disappear.',
+    description: '26 validation rules report file, line and fix before anything runs, and tuvl test runs offline with mocks and recorded runs. The agent iterates against facts, not guesses.',
   },
   {
-    icon: <FileCheckIcon />,
-    title: 'Reviewable in one screen',
-    description: 'You audit a small declarative contract at a glance, not a sprawling generated codebase you never wrote. Diffs stay tiny and the intent stays obvious.',
+    icon: <CoinsIcon />,
+    title: 'Ask tuvl, don’t infer',
+    description: 'Every command speaks --json, and tuvl mcp hands Claude Code, Cursor or Codex the same tools: validate, spec status, contracts, codegen, tests. 13 skills ship with every project.',
   },
   {
     icon: <FeatherIcon />,
-    title: 'No bloat, no lock-in',
-    description: 'The runtime is fixed and dependency-light — the agent never drags in langchain or torch. The same contract runs locally or anywhere you deploy.',
+    title: 'Only the body is Python',
+    description: 'tuvl codegen writes typed signatures and schemas; the agent fills in function bodies for code agents only. Everything else — tools, rules, models, people — is a few lines of YAML.',
   },
 ];
 
@@ -72,8 +72,9 @@ export default function AgentContract() {
           <span className="grad">not the codebase.</span>
         </h2>
         <p className="section-sub">
-          Point any LLM at tuvl&apos;s closed-set schema and it generates a compact YAML
-          contract — the engine handles the rest. Less to write, less to get wrong, less to review.
+          Give your coding agent a spec, a closed schema and a validator that answers in JSON. It
+          writes small typed contracts; tuvl checks, tests and runs them. Less to write, less to
+          get wrong, less to review.
         </p>
       </div>
 

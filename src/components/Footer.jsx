@@ -15,6 +15,7 @@ export default function Footer() {
           <div className="footer-col">
             <h6>Product</h6>
             <a href="#how-it-works">How it works</a>
+            <a href="#security">Security</a>
             <a href="#determinism">Determinism</a>
             <a href="#use-cases">Use cases</a>
             <a href="#insight">Insight portal</a>
@@ -23,9 +24,9 @@ export default function Footer() {
           <div className="footer-col">
             <h6>Docs</h6>
             <a href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">Quickstart</a>
-            <a href={docs('/concepts/architecture')} rel="noopener" target="_blank">Architecture</a>
+            <a href={docs('/internals/runtime/')} rel="noopener" target="_blank">Runtime</a>
             <a href={docs('/security/iam')} rel="noopener" target="_blank">Security &amp; IAM</a>
-            <a href={docs('/insight/overview')} rel="noopener" target="_blank">Insight guide</a>
+            <a href={docs('/internals/insight/')} rel="noopener" target="_blank">Insight guide</a>
           </div>
           <div className="footer-col">
             <h6>Community</h6>

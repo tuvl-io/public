@@ -7,68 +7,62 @@ const PLANES = [
     claim: 'Every path is declared.',
     points: [
       <>
-        <strong>Closed set of eight step kinds</strong> — <code>Functional</code>,{' '}
-        <code>Router</code>, <code>Agent</code>, <code>APICall</code>, <code>MCP</code>,{' '}
-        <code>ModelOp</code>, <code>Response</code>, <code>HumanInTheLoop</code> — validated by
-        Pydantic at load. An invalid workflow never mounts; custom logic drops into{' '}
-        <code>Functional</code>, not into the framework.
+        <strong>Seven engines, one contract.</strong> Every agent declares typed{' '}
+        <code>inputs</code>, <code>outputs</code> and the signals it emits; its engine is{' '}
+        <code>code</code>, <code>tool</code>, <code>decide</code>, <code>llm</code>,{' '}
+        <code>loop</code>, <code>human</code> or <code>pending</code>. Custom logic drops into a{' '}
+        <code>code</code> agent — a typed Python function — not into the framework.
       </>,
       <>
-        <strong>No hidden routing defaults.</strong> Every signal a step can emit must be mapped
-        in <code>routes:</code> — agents route only through a declared <code>outcome.enum</code>,
-        never an arbitrary LLM string, and an unmapped transition raises, it doesn&apos;t
-        improvise.
+        <strong>Checked before it runs.</strong> <code>tuvl validate</code> applies 26 rules —
+        routes, data flow, types, expressions, policy — and prints each workflow&apos;s
+        determinism profile and worst-case token cost. Every signal must be routed; there are no
+        implicit edges.
       </>,
       <>
-        <strong>Branching stays out of the model.</strong> <code>Router</code> steps match on
-        data — an LLM never decides what a lookup table should.
+        <strong>Rules before models.</strong> A <code>decide</code> agent evaluates its rules
+        first and asks a decision model only when none match. An unavailable model is an{' '}
+        <code>error</code> — never a silent fallback — and a doubtful one routes{' '}
+        <code>low_confidence</code>.
       </>,
       <>
-        <strong>Agents run bounded:</strong> every <code>Agent</code> step declares{' '}
-        <code>mode: completion</code> or <code>mode: autonomous</code> — no default, so a step
-        can never silently become autonomous. The loop gets a closed tool set, hard iteration
-        caps and token budgets — and every abnormal exit (<code>max_iterations</code>,{' '}
-        <code>budget_exceeded</code>, <code>error</code>, <code>aborted</code>) is a routable
-        signal with a fallback branch.
+        <strong>Models stay bounded.</strong> <code>llm</code> and <code>loop</code> agents must
+        declare token, time and iteration budgets; a model can only pick one of the routes you
+        declared; every abnormal exit (<code>max_iterations</code>, <code>budget_exceeded</code>,{' '}
+        <code>timeout</code>, <code>aborted</code>) is a routable signal.
       </>,
       <>
-        <strong>Guardrails are a closed check set</strong> — schema, deny-pattern, length, PII
-        mask, LLM judge — attached per gate, and a failing check exits through the reserved{' '}
-        <code>guardrail_violation</code> route: no exceptions, no 500s.
-      </>,
-      <>
-        <strong>Supervised, not trusted.</strong> A live supervisor can pause, steer, or abort an
-        agent at every iteration boundary; <code>HumanInTheLoop</code> steps gate irreversible
-        actions behind a real approval — enforced again on resume.
+        <strong>Loops are governed.</strong> Tools are agents, child workflows or allow-listed MCP
+        tools with schemas derived from contracts. A risky call pauses for a person&apos;s
+        approval; a supervisor can pause, steer or abort; calibrated judges fail closed.
       </>,
     ],
   },
   {
-    plane: 'Data context',
+    plane: 'Data and state',
     claim: 'Every access is fenced.',
     points: [
       <>
-        <strong>Model allowlist.</strong> A workflow can only touch models enumerated in its
-        context — anything else raises <code>PermissionError</code> at the first repository
-        call.
+        <strong>Agents see only their inputs.</strong> Undeclared context is invisible, and an
+        output that doesn&apos;t match the contract is a <code>contract_violation</code>, not a
+        surprise downstream.
       </>,
       <>
-        <strong>Reserved keys are runtime-owned.</strong> Steps can&apos;t overwrite the session,
-        the DB handle, or the audit trail the engine keeps about its own execution.
+        <strong>Model allowlist.</strong> A workflow can read and write only the models listed in{' '}
+        <code>spec.models</code> — checked by the validator and at runtime.
       </>,
       <>
-        <strong>Typed, versioned schemas.</strong> Payloads are validated and coerced against
-        declared columns — not whatever JSON showed up.
+        <strong>Durable by default.</strong> Each step&apos;s writes commit with its checkpoint;
+        a crashed worker&apos;s run resumes from the last one, and a rollback end compensates
+        completed agents in reverse order.
       </>,
       <>
-        <strong>PII masked at the source.</strong> Fields marked <code>secure: true</code> never
-        reach logs or OpenTelemetry spans in the clear.
+        <strong>PII never reaches a model.</strong> Fields marked <code>secure: true</code> are
+        refused as model inputs at validation and redacted in the journal and exports.
       </>,
       <>
-        <strong>Prompts are versioned artifacts.</strong> Prompts, steering, and skills resolve
-        from <code>artifact://name@version</code> references, type-checked at boot — production
-        refuses to start on a dangling ref, and external artifact packs are sha256-pinned or
-        refused.
+        <strong>Reproducible.</strong> <code>tuvl.lock</code> pins model ids, artifact hashes and
+        MCP tool schemas; <code>tuvl ship</code> refuses a stale lock and pins the engine version.
       </>,
     ],
   },
@@ -83,8 +77,8 @@ export default function Determinism() {
           Determinism is <span className="grad">enforced, not prompted.</span>
         </h2>
         <p className="section-sub">
-          None of this lives in a system prompt. Guardrails are load-time validations and runtime
-          raises — the engine refuses what the contract doesn&apos;t declare.
+          None of this lives in a system prompt. It is static validation and runtime enforcement —
+          the engine refuses what the contract doesn&apos;t declare.
         </p>
       </div>
 

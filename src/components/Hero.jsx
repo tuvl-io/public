@@ -64,7 +64,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-sub">
-          A production runtime for AI workflows and APIs, declared in YAML. Every route explicit, every schema validated at load, every agent bounded and supervised — the engine refuses what the contract doesn&apos;t declare. Open-source, local-first, and fast.
+          Typed workflows of agents — code, database and HTTP tools, rules, models, bounded tool loops and people — on a durable, journaled runtime, built from specs. Every route declared, every model call budgeted, every run recorded — the engine refuses what the contract doesn&apos;t declare. Open source and local-first.
         </p>
 
         <div className="hero-install">
@@ -101,23 +101,23 @@ export default function Hero() {
         <div className="hero-stats">
           <div className="hero-stat">
             <div className="hero-stat-num">
-              34<span className="hero-stat-unit">KB</span>
+              26<span className="hero-stat-unit">checks</span>
             </div>
-            <div className="hero-stat-lbl">whole engine contract</div>
+            <div className="hero-stat-lbl">before anything runs</div>
           </div>
           <span className="hero-stat-sep" aria-hidden="true" />
           <div className="hero-stat">
             <div className="hero-stat-num">
-              0<span className="hero-stat-unit">deps</span>
+              0<span className="hero-stat-unit">tokens</span>
             </div>
-            <div className="hero-stat-lbl">on complex cloud services</div>
+            <div className="hero-stat-lbl">to replay a recorded run</div>
           </div>
           <span className="hero-stat-sep" aria-hidden="true" />
           <div className="hero-stat">
             <div className="hero-stat-num">
-              &lt;1<span className="hero-stat-unit">s</span>
+              1<span className="hero-stat-unit">Postgres</span>
             </div>
-            <div className="hero-stat-lbl">cold start</div>
+            <div className="hero-stat-lbl">for data, runs and the journal</div>
           </div>
         </div>
       </div>

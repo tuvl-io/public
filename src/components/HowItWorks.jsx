@@ -1,170 +1,164 @@
 import { useState } from 'react';
 
-/* ── Sample tuvl config (schema per the create-database-model skill +
-   docs/concepts/models.md & workflows.md) ─────────────────────────── */
+/* ── Sample project — validated and tested with tuvl 2.0 ─────────── */
+
+const SPEC = `---
+name: screen-candidate
+workflow: screen_candidate
+---
+# Intent
+Screen AI Engineer applicants: store every application, shortlist strong fits, reject the rest.
+
+# Policies
+- AI Engineers need 3+ years of experience — decided by a rule, never a model.
+- A model scores skill fit; at most 800 tokens per application.
+
+# Acceptance
+\`\`\`tuvl-example
+name: a strong applicant is shortlisted
+input: { full_name: Asha Menon, email: asha@example.com, years_experience: 6, skills: [Python, PyTorch, LLMs, RAG] }
+mocks:
+  assess_fit: { signal: strong, outputs: { fit_score: 88 } }
+expect:
+  end: default
+  path: [save, gate, assess_fit, shortlist]
+  output: { status: 201, body: { status: shortlisted, fit_score: 88 } }
+\`\`\``;
 
 const DATA_MODEL = `kind: ModelDefinition
 metadata:
   name: Candidate
   schema_version: v1
-enabled: true
 spec:
   tablename: candidates
   fields:
-    - name: id
-      type: uuid
-      primary_key: true
-      default: uuid4
-      input: false
-
-    - name: full_name
-      type: string
-      required: true
-
-    - name: email
-      type: string
-      unique: true
-      required: true
-
-    - name: role_applied
-      type: string
-      default: AI Engineer
-
-    - name: years_experience
-      type: numeric
-      required: true
-
-    - name: skills
-      type: jsonb            # ["Python", "PyTorch", "LLMs"]
-
-    - name: resume_text
-      type: text
-
+    - { name: id, type: uuid, primary_key: true, input: false }
+    - { name: full_name, type: string, required: true }
+    - { name: email, type: string, required: true, unique: true, secure: true }
+    - { name: years_experience, type: integer, required: true }
+    - { name: skills, type: jsonb }
     - name: status
       type: enum
-      enum_values: [applied, screening, shortlisted, rejected]
+      enum_values: [applied, shortlisted, rejected]
       default: applied
-
-    - name: fit_score
-      type: float
-      input: false           # written by the screening agent
-
-    - name: created_at
-      type: timestamp
-      input: false`;
+    - { name: fit_score, type: integer }
+    - { name: created_at, type: timestamptz, input: false }`;
 
 const WORKFLOW = `kind: Workflow
+version: tuvl/v2
 metadata:
   name: screen_candidate
   description: Screen an AI Engineer applicant
 spec:
+  models: [Candidate]
   trigger:
-    path: /v1/screen-candidate
-    method: POST
-    input_schema: context
-    response_schema: context
+    http: { path: /api/screen-candidate, method: POST }
+    input: { full_name: str, email: str, years_experience: int, skills: "list[str]" }
 
-  context: Candidate
+  agents:
+    - id: save                         # deterministic: a database write
+      description: Store the applicant
+      engine: tool
+      inputs: { full_name: str, email: str, years_experience: int, skills: "list[str]" }
+      outputs: { candidate: Candidate }
+      tool:
+        use: db
+        model: Candidate
+        op: create
+        values: { full_name: "{{ full_name }}", email: "{{ email }}",
+                  years_experience: "{{ years_experience }}", skills: "{{ skills }}" }
+      routes: { default: gate, conflict: END.duplicate, error: END.failed }
 
-  steps:
-    # 1. Persist the incoming applicant
-    - id: save
-      kind: ModelOp
-      model: Candidate
-      operation: create
-      payload: "{{ candidate }}"
-      output: candidate
-      routes:
-        default: gate_experience
+    - id: gate                         # deterministic: rules, not a model
+      description: AI Engineers need 3+ years
+      engine: decide
+      inputs: { years_experience: int }
+      outputs: { lane: "enum[assess, reject]" }
+      decide:
+        rules:
+          - { when: "years_experience >= 3", then: assess }
+          - { when: "true", then: reject }
+      routes: { assess: assess_fit, reject: reject, error: END.failed }
 
-    # 2. Hard gate — AI Engineers need 3+ years
-    - id: gate_experience
-      kind: Router
-      condition:
-        field: years_experience
-        operator: gte
-        value: 3
-      routes:
-        "true": assess_fit
-        "false": reject
-
-    # 3. Score skill fit for the role with an LLM
-    - id: assess_fit
-      kind: Agent
-      mode: completion       # one LLM call — never silently a loop
-      agent:
+    - id: assess_fit                   # bounded: one typed model call
+      description: Score skill fit for the role
+      engine: llm
+      inputs: { skills: "list[str]", years_experience: int }
+      outputs: { fit_score: int }
+      budget: { timeout: 20s, max_tokens: 800 }
+      llm:
         model: default
-        system: |
-          You screen AI Engineer candidates. Required skills:
-          Python, PyTorch, LLMs, RAG, vector databases.
-        prompt: |
-          Skills: {{ skills }}
-          Experience: {{ years_experience }} years
-          Score role fit 0-100 and return it as fit_score.
-        outcome:
-          format: json
-          enum: [strong, weak]   # closed signal set — each value routed below
-      routes:
-        strong: shortlist
-        weak: reject
+        system: You screen AI Engineers. Required skills — Python, PyTorch, LLMs, RAG.
+        prompt: Score role fit from 0 to 100, and say whether the fit is strong or weak.
+      routes: { strong: shortlist, weak: reject, parse_error: reject,
+                timeout: reject, budget_exceeded: reject, error: END.failed }
 
-    # 4a. Strong fit -> shortlist
     - id: shortlist
-      kind: ModelOp
-      model: Candidate
-      operation: update
-      record_id: "{{ candidate.id }}"
-      payload: { status: shortlisted }
-      output: candidate
-      routes:
-        default: respond
+      description: Mark the candidate shortlisted
+      engine: tool
+      inputs: { candidate: Candidate, fit_score: int }
+      outputs: { result: Candidate }
+      tool:
+        use: db
+        model: Candidate
+        op: update
+        where: { id: "{{ candidate.id }}" }
+        values: { status: shortlisted, fit_score: "{{ fit_score }}" }
+      routes: { default: END, conflict: END.failed, error: END.failed }
 
-    # 4b. Otherwise -> reject
     - id: reject
-      kind: ModelOp
-      model: Candidate
-      operation: update
-      record_id: "{{ candidate.id }}"
-      payload: { status: rejected }
-      output: candidate
-      routes:
-        default: respond
+      description: Mark the candidate rejected
+      engine: tool
+      inputs: { candidate: Candidate }
+      outputs: { result: Candidate }
+      tool:
+        use: db
+        model: Candidate
+        op: update
+        where: { id: "{{ candidate.id }}" }
+        values: { status: rejected }
+      routes: { default: END.rejected, conflict: END.failed, error: END.failed }
 
-    # 5. Return the decision
-    - id: respond
-      kind: Response
-      mapping:
-        status: candidate.status
-        fit_score: fit_score`;
+  outputs:
+    default:   { status: 201, body: { id: "{{ result.id }}", status: "{{ result.status }}", fit_score: "{{ result.fit_score }}" } }
+    rejected:  { status: 200, body: { id: "{{ result.id }}", status: "{{ result.status }}" } }
+    duplicate: { status: 409, body: { error: this email has already applied } }
+    failed:    { status: 500, body: { error: screening failed } }`;
 
-const RUN_CMD = `$ tuvl run
-INFO   loaded models/candidate.yaml          -> Candidate
-INFO   loaded workflows/screen_candidate.yaml
-INFO   POST /v1/screen-candidate mounted
-INFO   Uvicorn running on http://127.0.0.1:8885`;
+const CHECK_CMD = `$ tuvl validate --strict
+  screen_candidate  5 agents · 4 deterministic · 1 bounded · worst-case 800 tok
+  WARN [V015] 'save' has a write effect and later steps (gate) can fail —
+              declare 'compensate' so a failed run can undo it
 
-const API_CMD = `$ curl -X POST http://127.0.0.1:8885/v1/screen-candidate \\
+$ tuvl codegen && tuvl test
+  + tests/screen_candidate/a-strong-applicant-is-shortlisted.yaml
+  PASS a-strong-applicant-is-shortlisted (screen_candidate → END.default, 0 tok)`;
+
+const API_CMD = `$ curl -X POST http://127.0.0.1:8885/api/screen-candidate \\
   -H "Content-Type: application/json" \\
-  -d '{
-        "full_name": "Asha Menon",
-        "email": "asha@example.com",
-        "years_experience": 6,
-        "skills": ["Python", "PyTorch", "LLMs", "RAG"]
-      }'
+  -d '{ "full_name": "Asha Menon", "email": "asha@example.com",
+        "years_experience": 6, "skills": ["Python", "PyTorch", "LLMs", "RAG"] }'
 
-{
-  "status": "shortlisted",
-  "fit_score": 88
-}`;
+HTTP/1.1 201 Created
+X-Tuvl-Run-Id: 5b0d…
+{ "id": "c9e2…", "status": "shortlisted", "fit_score": 88 }`;
 
 const TABS = [
+  {
+    key: 'spec',
+    label: 'Spec',
+    file: <><span>specs/</span><b>screen-candidate.md</b></>,
+    lang: 'markdown',
+    code: SPEC,
+    caption: 'Write the intent. tuvl spec analyse proposes the contracts and a task plan; the acceptance example becomes a test.',
+  },
   {
     key: 'model',
     label: 'Data Model',
     file: <><span>models/</span><b>candidate.yaml</b></>,
     lang: 'yaml',
     code: DATA_MODEL,
-    caption: 'Declare the Candidate entity once — tuvl generates the table, schemas, and CRUD API automatically.',
+    caption: 'Declare the entity once — the table, typed schemas and (opt-in) CRUD routes follow. The email is secure: never sent to a model.',
   },
   {
     key: 'workflow',
@@ -172,15 +166,15 @@ const TABS = [
     file: <><span>workflows/</span><b>screen_candidate.yaml</b></>,
     lang: 'yaml',
     code: WORKFLOW,
-    caption: 'Gate on experience, then let an agent score skill fit for the AI Engineer role — pure declarative routing.',
+    caption: 'Typed agents: a database write, a rule, one bounded model call. Every signal is routed — including the model failing.',
   },
   {
-    key: 'run',
-    label: 'Run',
+    key: 'check',
+    label: 'Check',
     file: <b>terminal</b>,
     lang: 'shell',
-    code: RUN_CMD,
-    caption: 'Zero-compilation startup. tuvl parses the YAML and mounts a production-ready FastAPI endpoint.',
+    code: CHECK_CMD,
+    caption: 'Checked before it runs: contracts, data flow, cost — and a test that runs offline with the model mocked, for 0 tokens.',
   },
   {
     key: 'call',
@@ -188,7 +182,7 @@ const TABS = [
     file: <b>terminal</b>,
     lang: 'shell',
     code: API_CMD,
-    caption: 'Standard JSON-in / JSON-out REST. The agent screened the candidate and returned the decision.',
+    caption: 'A durable, journaled run behind a plain REST call. Long or waiting runs answer 202 with a run id to follow over SSE.',
   },
 ];
 
@@ -234,13 +228,13 @@ export default function HowItWorks() {
     <section className="econ" id="how-it-works">
       <div className="econ-inner">
         <div className="section-head">
-          <span className="eyebrow eyebrow-cyan">The &quot;Aha!&quot; Moment</span>
+          <span className="eyebrow eyebrow-cyan">How it works</span>
           <h2 className="section-title">
-            From configuration<br />
-            <span className="grad">to production API in seconds.</span>
+            From spec<br />
+            <span className="grad">to a checked, running API.</span>
           </h2>
           <p className="section-sub">
-            There is no complex backend to write. Define your data model and routing logic in YAML — tuvl reads your files and instantly mounts a lightning-fast, production-ready FastAPI endpoint.
+            Write the intent, declare typed agents in YAML, and let tuvl check the whole graph before anything runs. The same files drive the API, the tests and the Insight canvas.
           </p>
         </div>
 
