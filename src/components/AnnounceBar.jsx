@@ -9,7 +9,7 @@ export default function AnnounceBar() {
     <div className="announce-bar">
       <span className="announce-pulse" />
       <span className="announce-text">
-        <strong>{VERSION_TAG}</strong> · Stable — production-ready, with a versioned API &amp; YAML schema
+        <strong>{VERSION_TAG}</strong> · tuvl 2.0 — typed agents, durable runs, spec-driven development
       </span>
       <button
         aria-label="Dismiss"

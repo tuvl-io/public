@@ -51,19 +51,19 @@ const CATEGORIES = [
     claim: 'A backend, declared.',
     points: [
       <>
-        <strong>YAML in git is the source of truth</strong> — reviewed like code; Insight, the
-        bundled dev portal, is a projection of the files, never the authority.
+        <strong>Specs and YAML in git are the source of truth</strong> — reviewed like code;
+        Insight&apos;s canvas edits the same files, never a separate format.
       </>,
       <>
         One contract mounts the whole backend: typed routes, Postgres models, scoped auth,
-        OpenTelemetry — and <strong>fails closed</strong>: validated before run, refused at boot,
-        agents route only through a declared <code>outcome.enum</code>.
+        durable journaled runs — and <strong>fails closed</strong>: checked before it runs, and a
+        model can only pick one of the routes you declared.
       </>,
       <>
-        When the closed set isn&apos;t enough, the <code>Functional</code> step drops to one
-        plain-Python function — <strong>still inside the contract</strong>: its exits route
-        through declared signals and its DB handle stays allowlisted. <code>tuvl ship</code>
-        turns the validated project into a container and Helm chart.
+        When the closed set isn&apos;t enough, a <code>code</code> agent drops to one typed
+        Python function — <strong>still inside the contract</strong>: its exits route through
+        declared signals and its database access stays allowlisted. <code>tuvl ship</code> turns
+        the validated project into a container and Helm chart.
       </>,
     ],
   },
@@ -74,7 +74,7 @@ const ROWS = [
     axis: 'Source of truth',
     flow: 'The canvas; exports are JSON blobs',
     code: 'Your codebase',
-    tuvl: 'YAML in git — the UI is a projection',
+    tuvl: 'Specs and YAML in git — the canvas edits the same files',
   },
   {
     axis: 'What you ship',
@@ -86,7 +86,7 @@ const ROWS = [
     axis: 'When it breaks',
     flow: 'At runtime, inside the tool',
     code: 'Wherever the Python throws',
-    tuvl: 'Invalid config is refused at boot; declared failures route as signals — an unhandled exception is still an error response',
+    tuvl: 'Checked before it runs; declared failures route as signals; a crashed worker\u2019s run resumes from its last checkpoint',
   },
   {
     axis: 'Can the model invent a path?',
@@ -104,7 +104,7 @@ const ROWS = [
     axis: 'Integrations',
     flow: 'Connector catalogs',
     code: 'Ecosystems, plus whatever you write',
-    tuvl: 'One protocol (MCP) for tools, plain HTTP for everything else',
+    tuvl: 'MCP tools in, workflows out as MCP tools; plain HTTP for everything else',
   },
   {
     axis: 'Lock-in & exit',
@@ -167,9 +167,10 @@ export default function Comparison() {
           ))}
         </div>
         <p className="cmp-footnote">
-          Scope, honestly: long-running replayable sagas belong in Temporal. tuvl builds
-          request-shaped backends — the API your product actually serves.{' '}
-          <a href={docs('/concepts/workflows')} rel="noopener" target="_blank">
+          Scope, honestly: tuvl runs are durable — they wait for people, survive restarts and
+          compensate on rollback — but each run is one sequential path; high-volume fan-out and
+          general-purpose sagas still belong in Temporal.{' '}
+          <a href={docs('/internals/runtime/')} rel="noopener" target="_blank">
             Read the contract →
           </a>
         </p>

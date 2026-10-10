@@ -14,7 +14,7 @@ const CASES = [
     level: 'Easy',
     href: `${EXAMPLES_REPO}/tree/release/invoice-extraction-api`,
     description:
-      'Raw invoice text in, validated Postgres records out. One Agent step with typed JSON output, a deterministic totals check, enum currencies, and a masked tax id.',
+      'Raw invoice text in, a verified record out. One llm agent with typed output, deterministic totals in a code agent with per-signal outcomes, and a secure tax id that is never returned.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -30,7 +30,7 @@ const CASES = [
     level: 'Medium',
     href: `${EXAMPLES_REPO}/tree/release/content-moderation-pipeline`,
     description:
-      'An LLM classifies, deterministic match: routing applies region policy, and borderline content suspends for a moderator group — the submitter cannot approve their own post.',
+      'A model classifies, regional policy runs as code, and borderline content waits — durably — for a moderator. Every decision is recorded with an audit action.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -45,7 +45,7 @@ const CASES = [
     level: 'Complex',
     href: `${EXAMPLES_REPO}/tree/release/kyc-onboarding`,
     description:
-      'An autonomous investigator under a fail-closed supervisor, policy RAG over pgvector, compliance-gated human approval, and versioned risk schemas — every field of PII masked.',
+      'A supervised investigation loop with a calibrated judge, policy retrieval on pgvector, a group-gated compliance decision, and PII that never reaches a model.',
     icon: (
       <svg fill="none" height="24" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -66,8 +66,8 @@ export default function UseCases() {
         </h2>
         <p className="section-sub">
           Open example projects, from a one-screen API to a compliance-grade agent pipeline.
-          Each ships a build specification and runs with <code>tuvl dev</code> — clone one,
-          point it at your Postgres, make it yours.
+          Each ships a spec, offline tests and a lock, and passes the CI gate — clone one, point
+          it at your Postgres, make it yours.
         </p>
       </div>
 

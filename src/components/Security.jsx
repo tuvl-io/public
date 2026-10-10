@@ -7,19 +7,20 @@ const FENCES = [
     claim: 'No accidental public endpoints.',
     points: [
       <>
-        <strong>Deny by default.</strong> In production every workflow route — REST, versioned,
-        gRPC — requires a verified token, even when the YAML declares no scope or group.
-        Forgetting auth config doesn&apos;t open an endpoint; it locks one.
+        <strong>Deny by default.</strong> In production every way to start a run — the
+        workflow&apos;s route, the run API, MCP export — requires a verified token, even when the
+        YAML declares no scope or group. Forgetting auth config doesn&apos;t open an endpoint; it
+        locks one.
       </>,
       <>
-        <strong>Public is a declaration,</strong> not an omission: <code>trigger.public: true</code>{' '}
+        <strong>Public is a declaration,</strong> not an omission: <code>trigger.http.public: true</code>{' '}
         is the only way to serve anonymous traffic, and combining it with a required scope or
         group is a validation error — the engine enforces the scope and fails closed.
       </>,
       <>
-        <strong>No name probing.</strong> Anonymous callers get the same{' '}
-        <code>UNAUTHENTICATED</code> for a protected workflow and a nonexistent one — the API
-        never confirms what exists to someone holding no credential.
+        <strong>No self-approval.</strong> A person approving a run must hold{' '}
+        <code>approvals:decide</code> and the required group — and can never be the one who
+        started it. Every decision is journaled with who made it.
       </>,
     ],
   },
@@ -28,10 +29,10 @@ const FENCES = [
     claim: 'Read and write are separate grants.',
     points: [
       <>
-        <strong>Per-model scopes</strong> — <code>read</code>, <code>write</code>,{' '}
-        <code>delete</code> are independent grants on every model&apos;s endpoints, carried as
-        signed facts in offline-verifiable Biscuit tokens. No session store to breach, no DB
-        lookup to race.
+        <strong>CRUD is opt-in.</strong> A model gets REST routes only for the operations it lists
+        in <code>spec.api.crud</code>; <code>read</code>, <code>write</code> and{' '}
+        <code>delete</code> are independent grants, carried as signed facts in offline-verifiable
+        Biscuit tokens. No session store to breach, no DB lookup to race.
       </>,
       <>
         <strong>Group-pinned models.</strong> <code>spec.access</code> can restrict a model to
