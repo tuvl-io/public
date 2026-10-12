@@ -295,14 +295,14 @@ img { max-width: 100%; display: block; }
   .lockup-name { font-size: 48px; }
 }
 
-.bigmark { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); padding: 24px 0 8px; border-bottom: 1.5px solid var(--ink); margin-bottom: 24px; }
-.bigmark-tile {
-  display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: clamp(84px, 15vw, 210px); height: clamp(84px, 15vw, 210px); border-radius: clamp(20px, 3.4vw, 48px);
-  background: var(--lime); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
+.footer { border-top: 1px solid var(--line); }
+.footer-brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.footer-brand:hover { text-decoration: none; }
+.footer-brand b { font: 800 19px/1 var(--display); color: var(--ink); letter-spacing: -0.02em; }
+.footer-tile {
+  display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px;
+  border-radius: 9px; background: var(--lime); border: 1.5px solid var(--ink);
 }
-.bigmark-tile img { width: 64%; height: 64%; }
-.bigmark-name { font: 800 clamp(110px, 24vw, 330px)/0.8 var(--display); letter-spacing: -0.035em; color: var(--ink); }
 .cta-feather { filter: none; opacity: .09; width: 300px; right: 24px; bottom: -30px; transform: rotate(8deg); }
 
 /* ── countdown to 2.0.0 ──────────────────────────────────────────────────── */
