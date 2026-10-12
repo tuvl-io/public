@@ -1,5 +1,15 @@
 export const VERSION_TAG = 'v2.0.0';
 
+// 2.0.0 general availability. Until then the page counts down and installs the beta.
+export const RELEASE_AT = '2026-10-20T00:00:00Z';
+export const BETA_VERSION = '2.0.0b1';
+
+export const isReleased = (now = Date.now()) => now >= Date.parse(RELEASE_AT);
+
+/** The install command for today: the pinned beta before release, plain after. */
+export const installCmd = (now = Date.now()) =>
+  isReleased(now) ? 'uv tool install tuvl' : `uv tool install tuvl==${BETA_VERSION}`;
+
 // tuvl.dev is the main documentation host (a single, unversioned MkDocs site).
 // The same content is also mirrored same-origin at tuvl.io/docs — the compiled
 // MkDocs site is copied into the Pages artefact by the portal's deploy-pages
