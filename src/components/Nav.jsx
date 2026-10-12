@@ -4,16 +4,26 @@ import { track } from '../lib/analytics.js';
 import { GitHubMark } from './icons.jsx';
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  // The hero carries the big logo; the header appears only once that logo has scrolled away,
+  // so the landing view never shows two.
+  const [shown, setShown] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const lockup = document.querySelector('.lockup');
+    if (!lockup || !('IntersectionObserver' in window)) {
+      const onScroll = () => setShown(window.scrollY > 240);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
+    }
+    const io = new IntersectionObserver(([entry]) => {
+      setShown(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+    io.observe(lockup);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
+    <header className={`nav${shown ? ' is-shown' : ''}`} aria-hidden={!shown} {...(shown ? {} : { inert: '' })}>
       <div className="wrap nav-inner">
         <a className="brand" href="#top" aria-label="tuvl home">
           <span className="brand-tile" aria-hidden="true"><img src="/assets/feather-ink.png" alt="" width="26" height="26" /></span>

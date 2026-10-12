@@ -77,13 +77,15 @@ img { max-width: 100%; display: block; }
 
 /* ── nav ─────────────────────────────────────────────────────────────────── */
 .nav {
-  position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .2s ease;
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%); visibility: hidden;
+  transition: transform .32s cubic-bezier(.2,.7,.2,1), visibility 0s linear .32s;
 }
-.nav.is-scrolled { border-bottom-color: var(--line); }
+.nav.is-shown { transform: none; visibility: visible; transition: transform .32s cubic-bezier(.2,.7,.2,1), visibility 0s; }
+@media (prefers-reduced-motion: reduce) { .nav, .nav.is-shown { transition: none; } }
 .nav-inner { display: flex; align-items: center; gap: 24px; min-height: 64px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand img { width: 30px; height: 30px; }
