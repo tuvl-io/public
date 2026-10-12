@@ -1,125 +1,71 @@
-import { useState } from 'react';
-import { VERSION_TAG, docs } from '../data/version.js';
+import { VERSION_TAG } from '../data/version.js';
 import { track } from '../lib/analytics.js';
+import Install from './Install.jsx';
 
-function ChevronRightTiny() {
+/* What the engine lets through, and the one move it refuses. */
+function RouteCard() {
   return (
-    <svg fill="none" height="12" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" width="12">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
+    <figure className="route rv" aria-label="A run of screen_candidate: every step on a declared route; an undeclared move is refused">
+      <div className="route-head">
+        <span className="dots" aria-hidden="true"><i /><i /><i /></span>
+        run 5b0d · screen_candidate
+      </div>
+      <div className="route-req">POST /api/screen-candidate</div>
+      <div className="route-row">
+        <span className="id">save</span><span className="eng">tool · db.create</span>
+        <span className="to">→ gate</span>
+      </div>
+      <div className="route-row">
+        <span className="id">gate</span><span className="eng">decide · 2 rules, 0 tokens</span>
+        <span className="to">→ assess_fit <em>(years ≥ 3)</em></span>
+      </div>
+      <div className="route-row">
+        <span className="id">assess_fit</span><span className="eng">llm · ≤ 800 tokens, 20 s</span>
+        <span className="to">→ shortlist <em>· strong | weak | timeout all routed</em></span>
+      </div>
+      <div className="route-row refused">
+        <span className="id">assess_fit</span><span className="eng">“let’s also email the CEO”</span>
+        <span className="to">not in enum[strong, weak]
+          <br /><span className="route-verdict">refused → parse_error → reject</span>
+        </span>
+      </div>
+      <div className="route-row">
+        <span className="id">shortlist</span><span className="eng">tool · db.update</span>
+        <span className="to">→ END <em>201 Created</em></span>
+      </div>
+      <figcaption className="route-foot"><b>Every step journaled</b> — replay this run for 0 tokens.</figcaption>
+    </figure>
   );
 }
-
-function CopyIcon() {
-  return (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <rect height="13" rx="2" width="13" x="9" y="9" />
-      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" width="13">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
-const INSTALL_CMD = 'uv tool install tuvl';
 
 export default function Hero() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(INSTALL_CMD);
-      track('install_copy', { location: 'hero', command: INSTALL_CMD });
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1400);
-    } catch {
-      /* clipboard blocked — ignore */
-    }
-  };
-
   return (
-    <section className="hero hero-futuristic" id="top">
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-inner">
-        <a
-          className="pill"
-          href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md"
-          rel="noopener"
-          target="_blank"
-        >
-          <span className="pill-dot" />
-          <span>{VERSION_TAG} · stable</span>
-          <ChevronRightTiny />
-        </a>
-
-        <h1 className="hero-title">
-          Deterministic execution.<br />
-          <span className="grad">Zero vibes.</span>
-        </h1>
-
-        <p className="hero-sub">
-          Typed workflows of agents — code, database and HTTP tools, rules, models, bounded tool loops and people — on a durable, journaled runtime, built from specs. Every route declared, every model call budgeted, every run recorded — the engine refuses what the contract doesn&apos;t declare. Open source and local-first.
-        </p>
-
-        <div className="hero-install">
-          <button
-            aria-label="Copy install command"
-            className={`hero-install-line${copied ? ' is-copied' : ''}`}
-            onClick={handleCopy}
-            type="button"
-          >
-            <span className="hero-install-prompt">$</span>
-            <code>{INSTALL_CMD}</code>
-            <span className="hero-install-copy">
-              {copied ? <CheckIcon /> : <CopyIcon />}
-              {copied ? 'copied' : 'copy'}
-            </span>
-          </button>
-          <a
-            className="hero-install-alt"
-            href="https://try.tuvl.online"
-            rel="noopener"
-            target="_blank"
-            onClick={() => track('try_live', { location: 'hero' })}
-          >
-            ▶ Try it live — no install →
+    <section className="hero" id="top">
+      <div className="wrap hero-grid">
+        <div>
+          <a className="tag" href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md" rel="noopener" target="_blank">
+            <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · MIT
           </a>
-          <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
-            Read the manual →
-          </a>
-          <p className="hero-install-note">
-            Or run any example in a throwaway browser sandbox — <a href="https://try.tuvl.online" rel="noopener" target="_blank">try.tuvl.online</a>.
+          <h1>
+            Deterministic execution.<br />
+            <span className="mark">Zero vibes.</span>
+          </h1>
+          <p className="hero-sub">
+            Typed workflows of agents — code, rules, models and people — checked before they run and
+            journaled while they do. The engine refuses anything the contract doesn&apos;t declare.
           </p>
-        </div>
-
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              26<span className="hero-stat-unit">checks</span>
-            </div>
-            <div className="hero-stat-lbl">before anything runs</div>
+          <div className="hero-ctas">
+            <Install cmd="uv tool install tuvl" location="hero" />
+            <a className="btn btn-ghost" href="https://try.tuvl.online" rel="noopener" target="_blank"
+              onClick={() => track('try_live', { location: 'hero' })}>Try it live →</a>
           </div>
-          <span className="hero-stat-sep" aria-hidden="true" />
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              0<span className="hero-stat-unit">tokens</span>
-            </div>
-            <div className="hero-stat-lbl">to replay a recorded run</div>
-          </div>
-          <span className="hero-stat-sep" aria-hidden="true" />
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              1<span className="hero-stat-unit">Postgres</span>
-            </div>
-            <div className="hero-stat-lbl">for data, runs and the journal</div>
+          <div className="proof">
+            <div><b>29</b><span>checks before anything runs</span></div>
+            <div><b>0</b><span>tokens to replay a run</span></div>
+            <div><b>1</b><span>Postgres for data, runs and journal</span></div>
           </div>
         </div>
+        <RouteCard />
       </div>
     </section>
   );
