@@ -9,8 +9,8 @@ export function GitHubMark({ size = 16 }) {
 export function Check() {
   return (
     <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" strokeWidth="2.25" viewBox="0 0 24 24" width="20">
-      <rect fill="#d7ff3a" height="20" rx="5" stroke="#0f0f0e" strokeWidth="1.5" width="20" x="2" y="2" />
-      <path d="m7.5 12.5 3 3 6-7" stroke="#0f0f0e" />
+      <circle cx="12" cy="12" fill="#0071e3" r="10" stroke="none" />
+      <path d="m7.5 12.5 3 3 6-7" stroke="#ffffff" />
     </svg>
   );
 }
