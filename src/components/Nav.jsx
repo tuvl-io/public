@@ -1,49 +1,40 @@
+import { useEffect, useState } from 'react';
 import { docs } from '../data/version.js';
-
-function GitHubIcon({ size = 18 }) {
-  return (
-    <svg aria-hidden="true" fill="currentColor" height={size} viewBox="0 0 24 24" width={size}>
-      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-    </svg>
-  );
-}
+import { track } from '../lib/analytics.js';
+import { GitHubMark } from './icons.jsx';
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="nav">
-      <div className="nav-inner">
-        <a className="nav-brand" href="#top">
-          <img alt="" className="nav-logo" src="/assets/logo.png" />
-          <span className="nav-wordmark">tuvl</span>
-          <span aria-hidden="true" className="nav-mal">തൂവൽ</span>
+    <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
+      <div className="wrap nav-inner">
+        <a className="brand" href="#top" aria-label="tuvl home">
+          <img src="/assets/logo.png" alt="" width="30" height="30" />
+          <span className="brand-name">tuvl</span>
+          <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>
-        <div className="nav-center">
-          <a className="nav-link" href="#how-it-works">How it works</a>
-          <a className="nav-link" href="#determinism">Determinism</a>
-          <a className="nav-link" href="#security">Security</a>
-          <a className="nav-link" href="#use-cases">Use cases</a>
-          <a className="nav-link" href="#insight">Insight</a>
-          <a className="nav-link" href="#comparison">Compare</a>
-          <a className="nav-link" href="#why-tuvl">Why tuvl</a>
-          <a className="nav-link" href={docs('/')} rel="noopener" target="_blank">
-            Docs
+        <nav className="nav-links" aria-label="Page">
+          <a href="#guarantees">Guarantees</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#agents">Insight</a>
+          <a href={docs('/why-tuvl/')}>Why tuvl</a>
+          <a href={docs('/')}>Docs</a>
+        </nav>
+        <div className="nav-actions">
+          <a className="icon-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank" aria-label="tuvl on GitHub">
+            <GitHubMark size={20} />
           </a>
-        </div>
-        <div className="nav-right">
-          <a
-            aria-label="tuvl on GitHub"
-            className="nav-icon-link"
-            href="https://github.com/tuvl-io/tuvl"
-            rel="noopener"
-            target="_blank"
-          >
-            <GitHubIcon />
-          </a>
-          <a className="btn btn-ghost btn-xs" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
-            Start building →
-          </a>
+          <a className="btn btn-lime btn-sm" href="https://try.tuvl.online" rel="noopener" target="_blank"
+            onClick={() => track('try_live', { location: 'nav' })}>Try it live</a>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
