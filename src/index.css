@@ -265,3 +265,40 @@ img { max-width: 100%; display: block; }
   .install code { flex: 1; white-space: normal; line-height: 1.4; padding: 10px 0; }
   .proof b { font-size: 30px; }
 }
+
+/* ── the logo, highlighted ───────────────────────────────────────────────── */
+.brand-tile {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 11px; background: var(--lime);
+  border: 1.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink);
+}
+.brand-tile img { width: 26px; height: 26px; }
+.brand-name { font-size: 27px; }
+.brand:hover .brand-tile { transform: rotate(-6deg); transition: transform .2s ease; }
+
+.lockup { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.lockup-tile {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 72px; height: 72px; border-radius: 18px; background: var(--lime);
+  border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transform: rotate(-4deg);
+}
+.lockup-tile img { width: 46px; height: 46px; }
+.lockup-name { font: 800 64px/1 var(--display); letter-spacing: -0.04em; }
+.lockup-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-left: 4px; }
+.lockup-ml { font: 500 14px/1 'Noto Sans Malayalam', var(--sans); color: var(--muted); }
+.hero h1 { margin-top: 26px; }
+@media (max-width: 560px) {
+  .lockup-tile { width: 56px; height: 56px; border-radius: 14px; }
+  .lockup-tile img { width: 36px; height: 36px; }
+  .lockup-name { font-size: 48px; }
+}
+
+.bigmark { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); padding: 24px 0 8px; border-bottom: 1.5px solid var(--ink); margin-bottom: 24px; }
+.bigmark-tile {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: clamp(84px, 15vw, 210px); height: clamp(84px, 15vw, 210px); border-radius: clamp(20px, 3.4vw, 48px);
+  background: var(--lime); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
+}
+.bigmark-tile img { width: 64%; height: 64%; }
+.bigmark-name { font: 800 clamp(110px, 24vw, 330px)/0.8 var(--display); letter-spacing: -0.035em; color: var(--ink); }
+.cta-feather { filter: none; opacity: .09; width: 300px; right: 24px; bottom: -30px; transform: rotate(8deg); }

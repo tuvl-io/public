@@ -16,7 +16,7 @@ export default function Nav() {
     <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
       <div className="wrap nav-inner">
         <a className="brand" href="#top" aria-label="tuvl home">
-          <img src="/assets/logo.png" alt="" width="30" height="30" />
+          <span className="brand-tile" aria-hidden="true"><img src="/assets/feather-ink.png" alt="" width="26" height="26" /></span>
           <span className="brand-name">tuvl</span>
           <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>

@@ -8,7 +8,7 @@ export default function Cta() {
     <section className="section" id="get-started" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="cta rv">
-          <img className="cta-feather" src="/assets/logo.png" alt="" aria-hidden="true" />
+          <img className="cta-feather" src="/assets/feather-paper.png" alt="" aria-hidden="true" />
           <h2>Declare it. Check it. <span className="mark">Ship it.</span></h2>
           <p>Start from the sample — a spec, a typed workflow, offline tests and a lock. Run it with <code>tuvl dev</code> and open Insight.</p>
           <Install cmd="uv tool install tuvl && tuvl init my-app --sample" location="cta" />

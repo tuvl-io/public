@@ -43,9 +43,16 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="wrap hero-grid">
         <div>
-          <a className="tag" href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md" rel="noopener" target="_blank">
-            <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · MIT
-          </a>
+          <div className="lockup">
+            <span className="lockup-tile" aria-hidden="true"><img src="/assets/feather-ink.png" alt="" width="46" height="46" /></span>
+            <span className="lockup-name">tuvl</span>
+            <span className="lockup-meta">
+              <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
+              <a className="tag" href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md" rel="noopener" target="_blank">
+                <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · MIT
+              </a>
+            </span>
+          </div>
           <h1>
             Deterministic execution.<br />
             <span className="mark">Zero vibes.</span>
