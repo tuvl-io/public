@@ -1,4 +1,4 @@
-import { docs } from '../data/version.js';
+import { docs, installCmd } from '../data/version.js';
 import { track } from '../lib/analytics.js';
 import { GitHubMark } from './icons.jsx';
 import Install from './Install.jsx';
@@ -11,7 +11,7 @@ export default function Cta() {
           <img className="cta-feather" src="/assets/feather-paper.png" alt="" aria-hidden="true" />
           <h2>Declare it. Check it. <span className="mark">Ship it.</span></h2>
           <p>Start from the sample — a spec, a typed workflow, offline tests and a lock. Run it with <code>tuvl dev</code> and open Insight.</p>
-          <Install cmd="uv tool install tuvl && tuvl init my-app --sample" location="cta" />
+          <Install cmd={`${installCmd()} && tuvl init my-app --sample`} location="cta" />
           <div className="cta-links">
             <a className="btn btn-lime" href="https://try.tuvl.online" rel="noopener" target="_blank"
               onClick={() => track('try_live', { location: 'cta' })}>Try it live — no install</a>

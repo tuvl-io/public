@@ -1,4 +1,5 @@
-import { VERSION_TAG } from '../data/version.js';
+import { installCmd } from '../data/version.js';
+import Countdown from './Countdown.jsx';
 import { track } from '../lib/analytics.js';
 import Install from './Install.jsx';
 
@@ -48,11 +49,9 @@ export default function Hero() {
             <span className="lockup-name">tuvl</span>
             <span className="lockup-meta">
               <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
-              <a className="tag" href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md" rel="noopener" target="_blank">
-                <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · MIT
-              </a>
             </span>
           </div>
+          <Countdown />
           <h1>
             Deterministic execution.<br />
             <span className="mark">Zero vibes.</span>
@@ -62,7 +61,7 @@ export default function Hero() {
             journaled while they do. The engine refuses anything the contract doesn&apos;t declare.
           </p>
           <div className="hero-ctas">
-            <Install cmd="uv tool install tuvl" location="hero" />
+            <Install cmd={installCmd()} location="hero" />
             <a className="btn btn-ghost" href="https://try.tuvl.online" rel="noopener" target="_blank"
               onClick={() => track('try_live', { location: 'hero' })}>Try it live →</a>
           </div>
