@@ -10,6 +10,16 @@ export const isReleased = (now = Date.now()) => now >= Date.parse(RELEASE_AT);
 export const installCmd = (now = Date.now()) =>
   isReleased(now) ? 'uv tool install tuvl' : `uv tool install tuvl==${BETA_VERSION}`;
 
+/** With Insight (the [standard] extra). uv takes a pre-release pulled in by an extra only with --prerelease allow. */
+export const insightInstallCmd = (now = Date.now()) =>
+  isReleased(now)
+    ? 'uv tool install "tuvl[standard]"'
+    : `uv tool install --prerelease allow "tuvl[standard]==${BETA_VERSION}"`;
+
+/** The 2.0 examples live on the examples repo's version2 branch until the release promotes them. */
+export const examplesUrl = (now = Date.now()) =>
+  isReleased(now) ? 'https://github.com/tuvl-io/examples' : 'https://github.com/tuvl-io/examples/tree/version2';
+
 // tuvl.dev is the main documentation host (a single, unversioned MkDocs site).
 // The same content is also mirrored same-origin at tuvl.io/docs — the compiled
 // MkDocs site is copied into the Pages artefact by the portal's deploy-pages
