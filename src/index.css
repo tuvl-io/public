@@ -326,22 +326,22 @@ img { max-width: 100%; display: block; }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   tuvl.io — the docs look (tuvl.dev): near-black, Geist, quiet borders, a big
-   feather and wordmark. Redefines the tokens above and removes the hard-shadow,
-   tilted-card and highlighter gestures of the paper/ink/lime design.
+   tuvl.io — white theme, in step with tuvl.dev: white page, zinc borders, Geist,
+   a large feather and wordmark. Redefines the tokens above and removes the
+   hard-shadow and tilted-card gestures. One accent: a pale cyan highlighter.
    ═══════════════════════════════════════════════════════════════════════════ */
 :root {
-  --paper: #0a0a0a;
-  --paper-2: #111113;
-  --ink: #fafafa;
-  --ink-2: #c8c8cf;
-  --muted: #8d8d97;
-  --line: #26262b;
-  --lime: #fafafa;
-  --lime-deep: #d4d4d8;
-  --on-lime: #0a0a0a;
+  --paper: #ffffff;
+  --paper-2: #fafafa;
+  --ink: #09090b;
+  --ink-2: #3f3f46;
+  --muted: #71717a;
+  --line: #e4e4e7;
+  --lime: #a5f3fc;
+  --lime-deep: #22d3ee;
+  --on-lime: #083344;
   --code: #0f0f11;
-  --code-2: #16161a;
+  --code-2: #18181b;
   --code-text: #e8e8ec;
   --code-dim: #8d8d97;
   --code-key: #7dd3fc;
@@ -350,21 +350,18 @@ img { max-width: 100%; display: block; }
   --display: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --radius: 12px;
 }
-html { color-scheme: dark; }
+html { color-scheme: light; }
 body { background: var(--paper); }
-:focus-visible { outline-color: var(--ink); }
-
-/* the highlighter becomes an inverted chip */
-.mark { color: var(--on-lime); border-radius: 6px; padding: 0 0.18em; background: var(--lime); }
 
 /* buttons: pill, quiet border */
 .btn { border-width: 1px; border-color: var(--line); }
-.btn-ink, .btn-lime { background: var(--ink); color: var(--on-lime); border-color: var(--ink); }
-.btn-ghost { color: var(--ink); }
+.btn-ink { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-lime { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-ghost { color: var(--ink); background: #fff; }
 .btn-ghost:hover { border-color: var(--ink); }
 
 /* nav */
-.nav { background: color-mix(in srgb, var(--paper) 82%, transparent); }
+.nav { background: color-mix(in srgb, #fff 88%, transparent); }
 .brand-name { font-weight: 700; }
 .brand-tile { background: transparent; border: 0; box-shadow: none; width: 34px; height: 34px; }
 .brand-tile img { width: 30px; height: 30px; }
@@ -375,45 +372,44 @@ body { background: var(--paper); }
 .lockup-name { font-weight: 700; font-size: 84px; letter-spacing: -0.045em; }
 .hero h1 { font-weight: 700; letter-spacing: -0.04em; }
 .tag { background: var(--paper-2); border-color: var(--line); color: var(--ink-2); }
-.tag-dot { background: #4ade80; box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25); }
+.tag-dot { background: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
 .proof b, .step-n, .h2, .g h3, .points b, .cmp-col h3, .cta h2, .countdown-label b { font-family: var(--display); font-weight: 700; }
 
+/* the highlighter: a pale cyan band, ink text */
+.mark { background: linear-gradient(transparent 14%, var(--lime) 14%, var(--lime) 90%, transparent 90%); color: var(--ink); border-radius: 0; padding: 0 0.12em; }
+
 /* install pill */
-.install { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); }
-.install .prompt { color: var(--muted); }
-.install .copy { background: var(--ink); color: var(--on-lime); }
+.install { background: var(--ink); color: #fafafa; border: 1px solid var(--ink); }
+.install .prompt { color: #67e8f9; }
+.install .copy { background: #fafafa; color: var(--ink); }
 
 /* cards: borders, no hard shadows or tilt */
-.route { transform: none; box-shadow: none; border: 1px solid var(--line); background: var(--code); }
-.route-row { border-top-color: var(--line); }
-.route-foot { border-top-color: var(--line); }
-.route-head .dots i { background: #34343a; }
-.shot { box-shadow: none; border: 1px solid var(--line); }
-.code { border: 1px solid var(--line); }
-.countdown { background: var(--paper-2); border: 1px solid var(--line); box-shadow: none; }
-.cd-cell { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
-.cd-cell i { color: var(--muted); }
+.route { transform: none; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); border: 1px solid #27272a; }
+.route-row { border-top-color: #2a2a2e; }
+.route-foot { border-top-color: #2a2a2e; }
+.route-head .dots i { background: #3a3a40; }
+.shot { box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); border: 1px solid var(--line); }
+.code { border: 1px solid #27272a; }
+.countdown { background: #fff; border: 1px solid var(--line); box-shadow: none; }
+.cd-cell { background: var(--ink); color: var(--lime); }
 
 /* sections */
 .section-alt { background: var(--paper-2); }
-.g-grid { border-top-color: var(--line); }
-.g-proof { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); }
-.step { background: var(--paper); border-width: 1px; }
+.g-grid { border-top: 1px solid var(--ink); }
+.step { background: #fff; border-width: 1px; }
 .step:hover { border-color: var(--muted); }
-.step[aria-selected="true"] { border-color: var(--ink); box-shadow: none; transform: none; }
-.step[aria-selected="true"] .step-n { background: var(--ink); color: var(--on-lime); }
-.shot-tabs button[aria-selected="true"] { background: var(--ink); color: var(--on-lime); }
-.cmp-col { border-width: 1px; background: var(--paper-2); }
-.cmp-col.us { background: var(--ink); color: var(--on-lime); border-color: var(--ink); box-shadow: none; }
-.cmp-col.us h3, .cmp-col.us p, .cmp-col.us small { color: var(--on-lime); }
+.step[aria-selected="true"] { border-color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 18px rgba(0,0,0,.08); transform: none; }
+.step[aria-selected="true"] .step-n { background: var(--lime); color: var(--on-lime); }
+.cmp-col { border-width: 1px; background: #fff; }
+.cmp-col.us { background: var(--lime); border-color: var(--lime-deep); box-shadow: none; }
 
 /* cta + footer */
-.cta { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; }
-.cta h2 .mark { color: var(--on-lime); }
-.cta p { color: var(--ink-2); }
-.cta .install { background: var(--paper); border-color: var(--line); }
-.cta .btn-ghost { color: var(--ink); border-color: var(--line); }
-.cta-feather { opacity: .12; }
+.cta { background: var(--ink); color: #fff; border-radius: 20px; }
+.cta p { color: #d4d4d8; }
+.cta .install { background: #18181b; border-color: #3f3f46; }
+.cta .btn-ghost { color: #fff; background: transparent; border-color: #52525b; }
+.cta .btn-ghost:hover { border-color: #fff; }
+.cta-feather { opacity: .1; }
 .footer-tile { background: transparent; border: 0; width: 28px; height: 28px; }
 .footer-tile img { width: 26px; height: 26px; }
 .footer-brand b { font-weight: 700; }
