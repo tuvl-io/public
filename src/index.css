@@ -323,3 +323,102 @@ img { max-width: 100%; display: block; }
 .cd-cell i { font: 500 11px/1 var(--mono); font-style: normal; color: #b7b3a8; }
 .lockup-meta { justify-content: center; }
 .hero h1 { margin-top: 22px; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   tuvl.io — the docs look (tuvl.dev): near-black, Geist, quiet borders, a big
+   feather and wordmark. Redefines the tokens above and removes the hard-shadow,
+   tilted-card and highlighter gestures of the paper/ink/lime design.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --paper: #0a0a0a;
+  --paper-2: #111113;
+  --ink: #fafafa;
+  --ink-2: #c8c8cf;
+  --muted: #8d8d97;
+  --line: #26262b;
+  --lime: #fafafa;
+  --lime-deep: #d4d4d8;
+  --on-lime: #0a0a0a;
+  --code: #0f0f11;
+  --code-2: #16161a;
+  --code-text: #e8e8ec;
+  --code-dim: #8d8d97;
+  --code-key: #7dd3fc;
+  --code-str: #a5b4fc;
+  --refuse: #fb7185;
+  --display: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --radius: 12px;
+}
+html { color-scheme: dark; }
+body { background: var(--paper); }
+:focus-visible { outline-color: var(--ink); }
+
+/* the highlighter becomes an inverted chip */
+.mark { color: var(--on-lime); border-radius: 6px; padding: 0 0.18em; background: var(--lime); }
+
+/* buttons: pill, quiet border */
+.btn { border-width: 1px; border-color: var(--line); }
+.btn-ink, .btn-lime { background: var(--ink); color: var(--on-lime); border-color: var(--ink); }
+.btn-ghost { color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink); }
+
+/* nav */
+.nav { background: color-mix(in srgb, var(--paper) 82%, transparent); }
+.brand-name { font-weight: 700; }
+.brand-tile { background: transparent; border: 0; box-shadow: none; width: 34px; height: 34px; }
+.brand-tile img { width: 30px; height: 30px; }
+
+/* hero: the big feather + wordmark, no tile */
+.lockup-tile { background: transparent; border: 0; box-shadow: none; transform: none; width: 88px; height: 88px; border-radius: 0; }
+.lockup-tile img { width: 76px; height: 76px; }
+.lockup-name { font-weight: 700; font-size: 84px; letter-spacing: -0.045em; }
+.hero h1 { font-weight: 700; letter-spacing: -0.04em; }
+.tag { background: var(--paper-2); border-color: var(--line); color: var(--ink-2); }
+.tag-dot { background: #4ade80; box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25); }
+.proof b, .step-n, .h2, .g h3, .points b, .cmp-col h3, .cta h2, .countdown-label b { font-family: var(--display); font-weight: 700; }
+
+/* install pill */
+.install { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); }
+.install .prompt { color: var(--muted); }
+.install .copy { background: var(--ink); color: var(--on-lime); }
+
+/* cards: borders, no hard shadows or tilt */
+.route { transform: none; box-shadow: none; border: 1px solid var(--line); background: var(--code); }
+.route-row { border-top-color: var(--line); }
+.route-foot { border-top-color: var(--line); }
+.route-head .dots i { background: #34343a; }
+.shot { box-shadow: none; border: 1px solid var(--line); }
+.code { border: 1px solid var(--line); }
+.countdown { background: var(--paper-2); border: 1px solid var(--line); box-shadow: none; }
+.cd-cell { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+.cd-cell i { color: var(--muted); }
+
+/* sections */
+.section-alt { background: var(--paper-2); }
+.g-grid { border-top-color: var(--line); }
+.g-proof { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); }
+.step { background: var(--paper); border-width: 1px; }
+.step:hover { border-color: var(--muted); }
+.step[aria-selected="true"] { border-color: var(--ink); box-shadow: none; transform: none; }
+.step[aria-selected="true"] .step-n { background: var(--ink); color: var(--on-lime); }
+.shot-tabs button[aria-selected="true"] { background: var(--ink); color: var(--on-lime); }
+.cmp-col { border-width: 1px; background: var(--paper-2); }
+.cmp-col.us { background: var(--ink); color: var(--on-lime); border-color: var(--ink); box-shadow: none; }
+.cmp-col.us h3, .cmp-col.us p, .cmp-col.us small { color: var(--on-lime); }
+
+/* cta + footer */
+.cta { background: var(--paper-2); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; }
+.cta h2 .mark { color: var(--on-lime); }
+.cta p { color: var(--ink-2); }
+.cta .install { background: var(--paper); border-color: var(--line); }
+.cta .btn-ghost { color: var(--ink); border-color: var(--line); }
+.cta-feather { opacity: .12; }
+.footer-tile { background: transparent; border: 0; width: 28px; height: 28px; }
+.footer-tile img { width: 26px; height: 26px; }
+.footer-brand b { font-weight: 700; }
+@media (max-width: 560px) {
+  .lockup-tile { width: 60px; height: 60px; }
+  .lockup-tile img { width: 52px; height: 52px; }
+  .lockup-name { font-size: 54px; }
+}

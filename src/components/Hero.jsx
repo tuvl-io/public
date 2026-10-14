@@ -45,7 +45,7 @@ export default function Hero() {
       <div className="wrap hero-grid">
         <div>
           <div className="lockup">
-            <span className="lockup-tile" aria-hidden="true"><img src="/assets/feather-ink.png" alt="" width="46" height="46" /></span>
+            <span className="lockup-tile" aria-hidden="true"><img src="/assets/feather-paper.png" alt="" width="46" height="46" /></span>
             <span className="lockup-name">tuvl</span>
             <span className="lockup-meta">
               <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>

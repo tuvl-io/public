@@ -26,7 +26,7 @@ export default function Nav() {
     <header className={`nav${shown ? ' is-shown' : ''}`} aria-hidden={!shown} {...(shown ? {} : { inert: '' })}>
       <div className="wrap nav-inner">
         <a className="brand" href="#top" aria-label="tuvl home">
-          <span className="brand-tile" aria-hidden="true"><img src="/assets/feather-ink.png" alt="" width="26" height="26" /></span>
+          <span className="brand-tile" aria-hidden="true"><img src="/assets/feather-paper.png" alt="" width="26" height="26" /></span>
           <span className="brand-name">tuvl</span>
           <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>
