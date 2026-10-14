@@ -323,3 +323,102 @@ img { max-width: 100%; display: block; }
 .cd-cell i { font: 500 11px/1 var(--mono); font-style: normal; color: #b7b3a8; }
 .lockup-meta { justify-content: center; }
 .hero h1 { margin-top: 22px; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   tuvl.io — white theme, in step with tuvl.dev: white page, zinc borders, Geist,
+   a large feather and wordmark. Redefines the tokens above and removes the
+   hard-shadow and tilted-card gestures. One accent: a pale cyan highlighter.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --paper: #ffffff;
+  --paper-2: #fafafa;
+  --ink: #09090b;
+  --ink-2: #3f3f46;
+  --muted: #71717a;
+  --line: #e4e4e7;
+  --lime: #a5f3fc;
+  --lime-deep: #22d3ee;
+  --on-lime: #083344;
+  --code: #0f0f11;
+  --code-2: #18181b;
+  --code-text: #e8e8ec;
+  --code-dim: #8d8d97;
+  --code-key: #7dd3fc;
+  --code-str: #a5b4fc;
+  --refuse: #fb7185;
+  --display: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --radius: 12px;
+}
+html { color-scheme: light; }
+body { background: var(--paper); }
+
+/* buttons: pill, quiet border */
+.btn { border-width: 1px; border-color: var(--line); }
+.btn-ink { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-lime { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-ghost { color: var(--ink); background: #fff; }
+.btn-ghost:hover { border-color: var(--ink); }
+
+/* nav */
+.nav { background: color-mix(in srgb, #fff 88%, transparent); }
+.brand-name { font-weight: 700; }
+.brand-tile { background: transparent; border: 0; box-shadow: none; width: 36px; height: 36px; }
+
+/* hero: the big feather + wordmark, no tile */
+.lockup-tile { background: transparent; border: 0; box-shadow: none; transform: none; width: 84px; height: 84px; border-radius: 0; }
+.lockup-name { font-weight: 700; font-size: 84px; letter-spacing: -0.045em; }
+.hero h1 { font-weight: 700; letter-spacing: -0.04em; }
+.tag { background: var(--paper-2); border-color: var(--line); color: var(--ink-2); }
+.tag-dot { background: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
+.proof b, .step-n, .h2, .g h3, .points b, .cmp-col h3, .cta h2, .countdown-label b { font-family: var(--display); font-weight: 700; }
+
+/* the highlighter: a pale cyan band, ink text */
+.mark { background: linear-gradient(transparent 14%, var(--lime) 14%, var(--lime) 90%, transparent 90%); color: var(--ink); border-radius: 0; padding: 0 0.12em; }
+
+/* install pill */
+.install { background: var(--ink); color: #fafafa; border: 1px solid var(--ink); }
+.install .prompt { color: #67e8f9; }
+.install .copy { background: #fafafa; color: var(--ink); }
+
+/* cards: borders, no hard shadows or tilt */
+.route { transform: none; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); border: 1px solid #27272a; }
+.route-row { border-top-color: #2a2a2e; }
+.route-foot { border-top-color: #2a2a2e; }
+.route-head .dots i { background: #3a3a40; }
+.shot { box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); border: 1px solid var(--line); }
+.code { border: 1px solid #27272a; }
+.countdown { background: #fff; border: 1px solid var(--line); box-shadow: none; }
+.cd-cell { background: var(--ink); color: var(--lime); }
+
+/* sections */
+.section-alt { background: var(--paper-2); }
+.g-grid { border-top: 1px solid var(--ink); }
+.step { background: #fff; border-width: 1px; }
+.step:hover { border-color: var(--muted); }
+.step[aria-selected="true"] { border-color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 18px rgba(0,0,0,.08); transform: none; }
+.step[aria-selected="true"] .step-n { background: var(--lime); color: var(--on-lime); }
+.cmp-col { border-width: 1px; background: #fff; }
+.cmp-col.us { background: var(--lime); border-color: var(--lime-deep); box-shadow: none; }
+
+/* cta + footer */
+.cta { background: var(--ink); color: #fff; border-radius: 20px; }
+.cta p { color: #d4d4d8; }
+.cta .install { background: #18181b; border-color: #3f3f46; }
+.cta .btn-ghost { color: #fff; background: transparent; border-color: #52525b; }
+.cta .btn-ghost:hover { border-color: #fff; }
+.cta-feather { opacity: .1; }
+.footer-tile { background: transparent; border: 0; width: 30px; height: 30px; }
+.footer-brand b { font-weight: 700; }
+@media (max-width: 560px) {
+  .lockup-tile { width: 58px; height: 58px; }
+  .lockup-name { font-size: 54px; }
+}
+
+/* the feather is a mask filled with the brand cyan; the wordmark stays ink */
+:root { --logo: #0891b2; }
+.feather-mark {
+  display: block; width: 100%; height: 100%; background: var(--logo);
+  -webkit-mask: url(/assets/feather-ink.png) center / contain no-repeat;
+          mask: url(/assets/feather-ink.png) center / contain no-repeat;
+}

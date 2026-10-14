@@ -2,7 +2,7 @@ export const VERSION_TAG = 'v2.0.0';
 
 // 2.0.0 general availability. Until then the page counts down and installs the beta.
 export const RELEASE_AT = '2026-10-20T00:00:00Z';
-export const BETA_VERSION = '2.0.0b1';
+export const BETA_VERSION = '2.0.0b2';
 
 export const isReleased = (now = Date.now()) => now >= Date.parse(RELEASE_AT);
 
@@ -16,9 +16,8 @@ export const insightInstallCmd = (now = Date.now()) =>
     ? 'uv tool install "tuvl[standard]"'
     : `uv tool install --prerelease allow "tuvl[standard]==${BETA_VERSION}"`;
 
-/** The 2.0 examples live on the examples repo's version2 branch until the release promotes them. */
-export const examplesUrl = (now = Date.now()) =>
-  isReleased(now) ? 'https://github.com/tuvl-io/examples' : 'https://github.com/tuvl-io/examples/tree/version2';
+/** The 2.0 examples are on the examples repo's default branch. */
+export const examplesUrl = () => 'https://github.com/tuvl-io/examples';
 
 // tuvl.dev is the main documentation host (a single, unversioned MkDocs site).
 // The same content is also mirrored same-origin at tuvl.io/docs — the compiled
