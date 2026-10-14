@@ -415,11 +415,10 @@ body { background: var(--paper); }
   .lockup-name { font-size: 54px; }
 }
 
-/* the logo in cyan: the feather glyph is a mask filled with the brand cyan, and so is the wordmark */
+/* the feather is a mask filled with the brand cyan; the wordmark stays ink */
 :root { --logo: #0891b2; }
 .feather-mark {
   display: block; width: 100%; height: 100%; background: var(--logo);
   -webkit-mask: url(/assets/feather-ink.png) center / contain no-repeat;
           mask: url(/assets/feather-ink.png) center / contain no-repeat;
 }
-.brand-name, .lockup-name, .footer-brand b { color: var(--logo); }
