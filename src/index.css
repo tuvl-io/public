@@ -363,12 +363,12 @@ body { background: var(--paper); }
 /* nav */
 .nav { background: color-mix(in srgb, #fff 88%, transparent); }
 .brand-name { font-weight: 700; }
-.brand-tile { background: transparent; border: 0; box-shadow: none; width: 34px; height: 34px; }
-.brand-tile img { width: 30px; height: 30px; }
+.brand-tile { background: var(--lime); border: 0; box-shadow: none; width: 40px; height: 40px; border-radius: 11px; }
+.brand-tile img { width: 26px; height: 26px; }
 
 /* hero: the big feather + wordmark, no tile */
-.lockup-tile { background: transparent; border: 0; box-shadow: none; transform: none; width: 88px; height: 88px; border-radius: 0; }
-.lockup-tile img { width: 76px; height: 76px; }
+.lockup-tile { background: var(--lime); border: 0; box-shadow: none; transform: none; width: 92px; height: 92px; border-radius: 22px; }
+.lockup-tile img { width: 60px; height: 60px; }
 .lockup-name { font-weight: 700; font-size: 84px; letter-spacing: -0.045em; }
 .hero h1 { font-weight: 700; letter-spacing: -0.04em; }
 .tag { background: var(--paper-2); border-color: var(--line); color: var(--ink-2); }
@@ -410,11 +410,11 @@ body { background: var(--paper); }
 .cta .btn-ghost { color: #fff; background: transparent; border-color: #52525b; }
 .cta .btn-ghost:hover { border-color: #fff; }
 .cta-feather { opacity: .1; }
-.footer-tile { background: transparent; border: 0; width: 28px; height: 28px; }
-.footer-tile img { width: 26px; height: 26px; }
+.footer-tile { background: var(--lime); border: 0; width: 34px; height: 34px; border-radius: 9px; }
+.footer-tile img { width: 22px; height: 22px; }
 .footer-brand b { font-weight: 700; }
 @media (max-width: 560px) {
-  .lockup-tile { width: 60px; height: 60px; }
-  .lockup-tile img { width: 52px; height: 52px; }
+  .lockup-tile { width: 64px; height: 64px; border-radius: 16px; }
+  .lockup-tile img { width: 42px; height: 42px; }
   .lockup-name { font-size: 54px; }
 }
