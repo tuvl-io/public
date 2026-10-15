@@ -26,14 +26,15 @@ export default function Nav() {
     <header className={`nav${shown ? ' is-shown' : ''}`} aria-hidden={!shown} {...(shown ? {} : { inert: '' })}>
       <div className="wrap nav-inner">
         <a className="brand" href="#top" aria-label="tuvl home">
-          <span className="brand-tile" aria-hidden="true"><span className="feather-mark" /></span>
+          <span className="brand-mark" aria-hidden="true"><span className="feather-mark" /></span>
           <span className="brand-name">tuvl</span>
           <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>
         <nav className="nav-links" aria-label="Page">
-          <a href="#guarantees">Guarantees</a>
-          <a href="#how-it-works">How it works</a>
+          <a href="#problem">Problem</a>
+          <a href="#alignment">Spec to build</a>
           <a href="#agents">Insight</a>
+          <a href="#faq">FAQ</a>
           <a href={docs('/why-tuvl/')}>Why tuvl</a>
           <a href={docs('/')}>Docs</a>
         </nav>
@@ -41,7 +42,7 @@ export default function Nav() {
           <a className="icon-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank" aria-label="tuvl on GitHub">
             <GitHubMark size={20} />
           </a>
-          <a className="btn btn-lime btn-sm" href="https://try.tuvl.online" rel="noopener" target="_blank"
+          <a className="btn btn-solid btn-sm" href="https://try.tuvl.online" rel="noopener" target="_blank"
             onClick={() => track('try_live', { location: 'nav' })}>Try it live</a>
         </div>
       </div>

@@ -1,77 +1,50 @@
 import { installCmd } from '../data/version.js';
 import Countdown from './Countdown.jsx';
-import { track } from '../lib/analytics.js';
+import Persona from './Persona.jsx';
+import RunDemo from './RunDemo.jsx';
 import Install from './Install.jsx';
-
-/* What the engine lets through, and the one move it refuses. */
-function RouteCard() {
-  return (
-    <figure className="route rv" aria-label="A run of screen_candidate: every step on a declared route; an undeclared move is refused">
-      <div className="route-head">
-        <span className="dots" aria-hidden="true"><i /><i /><i /></span>
-        run 5b0d · screen_candidate
-      </div>
-      <div className="route-req">POST /api/screen-candidate</div>
-      <div className="route-row">
-        <span className="id">save</span><span className="eng">tool · db.create</span>
-        <span className="to">→ gate</span>
-      </div>
-      <div className="route-row">
-        <span className="id">gate</span><span className="eng">decide · 2 rules, 0 tokens</span>
-        <span className="to">→ assess_fit <em>(years ≥ 3)</em></span>
-      </div>
-      <div className="route-row">
-        <span className="id">assess_fit</span><span className="eng">llm · ≤ 800 tokens, 20 s</span>
-        <span className="to">→ shortlist <em>· strong | weak | timeout all routed</em></span>
-      </div>
-      <div className="route-row refused">
-        <span className="id">assess_fit</span><span className="eng">“let’s also email the CEO”</span>
-        <span className="to">not in enum[strong, weak]
-          <br /><span className="route-verdict">refused → parse_error → reject</span>
-        </span>
-      </div>
-      <div className="route-row">
-        <span className="id">shortlist</span><span className="eng">tool · db.update</span>
-        <span className="to">→ END <em>201 Created</em></span>
-      </div>
-      <figcaption className="route-foot"><b>Every step journaled</b> — replay this run for 0 tokens.</figcaption>
-    </figure>
-  );
-}
+import { usePersona } from '../hooks/usePersona.jsx';
+import { track } from '../lib/analytics.js';
 
 export default function Hero() {
+  const { t } = usePersona();
   return (
     <section className="hero" id="top">
-      <div className="wrap hero-grid">
-        <div>
-          <div className="lockup">
-            <span className="lockup-tile" aria-hidden="true"><span className="feather-mark" /></span>
-            <span className="lockup-name">tuvl</span>
-            <span className="lockup-meta">
+      <div className="wrap">
+        <div className="hero-top">
+          <div>
+            <div className="lockup">
+              <span className="lockup-mark" aria-hidden="true"><span className="feather-mark" /></span>
+              <span className="lockup-name">tuvl</span>
               <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
-            </span>
+            </div>
+            <Persona />
+            <h1>
+              {t(<>Stop babysitting <span className="accent">your agents.</span></>,
+                 <>Ship AI features you can <span className="accent">sign off.</span></>)}
+            </h1>
+            <p className="hero-sub">
+              {t('Declare the workflow in YAML. tuvl checks it before it runs, bounds every model call, journals every step and refuses anything the contract doesn’t declare. Python only where you need it.',
+                 'Write what the feature must do, in plain language. tuvl builds the backend to that spec, shows you real status — never self-reported — and refuses anything off-script. Every decision is on record.')}
+            </p>
+            <div className="hero-ctas">
+              <Install cmd={installCmd()} location="hero" />
+              <a className="btn btn-ghost" href="https://try.tuvl.online" rel="noopener" target="_blank"
+                onClick={() => track('try_live', { location: 'hero' })}>Try it live →</a>
+            </div>
           </div>
-          <Countdown />
-          <h1>
-            Deterministic execution.<br />
-            <span className="mark">Zero vibes.</span>
-          </h1>
-          <p className="hero-sub">
-            Typed workflows of agents — code, rules, models and people — checked before they run and
-            journaled while they do. The engine refuses anything the contract doesn&apos;t declare.
-          </p>
-          <div className="hero-ctas">
-            <Install cmd={installCmd()} location="hero" />
-            <a className="btn btn-ghost" href="https://try.tuvl.online" rel="noopener" target="_blank"
-              onClick={() => track('try_live', { location: 'hero' })}>Try it live →</a>
-          </div>
-          <div className="proof">
-            <div><b>29</b><span>checks before anything runs</span></div>
-            <div><b>0</b><span>tokens to replay a run</span></div>
-            <div><b>1</b><span>Postgres for data, runs and journal</span></div>
-          </div>
+          <aside className="hero-aside">
+            <Countdown />
+            <p className="eyebrow">Deterministic execution. Zero vibes.</p>
+            <ul className="hero-facts">
+              <li><b>29</b> checks before anything runs</li>
+              <li><b>0</b> tokens to replay a run</li>
+              <li><b>1</b> Postgres — data, runs, journal</li>
+              <li><b>MIT</b> open source, self-hosted</li>
+            </ul>
+          </aside>
         </div>
-        <RouteCard />
+        <RunDemo />
       </div>
     </section>
   );
