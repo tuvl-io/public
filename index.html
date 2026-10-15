@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('tuvl.theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
   <title>tuvl — Deterministic execution. Zero vibes.</title>
   <meta name="description" content="tuvl: typed workflows of agents — code, rules, models and people — checked before they run and journaled while they do. The engine refuses what the contract doesn't declare. Open source, local-first." />
   <meta property="og:title" content="tuvl — Deterministic execution. Zero vibes." />
