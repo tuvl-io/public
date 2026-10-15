@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap footer-inner">
         <a className="footer-brand" href="#top" aria-label="tuvl — back to top">
-          <span className="footer-tile" aria-hidden="true"><span className="feather-mark" /></span>
+          <span className="brand-mark" aria-hidden="true"><span className="feather-mark" /></span>
           <b>tuvl</b>
         </a>
         <span>Deterministic execution for AI workflows. MIT licensed.</span>
