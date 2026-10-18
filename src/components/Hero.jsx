@@ -37,7 +37,7 @@ export default function Hero() {
             <Countdown />
             <p className="eyebrow">Deterministic execution. Zero vibes.</p>
             <ul className="hero-facts">
-              <li><b>29</b> checks before anything runs</li>
+              <li><b>36</b> checks before anything runs</li>
               <li><b>0</b> tokens to replay a run</li>
               <li><b>1</b> Postgres — data, runs, journal</li>
               <li><b>Apache 2.0</b> open source, self-hosted</li>
