@@ -10,7 +10,7 @@ const ITEMS = [
   { icon: 'human', title: 'Human approvals', body: 'A person is a first-class step: who may decide, how long they have, what happens on expiry.' },
   { icon: 'shield', title: 'Cost and time caps', body: 'Token and time budgets per model call, with worst-case cost printed before you deploy.' },
   { icon: 'route', title: 'A typed API', body: 'REST, SSE and MCP generated from the contract, with a typed TypeScript client.' },
-  { icon: 'code', title: 'Models and CRUD', body: 'Postgres models declared in YAML, with secure fields that never reach a model.' },
+  { icon: 'code', title: 'Models, files and CRUD', body: 'Postgres models declared in YAML, with secure fields that never reach a model, and named blob stores for S3, Azure Blob, Google Cloud Storage or local disk.' },
   { icon: 'terminal', title: 'A test harness', body: 'Offline tests with mocked models, fixtures from real runs, and one CI gate command.' },
 ];
 
