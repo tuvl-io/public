@@ -8,7 +8,7 @@ const QA = [
   { q: 'Where does my data live?', a: 'In your PostgreSQL: your models, the runs and the journal. tuvl is open source (Apache 2.0) and self-hosted; secure fields never reach a model.' },
   { q: 'Do I have to write Python?', a: 'Only for function bodies that need it. Tools, rules, models and human approvals are a few lines of YAML, and `tuvl codegen` writes the typed signatures.' },
   { q: 'Can I list my application?', a: 'Yes. `tuvl init` gives every project an id and a `.tuvl/project.yaml`; `tuvl project register` (or Register in Insight) lists it in the open catalogue at hub.tuvl.io. You see the exact payload first, your email stays private unless you opt in, and only the GitHub account that registered it can update it.' },
-  { q: 'Is it ready?', a: 'tuvl 2.0.0 is released on 20 October 2026. The public beta, 2.0.0b4, is on PyPI today, with seven runnable examples.' },
+  { q: 'Is it ready?', a: 'tuvl 2.0.0 is released on 20 October 2026. The public beta, 2.0.0b5, is on PyPI today, with seven runnable examples.' },
 ];
 
 export default function Faq() {
