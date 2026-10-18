@@ -40,7 +40,7 @@ export default function Hero() {
               <li><b>29</b> checks before anything runs</li>
               <li><b>0</b> tokens to replay a run</li>
               <li><b>1</b> Postgres — data, runs, journal</li>
-              <li><b>MIT</b> open source, self-hosted</li>
+              <li><b>Apache 2.0</b> open source, self-hosted</li>
             </ul>
           </aside>
         </div>

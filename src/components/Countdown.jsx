@@ -28,7 +28,7 @@ export default function Countdown() {
   if (isReleased(now)) {
     return (
       <a className="tag" href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md" rel="noopener" target="_blank">
-        <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · MIT
+        <span className="tag-dot" aria-hidden="true" />{VERSION_TAG} · open source · Apache 2.0
       </a>
     );
   }
