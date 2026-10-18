@@ -4,9 +4,9 @@ import { rich } from '../lib/rich.jsx';
 
 const STEPS = [
   { when: 'Minute 5', cmd: 'tuvl init my-app --sample && tuvl dev', dev: 'A working project with a spec, a typed workflow, tests and the Insight canvas.', pm: 'Open Insight and watch a real workflow, its runs and its spec status — before anyone writes code.' },
-  { when: 'Day 1', cmd: 'your coding agent writes the contract', dev: 'Claude Code, Cursor or Codex use `tuvl mcp` and 13 shipped skills. You review a YAML diff.', pm: 'Your spec goes in; the task board fills from the build. You see progress that’s derived, not reported.' },
+  { when: 'Day 1', cmd: 'your coding agent writes the contract', dev: 'Claude Code, Cursor or Codex use `tuvl mcp` and 14 shipped skills. You review a YAML diff.', pm: 'Your spec goes in; the task board fills from the build. You see progress that’s derived, not reported.' },
   { when: 'Week 1', cmd: 'tuvl validate --strict && tuvl test', dev: '36 checks, offline tests with mocked models, worst-case token cost per workflow.', pm: 'Acceptance examples pass or they don’t. Risky paths need a named approver.' },
-  { when: 'Production', cmd: 'tuvl ship --push', dev: 'An image and a Helm chart; production mode, closed by default, JSON logs, telemetry on.', pm: 'Same behaviour as staging, with a journal for every run and an owner for every approval.' },
+  { when: 'Production', cmd: 'tuvl ship --push', dev: 'An image and a Helm chart carrying only the features your project uses; production mode, closed by default, JSON logs, telemetry on.', pm: 'Same behaviour as staging, with a journal for every run and an owner for every approval.' },
 ];
 
 export default function Journey() {
