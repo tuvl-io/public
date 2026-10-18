@@ -8,7 +8,7 @@ export default function Footer() {
           <span className="brand-mark" aria-hidden="true"><span className="feather-mark" /></span>
           <b>tuvl</b>
         </a>
-        <span>Deterministic execution for AI workflows. MIT licensed.</span>
+        <span>Deterministic execution for AI workflows. Apache 2.0 licensed.</span>
         <nav className="footer-links" aria-label="Footer">
           <a href={docs('/getting-started/quickstart')}>Quickstart</a>
           <a href={docs('/why-tuvl/')}>Why tuvl</a>

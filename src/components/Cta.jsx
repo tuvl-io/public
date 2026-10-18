@@ -22,6 +22,7 @@ export default function Cta() {
             <Install cmd={`${insightInstallCmd()} && tuvl init my-app --sample`} location="cta" />
             <div className="cta-links">
               <a className="btn btn-solid" href={docs('/getting-started/quickstart')}>Quickstart</a>
+              <a className="btn btn-ghost" href={docs('/getting-started/guide')}>Guide: init to ship</a>
               <a className="btn btn-ghost" href={examplesUrl()} rel="noopener" target="_blank"><GitHubMark /> Examples</a>
             </div>
           </article>
