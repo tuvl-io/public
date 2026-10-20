@@ -34,6 +34,7 @@ export default function Nav() {
           <a href="#problem">Problem</a>
           <a href="#alignment">Spec to build</a>
           <a href="#agents">Insight</a>
+          <a href="#pipeline">Idea to ship</a>
           <a href="#faq">FAQ</a>
           <a href={docs('/why-tuvl/')}>Why tuvl</a>
           <a href={docs('/')}>Docs</a>

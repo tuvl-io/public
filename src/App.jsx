@@ -4,6 +4,7 @@ import Problem from './components/Problem.jsx';
 import Alignment from './components/Alignment.jsx';
 import Agents from './components/Agents.jsx';
 import Stop from './components/Stop.jsx';
+import Pipeline from './components/Pipeline.jsx';
 import Journey from './components/Journey.jsx';
 import Compare from './components/Compare.jsx';
 import Faq from './components/Faq.jsx';
@@ -27,6 +28,7 @@ export default function App() {
         <Alignment />
         <Agents />
         <Stop />
+        <Pipeline />
         <Journey />
         <Compare />
         <Faq />
