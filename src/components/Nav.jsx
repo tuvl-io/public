@@ -31,6 +31,7 @@ export default function Nav() {
           <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>
         <nav className="nav-links" aria-label="Page">
+          <a href="#pipeline">Idea to ship</a>
           <a href="#problem">Problem</a>
           <a href="#alignment">Spec to build</a>
           <a href="#agents">Insight</a>
