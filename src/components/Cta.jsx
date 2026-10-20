@@ -1,4 +1,4 @@
-import { docs, examplesUrl, insightInstallCmd } from '../data/version.js';
+import { docs, examplesUrl, installCmd } from '../data/version.js';
 import { track } from '../lib/analytics.js';
 import { GitHubMark } from './icons.jsx';
 import Install from './Install.jsx';
@@ -19,7 +19,7 @@ export default function Cta() {
             <span className="path-who">Developers</span>
             <h3>Run it in five minutes.</h3>
             <p>Start from the sample: a spec, a typed workflow, offline tests and a lock.</p>
-            <Install cmd={`${insightInstallCmd()} && tuvl init my-app --sample`} location="cta" />
+            <Install cmd={`${installCmd()} && tuvl init my-app --sample`} location="cta" />
             <div className="cta-links">
               <a className="btn btn-solid" href={docs('/getting-started/quickstart')}>Quickstart</a>
               <a className="btn btn-ghost" href={docs('/getting-started/guide')}>Guide: init to ship</a>

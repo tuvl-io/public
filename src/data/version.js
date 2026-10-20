@@ -1,17 +1,17 @@
 export const VERSION_TAG = 'v2.0.0';
 
 // 2.0.0 general availability. Until then the page counts down and installs the beta.
-export const RELEASE_AT = '2026-10-20T00:00:00Z';
+export const RELEASE_AT = '2026-10-20T16:50:00Z';
 export const BETA_VERSION = '2.0.0b5';
 
 export const isReleased = (now = Date.now()) => now >= Date.parse(RELEASE_AT);
 
-/** The install command for today: the pinned beta before release, plain after. */
+/**
+ * The install command for today. `tuvl[standard]` is the toolchain (init, spec, codegen, review, dev with Insight and
+ * the terminal UI); the bare `tuvl` is only the production server. uv takes a pre-release pulled in by an extra only
+ * with --prerelease allow.
+ */
 export const installCmd = (now = Date.now()) =>
-  isReleased(now) ? 'uv tool install tuvl' : `uv tool install tuvl==${BETA_VERSION}`;
-
-/** With Insight (the [standard] extra). uv takes a pre-release pulled in by an extra only with --prerelease allow. */
-export const insightInstallCmd = (now = Date.now()) =>
   isReleased(now)
     ? 'uv tool install "tuvl[standard]"'
     : `uv tool install --prerelease allow "tuvl[standard]==${BETA_VERSION}"`;
