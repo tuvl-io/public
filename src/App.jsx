@@ -24,11 +24,11 @@ export default function App() {
       <ThemeToggle />
       <main>
         <Hero />
+        <Pipeline />
         <Problem />
         <Alignment />
         <Agents />
         <Stop />
-        <Pipeline />
         <Journey />
         <Compare />
         <Faq />
