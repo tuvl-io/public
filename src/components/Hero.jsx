@@ -5,6 +5,7 @@ import RunDemo from './RunDemo.jsx';
 import Install from './Install.jsx';
 import { usePersona } from '../hooks/usePersona.jsx';
 import { track } from '../lib/analytics.js';
+import Feather from './Feather.jsx';
 
 export default function Hero() {
   const { t } = usePersona();
@@ -14,7 +15,7 @@ export default function Hero() {
         <div className="hero-top">
           <div>
             <div className="lockup">
-              <span className="lockup-mark" aria-hidden="true"><span className="feather-mark" /></span>
+              <span className="lockup-mark" aria-hidden="true"><Feather /></span>
               <span className="lockup-name">tuvl</span>
               <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
             </div>

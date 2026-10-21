@@ -4,8 +4,8 @@ import EngineIcon from './EngineIcon.jsx';
 
 const POINTS = [
   { icon: 'spec', title: 'Specs drive the work', body: 'Task status is derived from the project — an agent can’t mark its own work done.' },
-  { icon: 'terminal', title: 'Ask tuvl, don’t guess', body: 'Every command speaks --json, and tuvl mcp gives Claude Code, Cursor and Codex the same tools. 14 skills ship with every project.' },
-  { icon: 'code', title: 'Only the body is Python', body: 'tuvl codegen writes the typed signatures; tools, rules, models and people are a few lines of YAML.' },
+  { icon: 'terminal', title: 'Ask tuvl, don’t guess', body: 'Every command speaks --json, and tuvl serve mcp gives Claude Code, Cursor and Codex the same tools. 14 skills ship with every project.' },
+  { icon: 'code', title: 'Only the body is Python', body: 'tuvl generate code writes the typed signatures; tools, rules, models and people are a few lines of YAML.' },
   { icon: 'eye', title: 'Insight shows everything', body: 'A canvas over the same YAML, every run step by step, breakpoints, approvals and an AI-assisted code editor.' },
 ];
 

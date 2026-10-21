@@ -17,7 +17,7 @@ const CASES = [
     story: 'One slow, chatty run holds a request open and burns tokens. Nobody set a ceiling because nothing enforced one.',
     dev: 'No per-call token or time budget, no worst-case cost before deploy.',
     pm: 'Cost per request is a guess, so margins and SLAs are too.',
-    fix: 'Every model call has a token and time budget; `tuvl validate` prints each workflow’s worst-case cost.',
+    fix: 'Every model call has a token and time budget; `tuvl lint project` prints each workflow’s worst-case cost.',
   },
   {
     icon: 'rewind', n: '03',

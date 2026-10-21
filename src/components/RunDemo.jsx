@@ -15,6 +15,13 @@ const NODES = {
   END: { x: 10, y: 170, icon: 'route', sub: 'HTTP response' },
 };
 
+/** One mono line inside a node: squeezed to fit when it would run past the box. */
+function NodeSub({ text }) {
+  const room = W - 24;
+  const fit = text.length * 6.4 > room ? { textLength: room, lengthAdjust: 'spacingAndGlyphs' } : {};
+  return <text x="12" y="56" className="cv-sub" {...fit}>{text}</text>;
+}
+
 const EDGES = {
   'START>save': 'M174 61 H200',
   'save>gate': 'M364 61 H390',
@@ -156,7 +163,7 @@ export default function RunDemo() {
                 <g transform="translate(12 10)" className="cv-icon"><EngineIcon name={n.icon} size={15} /></g>
                 <text x="34" y="22" className="cv-kind">{n.icon === 'route' ? (id === 'END' ? 'response' : 'trigger') : n.sub.split(' · ')[0]}</text>
                 <text x="12" y="42" className="cv-id">{id}</text>
-                <text x="12" y="56" className="cv-sub">{n.sub.includes('·') ? n.sub.split(' · ').slice(1).join(' · ') : n.sub}</text>
+                <NodeSub text={n.sub.includes('·') ? n.sub.split(' · ').slice(1).join(' · ') : n.sub} />
               </g>
             ))}
           </svg>
