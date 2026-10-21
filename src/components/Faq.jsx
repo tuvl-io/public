@@ -11,7 +11,7 @@ const QA = [
   { q: 'Is there a hosted version?', a: 'A hosted, managed tuvl engine that runs your backend services is planned, with `tuvl deploy` as the command for it. It isn’t available yet. Today you run tuvl yourself: `tuvl ship` builds an image and a Helm chart.' },
   { q: 'Do I have to write Python?', a: 'Only for function bodies that need it. Tools, rules, models and human approvals are a few lines of YAML, and `tuvl generate code` writes the typed signatures.' },
   { q: 'Can I list my application?', a: 'Yes. `tuvl init` gives every project an id and a `.tuvl/project.yaml`; `tuvl register project` (or Register in Insight) lists it in the open catalogue at hub.tuvl.io. You see the exact payload first, your email stays private unless you opt in, and only the GitHub account that registered it can update it.' },
-  { q: 'Is it ready?', a: 'tuvl 2.0.0 is the next stable release. The public beta, 2.0.0b8, is on PyPI, with seven runnable examples.' },
+  { q: 'Is it ready?', a: 'tuvl 2.0.0 is the next stable release. The public beta, 2.0.0b7, is on PyPI, with seven runnable examples.' },
 ];
 
 export default function Faq() {
