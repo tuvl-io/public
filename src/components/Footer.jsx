@@ -1,14 +1,15 @@
 import { docs } from '../data/version.js';
+import Feather from './Feather.jsx';
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="wrap footer-inner">
         <a className="footer-brand" href="#top" aria-label="tuvl — back to top">
-          <span className="brand-mark" aria-hidden="true"><span className="feather-mark" /></span>
+          <span className="brand-mark" aria-hidden="true"><Feather small /></span>
           <b>tuvl</b>
         </a>
-        <span>Deterministic execution for AI workflows. Apache 2.0 licensed.</span>
+        <span>Intelligent Workflows. Deterministic Execution. Apache 2.0 licensed.</span>
         <nav className="footer-links" aria-label="Footer">
           <a href={docs('/getting-started/quickstart')}>Quickstart</a>
           <a href={docs('/why-tuvl/')}>Why tuvl</a>
