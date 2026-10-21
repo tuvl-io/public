@@ -13,32 +13,32 @@ const KINDS = {
 
 const NODES = [
   {
-    id: 'import', short: 'spec import', title: 'Import', kind: 'you', cmd: 'tuvl spec import brief.pdf', out: 'IDEA-SK-0004',
+    id: 'import', short: 'import idea', title: 'Import', kind: 'you', cmd: 'tuvl import idea brief.pdf', out: 'IDEA-SK-0004',
     does: 'Copies the brief (Markdown, PDF or Word) into `idea/` as a numbered, immutable record and extracts its text.',
     checked: 'File hashes. Secrets, hidden files and links are skipped. An edited idea is flagged later (S021).',
   },
   {
-    id: 'draft', short: 'spec gen', title: 'Draft', kind: 'agent', cmd: 'tuvl spec gen --idea IDEA-SK-0004', out: 'SPEC-SK-0004-01 · draft',
+    id: 'draft', short: 'generate spec', title: 'Draft', kind: 'agent', cmd: 'tuvl generate spec --idea IDEA-SK-0004', out: 'SPEC-SK-0004-01 · draft',
     does: 'Your installed coding agent (Claude Code, Codex, Gemini CLI) writes the spec on its own branch and opens a draft pull request.',
-    checked: 'It may change only that spec file. `tuvl spec check` must pass, or the findings go back to the agent (3 tries).',
+    checked: 'It may change only that spec file. `tuvl lint spec` must pass, or the findings go back to the agent (3 tries).',
   },
   {
-    id: 'approve', short: 'spec approve', title: 'Approve', kind: 'human', cmd: 'tuvl spec approve SPEC-SK-0004-01', out: 'approved_by · approved_at · hash',
+    id: 'approve', short: 'approve spec', title: 'Approve', kind: 'human', cmd: 'tuvl approve spec SPEC-SK-0004-01', out: 'approved_by · approved_at · hash',
     does: 'A person reads the spec and approves it. Who, when and a hash of the body go into the spec itself.',
     checked: 'An agent cannot approve its own draft. Edit the body later and the approval is stale (S017): it is a draft again.',
   },
   {
-    id: 'tasks', short: 'spec tasks', title: 'Tasks', kind: 'tuvl', cmd: 'tuvl spec tasks SPEC-SK-0004-01', out: 'TASK-SK-0004-01-001 …',
+    id: 'tasks', short: 'generate tasks', title: 'Tasks', kind: 'tuvl', cmd: 'tuvl generate tasks SPEC-SK-0004-01', out: 'TASK-SK-0004-01-001 …',
     does: 'Derives the task list from the approved spec: one task per new model, step and example, a manual task for each external system.',
     checked: 'No model is involved. Re-running keeps ids and marks removed work obsolete.',
   },
   {
-    id: 'build', short: 'codegen --spec', title: 'Build', kind: 'agent', cmd: 'tuvl codegen --spec SPEC-SK-0004-01 --all', out: 'one branch + draft PR per task',
+    id: 'build', short: 'generate code', title: 'Build', kind: 'agent', cmd: 'tuvl generate code --spec SPEC-SK-0004-01 --all', out: 'one branch + draft PR per task',
     does: 'tuvl first writes what needs no tokens: models from the spec’s data, and workflow skeletons of `pending` steps. Then your agent implements each task on its own stacked branch.',
-    checked: 'The step must be implemented, `validate` and `spec verify` must agree, and the Python must pass review. Out-of-scope edits are reverted. Pull requests are never merged for you.',
+    checked: 'The step must be implemented, `lint project` and `verify spec` must agree, and the Python must pass review. Out-of-scope edits are reverted. Pull requests are never merged for you.',
   },
   {
-    id: 'review', short: 'review', title: 'Review', kind: 'tuvl', cmd: 'tuvl review', out: 'C-rule + ruff findings',
+    id: 'review', short: 'review code', title: 'Review', kind: 'tuvl', cmd: 'tuvl review code', out: 'C-rule + ruff findings',
     does: 'Checks the Python of every code agent against the rules (no shell, no raw SQL, no swallowed errors…), free. `--agent` asks an agent for a second opinion.',
     checked: 'Errors fail the build; the agent’s opinion is advisory unless you make it blocking.',
   },
@@ -127,8 +127,9 @@ export default function Pipeline() {
         </div>
 
         <p className="pipe-foot rv">
-          Everything is recorded: <code>tuvl audit log</code> or the Audit page in Insight, and <code>tuvl dev</code> shows
-          this same path as a tree you can act on.
+          Every step is a verb you can read: <code>import</code>, <code>generate</code>, <code>approve</code>,{' '}
+          <code>verify</code>, <code>review</code>, <code>ship</code>. Everything is recorded: <code>tuvl show audit</code> or
+          the Audit page in Insight, and <code>tuvl dev</code> shows this same path as a tree you can act on.
         </p>
         <a className="more" href={docs('/internals/authoring')}>How authoring with a coding agent works →</a>
       </div>
