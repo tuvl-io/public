@@ -33,13 +33,13 @@ const CONTRACT = `- id: gate                  # deterministic
   routes: { strong: shortlist, weak: reject,
             parse_error: reject, timeout: reject }`;
 
-const CHECK = `$ tuvl spec verify --strict
+const CHECK = `$ tuvl verify spec --strict
   gate        decide rules          ✓ matches the spec
   assess_fit  llm default · 800 tok ✓ matches the spec
   reject      tool db update        ✓ 1 passed
   0 mismatch(es) · steps implemented 6/6
 
-$ tuvl test
+$ tuvl run tests
   PASS a-junior-applicant-is-rejected-by-rule (0 tok)`;
 
 export default function Alignment() {
@@ -66,7 +66,7 @@ export default function Alignment() {
             <pre><code>{highlight(SPEC, 'yaml')}</code></pre>
           </div>
           <div className="align-mid" aria-hidden="true">
-            <span className="align-badge">spec verify</span>
+            <span className="align-badge">verify spec</span>
             <span className="align-arrow" />
           </div>
           <div className="align-col">
@@ -80,7 +80,7 @@ export default function Alignment() {
           <ul>
             <li><b>{t('Reviewable', 'Readable')}</b>{rich(t('The contract is YAML in git — a diff a person can review, not a prompt buried in code.', 'Policies and acceptance examples are prose and examples you wrote, not tickets paraphrased by an engineer.'))}</li>
             <li><b>{t('Testable', 'Verifiable')}</b>{rich(t('Examples become offline tests with mocked models: 0 tokens, deterministic, in CI.', 'Each example becomes a test that must pass before a task counts as done. Status is derived, never self-reported.'))}</li>
-            <li><b>{t('Typed', 'Auditable')}</b>{rich(t('`tuvl codegen` writes the typed signatures; you write only the function bodies that need Python.', 'Every run is journaled, with who approved what — answerable without reading logs.'))}</li>
+            <li><b>{t('Typed', 'Auditable')}</b>{rich(t('`tuvl generate code` writes the typed signatures; you write only the function bodies that need Python.', 'Every run is journaled, with who approved what — answerable without reading logs.'))}</li>
           </ul>
         </div>
         <a className="more" href={docs('/internals/spec-driven/')}>How spec-driven development works →</a>

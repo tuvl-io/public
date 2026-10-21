@@ -61,12 +61,12 @@ spec:
                 timeout: reject, budget_exceeded: reject, error: END.failed }
     # shortlist / reject → update the record (tool · db.update)`;
 
-export const CHECK = `$ tuvl validate --strict
+export const CHECK = `$ tuvl lint project --strict
   screen_candidate  5 agents · 4 deterministic · 1 bounded · worst-case 800 tok
   WARN [V015] 'save' has a write effect and later steps (gate) can fail —
               declare 'compensate' so a failed run can undo it
 
-$ tuvl codegen && tuvl test
+$ tuvl generate code && tuvl run tests
   + tests/screen_candidate/a-strong-applicant-is-shortlisted.yaml
   PASS a-strong-applicant-is-shortlisted (screen_candidate → END.default, 0 tok)
 
