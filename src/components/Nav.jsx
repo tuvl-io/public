@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { docs } from '../data/version.js';
 import { track } from '../lib/analytics.js';
 import { GitHubMark } from './icons.jsx';
+import Feather from './Feather.jsx';
 
 export default function Nav() {
   // The hero carries the big logo; the header appears only once that logo has scrolled away,
@@ -26,7 +27,7 @@ export default function Nav() {
     <header className={`nav${shown ? ' is-shown' : ''}`} aria-hidden={!shown} {...(shown ? {} : { inert: '' })}>
       <div className="wrap nav-inner">
         <a className="brand" href="#top" aria-label="tuvl home">
-          <span className="brand-mark" aria-hidden="true"><span className="feather-mark" /></span>
+          <span className="brand-mark" aria-hidden="true"><Feather small /></span>
           <span className="brand-name">tuvl</span>
           <span className="brand-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ</span>
         </a>
