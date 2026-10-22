@@ -19,6 +19,7 @@ export default function Hero() {
               <span className="lockup-name">tuvl</span>
               <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
             </div>
+            <p className="lockup-tag">Intelligent Workflows. Deterministic Execution.</p>
             <Persona />
             <h1>
               {t(<>Stop babysitting <span className="accent">your agents.</span></>,
@@ -36,7 +37,7 @@ export default function Hero() {
           </div>
           <aside className="hero-aside">
             <Countdown />
-            <p className="eyebrow">Deterministic execution. Zero vibes.</p>
+            <p className="eyebrow">By the numbers</p>
             <ul className="hero-facts">
               <li><b>36</b> checks before anything runs</li>
               <li><b>0</b> tokens to replay a run</li>
