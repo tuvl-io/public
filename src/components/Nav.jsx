@@ -39,7 +39,7 @@ export default function Nav() {
           <a href="#faq">FAQ</a>
           <a href={docs('/why-tuvl/')}>Why tuvl</a>
           <a href={docs('/')}>Docs</a>
-          <a href="https://hub.tuvl.io" rel="noopener" target="_blank">Hub</a>
+          <a href="https://nest.tuvl.io" rel="noopener" target="_blank">Nest</a>
         </nav>
         <div className="nav-actions">
           <a className="icon-link" href="https://github.com/tuvl-io/tuvl" rel="noopener" target="_blank" aria-label="tuvl on GitHub">
