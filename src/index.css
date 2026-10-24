@@ -250,7 +250,7 @@ img { max-width: 100%; display: block; }
 
 /* insight */
 .insight { display: flex; flex-direction: column; gap: 16px; }
-.insight-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.insight-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 900px) { .insight-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .insight-tabs button {
   text-align: left; border: 1px solid var(--border); background: var(--surface); color: var(--text-2);

@@ -4,7 +4,7 @@ import EngineIcon from './EngineIcon.jsx';
 
 const POINTS = [
   { icon: 'spec', title: 'Specs drive the work', body: 'Task status is derived from the project — an agent can’t mark its own work done.' },
-  { icon: 'terminal', title: 'Ask tuvl, don’t guess', body: 'Every command speaks --json, and tuvl serve mcp gives Claude Code, Cursor and Codex the same tools. 14 skills ship with every project.' },
+  { icon: 'terminal', title: 'Ask tuvl, don’t guess', body: 'Every command speaks --json, and tuvl serve mcp gives Claude Code, Cursor and Codex the same tools. 17 skills ship with every project.' },
   { icon: 'code', title: 'Only the body is Python', body: 'tuvl generate code writes the typed signatures; tools, rules, models and people are a few lines of YAML.' },
   { icon: 'eye', title: 'Insight shows everything', body: 'A canvas over the same YAML, every run step by step, breakpoints, approvals and an AI-assisted code editor.' },
 ];
@@ -13,6 +13,8 @@ const SHOTS = [
   { key: 'workflows', label: 'Workflows', line: 'A canvas over the same YAML — every route, end and finding.' },
   { key: 'picker', label: 'Groups', line: 'Grouped, searchable, one click. Find any workflow in a project of hundreds.' },
   { key: 'runs', label: 'Runs', line: 'Every run journaled, step by step. Pin it as a fixture, replay it for 0 tokens.' },
+  { key: 'parallel', label: 'Parallel', line: 'Three lookups at once, each branch timed: a step takes as long as its slowest.' },
+  { key: 'memory', label: 'Memory', line: 'What agents remember, per person, with the run that wrote it — and a button to forget.' },
   { key: 'specs', label: 'Specs', line: 'The spec, the derived task board and traceability — status is never self-reported.' },
 ];
 
