@@ -11,6 +11,10 @@ const ITEMS = [
   { icon: 'shield', title: 'Cost and time caps', body: 'Token and time budgets per model call, with worst-case cost printed before you deploy.' },
   { icon: 'route', title: 'A typed API', body: 'REST, SSE and MCP generated from the contract, with a typed TypeScript client.' },
   { icon: 'code', title: 'Models, files and CRUD', body: 'Postgres models declared in YAML, with secure fields that never reach a model, and named blob stores for S3, Azure Blob, Google Cloud Storage or local disk.' },
+  { icon: 'rewind', title: 'Memory you can erase', body: 'An agent can remember a person across sessions. The owner is set in YAML, never by the model; recalled text is fenced as data; secure fields are refused; one command or click forgets a person.' },
+  { icon: 'stream', title: 'Answers that stream', body: 'Show the answer as the model writes it. A rejected or retried answer is withdrawn, and the validator blocks streaming next to a guardrail that could still refuse it.' },
+  { icon: 'parallel', title: 'Steps side by side', body: 'A CRM lookup, a sanctions check and a search at once: a step takes as long as its slowest branch. Branches only read, and are checked before anything runs.' },
+  { icon: 'bell', title: 'Schedules and webhooks', body: 'Cron triggers fire once across all workers. Signed webhooks tell your systems when a run completes, fails or waits for a person.' },
   { icon: 'terminal', title: 'A test harness', body: 'Offline tests with mocked models, fixtures from real runs, and one CI gate command.' },
 ];
 
