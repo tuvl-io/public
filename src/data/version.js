@@ -1,8 +1,8 @@
 export const VERSION_TAG = 'v2.0.0';
 
 // 2.0.0 general availability. Until then the page counts down and installs the beta.
-export const RELEASE_AT = '2026-10-25T00:50:00Z';
-export const BETA_VERSION = '2.0.0b9';
+export const RELEASE_AT = '2026-10-30T00:00:00Z';
+export const BETA_VERSION = '2.0.0b10';
 
 export const isReleased = (now = Date.now()) => now >= Date.parse(RELEASE_AT);
 
