@@ -127,7 +127,6 @@ img { max-width: 100%; display: block; }
 .hero { padding: clamp(56px, 8vw, 104px) 0 clamp(40px, 6vw, 72px); }
 .hero-top { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-bottom: clamp(28px, 4vw, 48px); }
 @media (max-width: 1000px) { .hero-top { grid-template-columns: minmax(0, 1fr); } }
-.hero-aside .countdown { margin-top: 0; }
 .hero-aside .hero-sub { margin-top: 18px; }
 .lockup { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .lockup-mark { display: inline-block; width: 96px; height: 96px; }
@@ -155,19 +154,6 @@ img { max-width: 100%; display: block; }
 .install .copy { flex: none; }
 .install .prompt { color: var(--code-key); }
 .install .copy { background: var(--surface-2); color: var(--text); border-radius: 7px; padding: 8px 10px; font: 500 12px/1 var(--mono); }
-
-/* countdown */
-.countdown {
-  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 20px;
-  padding: 8px 8px 8px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
-}
-.countdown-label { display: flex; flex-direction: column; gap: 1px; }
-.countdown-label b { font: 600 15px/1.2 var(--sans); }
-.countdown-label span { font-size: 13px; color: var(--muted); }
-.countdown-cells { display: flex; gap: 5px; }
-.cd-cell { display: inline-flex; align-items: baseline; gap: 2px; min-width: 48px; justify-content: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 7px 6px; }
-.cd-cell b { font: 500 18px/1 var(--mono); font-variant-numeric: tabular-nums; color: var(--accent); }
-.cd-cell i { font: 500 10px/1 var(--mono); font-style: normal; color: var(--muted); }
 
 /* the workflow canvas (hero) */
 .canvas { margin: 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
