@@ -1,5 +1,5 @@
 import { installCmd } from '../data/version.js';
-import Countdown from './Countdown.jsx';
+import VersionTag from './VersionTag.jsx';
 import Persona from './Persona.jsx';
 import RunDemo from './RunDemo.jsx';
 import Install from './Install.jsx';
@@ -36,7 +36,7 @@ export default function Hero() {
             </div>
           </div>
           <aside className="hero-aside">
-            <Countdown />
+            <VersionTag />
             <p className="eyebrow">By the numbers</p>
             <ul className="hero-facts">
               <li><b>43</b> checks before anything runs</li>
