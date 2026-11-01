@@ -1,125 +1,52 @@
-import { useState } from 'react';
-import { VERSION_TAG, docs } from '../data/version.js';
+import { installCmd } from '../data/version.js';
+import VersionTag from './VersionTag.jsx';
+import Persona from './Persona.jsx';
+import RunDemo from './RunDemo.jsx';
+import Install from './Install.jsx';
+import { usePersona } from '../hooks/usePersona.jsx';
 import { track } from '../lib/analytics.js';
-
-function ChevronRightTiny() {
-  return (
-    <svg fill="none" height="12" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" width="12">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  );
-}
-
-function CopyIcon() {
-  return (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24" width="13">
-      <rect height="13" rx="2" width="13" x="9" y="9" />
-      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg fill="none" height="13" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" width="13">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
-const INSTALL_CMD = 'uv tool install tuvl';
+import Feather from './Feather.jsx';
 
 export default function Hero() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(INSTALL_CMD);
-      track('install_copy', { location: 'hero', command: INSTALL_CMD });
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1400);
-    } catch {
-      /* clipboard blocked — ignore */
-    }
-  };
-
+  const { t } = usePersona();
   return (
-    <section className="hero hero-futuristic" id="top">
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-inner">
-        <a
-          className="pill"
-          href="https://github.com/tuvl-io/tuvl/blob/main/CHANGELOG.md"
-          rel="noopener"
-          target="_blank"
-        >
-          <span className="pill-dot" />
-          <span>{VERSION_TAG} · stable</span>
-          <ChevronRightTiny />
-        </a>
-
-        <h1 className="hero-title">
-          Deterministic execution.<br />
-          <span className="grad">Zero vibes.</span>
-        </h1>
-
-        <p className="hero-sub">
-          A production runtime for AI workflows and APIs, declared in YAML. Every route explicit, every schema validated at load, every agent bounded and supervised — the engine refuses what the contract doesn&apos;t declare. Open-source, local-first, and fast.
-        </p>
-
-        <div className="hero-install">
-          <button
-            aria-label="Copy install command"
-            className={`hero-install-line${copied ? ' is-copied' : ''}`}
-            onClick={handleCopy}
-            type="button"
-          >
-            <span className="hero-install-prompt">$</span>
-            <code>{INSTALL_CMD}</code>
-            <span className="hero-install-copy">
-              {copied ? <CheckIcon /> : <CopyIcon />}
-              {copied ? 'copied' : 'copy'}
-            </span>
-          </button>
-          <a
-            className="hero-install-alt"
-            href="https://try.tuvl.online"
-            rel="noopener"
-            target="_blank"
-            onClick={() => track('try_live', { location: 'hero' })}
-          >
-            ▶ Try it live — no install →
-          </a>
-          <a className="hero-install-alt" href={docs('/getting-started/quickstart')} rel="noopener" target="_blank">
-            Read the manual →
-          </a>
-          <p className="hero-install-note">
-            Or run any example in a throwaway browser sandbox — <a href="https://try.tuvl.online" rel="noopener" target="_blank">try.tuvl.online</a>.
-          </p>
+    <section className="hero" id="top">
+      <div className="wrap">
+        <div className="hero-top">
+          <div>
+            <div className="lockup">
+              <span className="lockup-mark" aria-hidden="true"><Feather /></span>
+              <span className="lockup-name">tuvl</span>
+              <span className="lockup-ml" lang="ml" title="തൂവൽ — “feather” in Malayalam">തൂവൽ · feather</span>
+            </div>
+            <p className="lockup-tag">Intelligent Workflows. Deterministic Execution.</p>
+            <Persona />
+            <h1>
+              {t(<>Stop babysitting <span className="accent">your agents.</span></>,
+                 <>Ship AI features you can <span className="accent">sign off.</span></>)}
+            </h1>
+            <p className="hero-sub">
+              {t('Declare the workflow in YAML. tuvl checks it before it runs, bounds every model call, journals every step and refuses anything the contract doesn’t declare. Python only where you need it.',
+                 'Write what the feature must do, in plain language. tuvl builds the backend to that spec, shows you real status — never self-reported — and refuses anything off-script. Every decision is on record.')}
+            </p>
+            <div className="hero-ctas">
+              <Install cmd={installCmd()} location="hero" />
+              <a className="btn btn-ghost" href="https://try.tuvl.online" rel="noopener" target="_blank"
+                onClick={() => track('try_live', { location: 'hero' })}>Try it live →</a>
+            </div>
+          </div>
+          <aside className="hero-aside">
+            <VersionTag />
+            <p className="eyebrow">By the numbers</p>
+            <ul className="hero-facts">
+              <li><b>43</b> checks before anything runs</li>
+              <li><b>0</b> tokens to replay a run</li>
+              <li><b>1</b> Postgres — data, runs, journal</li>
+              <li><b>Apache 2.0</b> open source, self-hosted</li>
+            </ul>
+          </aside>
         </div>
-
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              34<span className="hero-stat-unit">KB</span>
-            </div>
-            <div className="hero-stat-lbl">whole engine contract</div>
-          </div>
-          <span className="hero-stat-sep" aria-hidden="true" />
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              0<span className="hero-stat-unit">deps</span>
-            </div>
-            <div className="hero-stat-lbl">on complex cloud services</div>
-          </div>
-          <span className="hero-stat-sep" aria-hidden="true" />
-          <div className="hero-stat">
-            <div className="hero-stat-num">
-              &lt;1<span className="hero-stat-unit">s</span>
-            </div>
-            <div className="hero-stat-lbl">cold start</div>
-          </div>
-        </div>
+        <RunDemo />
       </div>
     </section>
   );
