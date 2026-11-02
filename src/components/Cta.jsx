@@ -29,7 +29,7 @@ export default function Cta() {
           <article className="path rv">
             <span className="path-who">Product &amp; leads</span>
             <h3>See it before you decide.</h3>
-            <p>Seven live sandboxes — no install, no account. Open Insight and watch a workflow run.</p>
+            <p>Ten live sandboxes — no install, no account. Open Insight and watch a workflow run.</p>
             <div className="cta-links">
               <a className="btn btn-solid" href="https://try.tuvl.online" rel="noopener" target="_blank"
                 onClick={() => track('try_live', { location: 'cta' })}>Try it live</a>
