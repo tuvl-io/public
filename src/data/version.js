@@ -2,7 +2,7 @@
  * The release shown until PyPI answers (and when it can't): keep it at the latest release. The page replaces it with
  * the live latest stable version of `tuvl` from PyPI, see VersionTag.jsx.
  */
-export const VERSION_TAG = 'v2.0.1';
+export const VERSION_TAG = 'v2.0.2';
 
 /** PyPI's JSON API: `info.version` is the latest stable release (never a pre-release), and the API allows browser reads. */
 export const PYPI_URL = 'https://pypi.org/pypi/tuvl/json';
