@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
-import { initOutboundTracking, initSectionTracking } from '../lib/analytics.js';
+import {
+  initOutboundTracking, initSectionTracking, initNavTracking, initFaqTracking,
+  initScrollDepth, initEngagedTime, initCopyTracking, initHealthTracking,
+} from '../lib/analytics.js';
 
-/* Mounts the page-wide GA4 listeners: delegated outbound-click tracking and
-   the once-per-section scroll-depth funnel. */
+/* Mounts the page-wide GA4 listeners: outbound clicks, section and scroll-depth funnel,
+   in-page navigation, FAQ opens, engaged time, code copies, load timing and script errors. */
 export function useAnalytics() {
   useEffect(() => {
-    const offClicks = initOutboundTracking();
-    const offSections = initSectionTracking();
-    return () => {
-      offClicks?.();
-      offSections?.();
-    };
+    const offs = [
+      initOutboundTracking(), initSectionTracking(), initNavTracking(), initFaqTracking(),
+      initScrollDepth(), initEngagedTime(), initCopyTracking(), initHealthTracking(),
+    ];
+    return () => offs.forEach((off) => off?.());
   }, []);
 }
